@@ -20,46 +20,79 @@ CREATE INDEX idx_customer_name ON customers (name);
 -- Using EXPLAIN to analyze query performance
 EXPLAIN SELECT * FROM customers WHERE name = 'John Doe';
 
+```
+## Query Refactoring
+Refactor queries to be more efficient.
+```sql
 -- Original query
 SELECT * FROM orders WHERE YEAR(order_date) = 2023;
 
 -- Optimized query
 SELECT * FROM orders WHERE order_date >= '2023-01-01' AND order_date < '2024-01-01';
+```
 
+## Use of Appropriate SQL Functions
+Choose the right SQL functions for better performance.
+
+```sql
 -- Inefficient query
 SELECT * FROM orders WHERE SUBSTRING(customer_id, 1, 3) = 'ABC';
 
 -- Optimized query using LIKE
 SELECT * FROM orders WHERE customer_id LIKE 'ABC%';
 
+```
+## Avoiding SELECT *
+Select only the columns you need.
+
+```sql
 -- Inefficient query
 SELECT * FROM employees;
 
 -- Optimized query
 SELECT id, name, department FROM employees;
+```
 
+# Transactions
+Transactions ensure that a series of SQL operations are executed in a safe, reliable manner. Transactions have ACID properties: Atomicity, Consistency, Isolation, Durability.
+
+
+## Starting and Committing a Transaction
 
 -- Start a transaction
 START TRANSACTION;
 
+```sql
 -- Perform some SQL operations
 UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
 UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
 
 -- Commit the transaction
 COMMIT;
+```
 
+## Rolling Back a Transaction
 
 -- Start a transaction
 START TRANSACTION;
-
+```sql
 -- Perform some SQL operations
 UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
 UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
 
 -- Rollback the transaction if something goes wrong
 ROLLBACK;
+```
 
+# Concurrency Management
+Concurrency management involves handling the simultaneous execution of transactions in a multi-user database environment. 
+MariaDB uses locking mechanisms and isolation levels to manage concurrency.
+
+
+## Locking Mechanisms
+MariaDB provides various types of locks to ensure data integrity.
+
+```sql
 -- Explicit locking
 LOCK TABLES accounts WRITE;
 
@@ -68,6 +101,11 @@ UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
 
 -- Unlock tables
 UNLOCK TABLES;
+```
+## Isolation Levels
+Isolation levels define the degree to which the operations in one transaction are isolated from those in other transactions.
+
+```sql
 -- Setting the isolation level to REPEATABLE READ
 SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
@@ -79,6 +117,12 @@ SELECT * FROM accounts WHERE account_id = 1;
 
 -- Commit the transaction
 COMMIT;
+```
+
+# Example of Handling Deadlocks
+Deadlocks occur when two or more transactions are waiting for each other to release locks.
+
+```sql
 -- Transaction 1
 START TRANSACTION;
 UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
@@ -90,5 +134,10 @@ UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
 -- Waits for Transaction 1 to release the lock
 
 -- MariaDB will detect the deadlock and roll back one of the transactions
+```
+By understanding and implementing these concepts, you can optimize query performance, manage transactions effectively, and handle concurrency in MariaDB to ensure your database operations are efficient and reliable.
+
+This single Markdown file can be used in a GitHub repository to provide comprehensive learning material on query optimization, transactions, and concurrency management in MariaDB.
+
 
 
