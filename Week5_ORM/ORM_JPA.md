@@ -169,7 +169,7 @@ public class EmployeeDAO {
 }
 
 ```
-#Conclusion
+# Conclusion
 Understanding ORM and JPA is crucial for managing relational data in Java applications. 
 ORM simplifies database interactions by abstracting them into an object-oriented paradigm, while JPA provides a standard approach to ORM, 
 making it easier to develop, maintain, and port applications. With ORM and JPA, you can perform complex database 
