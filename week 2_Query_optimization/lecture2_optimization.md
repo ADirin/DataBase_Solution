@@ -32,6 +32,19 @@ SELECT * FROM orders WHERE YEAR(order_date) = 2023;
 SELECT * FROM orders WHERE order_date >= '2023-01-01' AND order_date < '2024-01-01';
 ```
 
+```sql
+-- Original query using subquery
+SELECT name FROM Employees WHERE department_id = 
+    (SELECT id FROM Departments WHERE name = 'HR');
+
+-- Refactored query using a join
+SELECT e.name FROM Employees e
+JOIN Departments d ON e.department_id = d.id
+WHERE d.name = 'HR';
+```
+
+
+
 ## Use of Appropriate SQL Functions
 Choose the right SQL functions for better performance.
 
