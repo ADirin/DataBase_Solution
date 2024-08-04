@@ -75,24 +75,42 @@ SELECT id, name, department FROM employees;
 ```
 
 # Transactions
-A transaction in a database context is a sequence of one or more SQL operations (such as INSERT, UPDATE, DELETE, or SELECT statements) that are executed as a single unit of work. 
-Transactions ensure that a series of operations are completed successfully and consistently, even in the presence of system failures or other concurrent operations. 
-If any part of the transaction fails, the entire transaction can be rolled back to ensure the database remains in a consistent state.
+A transaction in a database context is a sequence of one or more SQL operations (such as `INSERT`, `UPDATE`, `DELETE`, or `SELECT` statements) that are executed as a single unit of work. Transactions ensure that a series of operations are completed successfully and consistently, even in the presence of system failures or other concurrent operations. If any part of the transaction fails, the entire transaction can be rolled back to ensure the database remains in a consistent state.
 
-Transactions ensure that a series of SQL operations are executed in a safe, reliable manner. 
-Transactions have ACID properties: 
+## Key Properties of Transactions: ACID
 
-**Atomicity, 
-**Consistency, 
-**Isolation, 
-**Durability.
+Transactions are defined by four key properties, commonly referred to as ACID:
+
+### Atomicity
+The transaction is indivisible; it is either fully completed or not at all. If any part of the transaction fails, the entire transaction is rolled back, and the database is left unchanged.
+
+**Example:** If a bank transaction involves transferring money from one account to another, atomicity ensures that either both the debit and credit occur, or neither does.
+
+### Consistency
+A transaction brings the database from one consistent state to another. Consistency ensures that all database rules (such as integrity constraints) are maintained after the transaction completes.
+
+**Example:** If a transaction violates a database constraint, such as a foreign key constraint, the transaction will be rolled back, preserving the database's consistent state.
+
+### Isolation
+Transactions are isolated from each other, meaning that the intermediate results of a transaction are not visible to other transactions until the transaction is completed. This prevents concurrent transactions from interfering with each other.
+
+**Example:** If two users are making changes to the same data concurrently, isolation ensures that one user’s changes do not affect the other’s operations until the first transaction is committed.
+
+### Durability
+Once a transaction is committed, its results are permanently recorded in the database, even in the event of a system failure. This means the committed data will survive crashes, power loss, or other issues.
+
+**Example:** After a financial transaction is committed, the changes are permanently saved, and the system can recover this information even after a crash.
+
 
 
 ## Starting and Committing a Transaction
 
 -- Start a transaction
-START TRANSACTION;
 
+```sql
+BEGIN TRANSACTION;
+```
+Transaction Execution:
 ```sql
 -- Perform some SQL operations
 UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
