@@ -48,6 +48,10 @@ WHERE d.name = 'HR';
 
 
 ## Use of Appropriate SQL Functions
+Defining an appropriate SQL function involves creating a reusable block of code that performs a specific task or calculation in your database. 
+SQL functions can be categorized into scalar functions (which return a single value) and table-valued functions (which return a table). 
+Functions are often used for encapsulating logic that you want to reuse across multiple queries.
+
 Choose the right SQL functions for better performance.
 
 ```sql
