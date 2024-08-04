@@ -46,7 +46,6 @@ WHERE d.name = 'HR';
 ```
 
 
-
 ## Use of Appropriate SQL Functions
 Defining an appropriate SQL function involves creating a reusable block of code that performs a specific task or calculation in your database. 
 SQL functions can be categorized into scalar functions (which return a single value) and table-valued functions (which return a table). 
@@ -159,13 +158,42 @@ In this example:
 - If an error occurs, the transaction is rolled back, undoing all changes.
 
 # Concurrency Management
-Concurrency management involves handling the simultaneous execution of transactions in a multi-user database environment. 
+Concurrency management in databases refers to the techniques and mechanisms used to control the simultaneous access and modification of data by multiple transactions in a multi-user environment. The goal of concurrency management is to ensure data consistency, integrity, and isolation while maximizing performance and allowing as many concurrent operations as possible.
 MariaDB uses locking mechanisms and isolation levels to manage concurrency.
+## Challenges in Concurrency Management
 
+Concurrency can lead to several potential issues, often referred to as concurrency problems:
+
+### Dirty Reads
+Occurs when a transaction reads data that has been modified by another transaction but not yet committed. If the other transaction is rolled back, the first transaction may have read data that never existed.
+
+### Non-Repeatable Reads
+Happens when a transaction reads the same data multiple times and gets different results each time because another transaction modified the data in the meantime.
+
+### Phantom Reads
+Occurs when a transaction re-executes a query and finds new rows that weren’t there before, due to another transaction inserting, updating, or deleting rows that affect the query’s result set.
+
+### Lost Updates
+Occurs when two transactions read the same data and update it, but the second update overwrites the first one, causing a loss of data.
+
+## Concurrency Control Mechanisms
+To manage these concurrency challenges, databases use several control mechanisms:
 
 ## Locking Mechanisms
 MariaDB provides various types of locks to ensure data integrity.
+Locks are the most common concurrency control mechanism. They prevent multiple transactions from accessing the same data in conflicting ways.
 
+**Types of Locks:**
+
+- **Shared Lock (S):** Allows multiple transactions to read (but not modify) the same data simultaneously.
+- **Exclusive Lock (X):** Prevents other transactions from reading or modifying the data. Only one transaction can hold an exclusive lock on a piece of data.
+- **Intent Locks:** Used in hierarchical locking schemes to indicate an intention to acquire a shared or exclusive lock at a finer granularity.
+
+**Lock Granularity:**
+
+- **Row-level locking:** Locks specific rows, allowing higher concurrency but more complex management.
+- **Page-level locking:** Locks a page (a block of rows), balancing concurrency and complexity.
+- **Table-level locking:** Locks an entire table, simpler but reduces concurrency.
 ```sql
 -- Explicit locking
 LOCK TABLES accounts WRITE;
@@ -176,9 +204,61 @@ UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
 -- Unlock tables
 UNLOCK TABLES;
 ```
+
+### 2. Timestamp Ordering
+Each transaction is given a unique timestamp when it starts. The database ensures that transactions are executed in a way that respects the order of these timestamps, preventing conflicts by making sure that older transactions are completed before newer ones.
+
+### 3. Optimistic Concurrency Control
+Assumes that transactions will rarely conflict. Data is read and modified without locking. Before a transaction is committed, the database checks whether another transaction has modified the same data. If there’s a conflict, the transaction is rolled back.
+
+**Steps:**
+
+- **Read Phase:** Transaction reads the data and performs its operations.
+- **Validation Phase:** Before committing, it checks if any other transactions have modified the data it worked on.
+- **Write Phase:** If validation passes, the transaction is committed.
+
+### 4. Pessimistic Concurrency Control
+Assumes that conflicts are likely, so locks are used aggressively. Data is locked when it is read or written, preventing other transactions from accessing it until the lock is released.
+
+### 5. Multiversion Concurrency Control (MVCC)
+MVCC allows multiple versions of data to exist simultaneously, enabling transactions to see a consistent snapshot of the database without blocking other transactions. It’s widely used in databases like PostgreSQL and Oracle.
+
 ## Isolation Levels
 Isolation levels define the degree to which the operations in one transaction are isolated from those in other transactions.
+**How It Works:**
 
+- Each transaction sees a snapshot of the data as it was at the start of the transaction.
+- New data changes are written as new versions, and older versions are retained for other transactions.
+- Conflicts are resolved at commit time, ensuring that transactions do not interfere with each other.
+
+## Isolation Levels
+
+Isolation levels are configurations that determine how strictly a database manages concurrency. They balance the need for data consistency against the need for performance and concurrency. The four primary isolation levels are:
+
+### Read Uncommitted
+- Transactions can see uncommitted changes from other transactions, leading to dirty reads.
+- Highest concurrency, lowest consistency.
+
+### Read Committed
+- Transactions only see committed changes from other transactions, avoiding dirty reads.
+- Most commonly used isolation level, balancing consistency and performance.
+
+### Repeatable Read
+- Transactions can read the same data multiple times and see the same value, preventing non-repeatable reads.
+- Ensures more consistency but with some performance trade-offs.
+
+### Serializable
+- The strictest isolation level, where transactions are fully isolated from each other as if they were executed serially.
+- Ensures full consistency but at the cost of reduced concurrency.
+
+## Deadlock Management
+
+A deadlock occurs when two or more transactions are waiting indefinitely for each other to release locks, preventing them from proceeding. 
+Databases use various strategies to detect and resolve deadlocks:
+
+- **Deadlock Detection:** The database periodically checks for cycles of waiting transactions and resolves deadlocks by aborting one of the transactions (often the one with the lowest cost to rollback).
+
+- **Deadlock Prevention:** The database may prevent deadlocks by ensuring that transactions acquire locks in a predefined order or by imposing timeouts on locks.
 ```sql
 -- Setting the isolation level to REPEATABLE READ
 SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ;
