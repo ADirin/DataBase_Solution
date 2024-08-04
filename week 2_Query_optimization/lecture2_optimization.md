@@ -21,7 +21,6 @@ CREATE INDEX idx_customer_name ON customers (name);
 EXPLAIN SELECT * FROM customers WHERE name = 'John Doe';
 
 ```
-or 
 
 ## Query Refactoring
 Query refactoring involves modifying a database query to improve its performance, maintainability, readability, or to adapt to changes in the database schema, without changing the query's output or functionality. This process is essential in database optimization and management, especially in complex systems where performance and scalability are critical.
@@ -29,10 +28,11 @@ Query refactoring involves modifying a database query to improve its performance
 ```sql
 -- Original query
 SELECT * FROM orders WHERE YEAR(order_date) = 2023;
-
+ 
 -- Optimized query
 SELECT * FROM orders WHERE order_date >= '2023-01-01' AND order_date < '2024-01-01';
 ```
+or
 
 ```sql
 -- Original query using subquery
