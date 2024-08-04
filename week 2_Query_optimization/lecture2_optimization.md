@@ -121,6 +121,8 @@ COMMIT;
 ```
 
 ## Rolling Back a Transaction
+If any operation within the transaction fails or if an error is detected, the transaction can be rolled back using the ROLLBACK statement. 
+This undoes all changes made during the transaction, ensuring the database remains in a consistent state.
 
 -- Start a transaction
 START TRANSACTION;
