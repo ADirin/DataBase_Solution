@@ -64,8 +64,6 @@ SELECT * FROM orders WHERE customer_id LIKE 'ABC%';
 ```
 ## Avoiding SELECT *
 Avoiding the SELECT statement in SQL refer to situations where you need to optimize performance, avoid redundant data retrieval, or adhere to certain database constraints. 
-Here are some scenarios and strategies for minimizing or avoiding the use of SELECT:
-
 Select only the columns you need.
 
 ```sql
