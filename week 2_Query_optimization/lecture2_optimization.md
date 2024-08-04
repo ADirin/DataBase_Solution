@@ -135,6 +135,29 @@ UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
 ROLLBACK;
 ```
 
+# Example Scenario
+Imagine a simple banking system where money is transferred from one account to another:
+
+```sql
+BEGIN TRANSACTION;
+
+UPDATE Accounts SET balance = balance - 100 WHERE account_id = 1;
+UPDATE Accounts SET balance = balance + 100 WHERE account_id = 2;
+
+IF @@ERROR = 0
+   COMMIT;
+ELSE
+   ROLLBACK;
+
+
+```
+In this example:
+
+- The transaction begins with `BEGIN TRANSACTION`.
+- Two `UPDATE` operations transfer money between accounts.
+- If both updates succeed (`IF @@ERROR = 0` checks for errors), the transaction is committed, making the changes permanent.
+- If an error occurs, the transaction is rolled back, undoing all changes.
+
 # Concurrency Management
 Concurrency management involves handling the simultaneous execution of transactions in a multi-user database environment. 
 MariaDB uses locking mechanisms and isolation levels to manage concurrency.
