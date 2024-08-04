@@ -22,7 +22,8 @@ EXPLAIN SELECT * FROM customers WHERE name = 'John Doe';
 
 ```
 ## Query Refactoring
-Refactor queries to be more efficient.
+Query refactoring involves modifying a database query to improve its performance, maintainability, readability, or to adapt to changes in the database schema, without changing the query's output or functionality. This process is essential in database optimization and management, especially in complex systems where performance and scalability are critical.
+
 ```sql
 -- Original query
 SELECT * FROM orders WHERE YEAR(order_date) = 2023;
