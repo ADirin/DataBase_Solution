@@ -75,7 +75,17 @@ SELECT id, name, department FROM employees;
 ```
 
 # Transactions
-Transactions ensure that a series of SQL operations are executed in a safe, reliable manner. Transactions have ACID properties: Atomicity, Consistency, Isolation, Durability.
+A transaction in a database context is a sequence of one or more SQL operations (such as INSERT, UPDATE, DELETE, or SELECT statements) that are executed as a single unit of work. 
+Transactions ensure that a series of operations are completed successfully and consistently, even in the presence of system failures or other concurrent operations. 
+If any part of the transaction fails, the entire transaction can be rolled back to ensure the database remains in a consistent state.
+
+Transactions ensure that a series of SQL operations are executed in a safe, reliable manner. 
+Transactions have ACID properties: 
+
+**Atomicity, 
+**Consistency, 
+**Isolation, 
+**Durability.
 
 
 ## Starting and Committing a Transaction
