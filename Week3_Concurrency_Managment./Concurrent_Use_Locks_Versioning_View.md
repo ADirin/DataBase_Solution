@@ -76,7 +76,7 @@ BEGIN TRANSACTION;
 ## Lock Granularity
 Locks can be applied at different levels of granularity, each affecting the concurrency and complexity of locking:
 
-# 1. Row-Level Locking
+### 1. Row-Level Locking
 Purpose: Locks individual rows within a table, allowing multiple transactions to access different rows of the same table concurrently.
 
 Advantages:
@@ -97,7 +97,7 @@ UPDATE employees SET salary = salary + 5000 WHERE employee_id = 123; -- Row-leve
 COMMIT;
 ````
 
-# 2. Page-Level Locking
+### 2. Page-Level Locking
 Purpose: Locks a page, which is a block of rows, rather than individual rows. This strikes a balance between concurrency and management complexity.
 
 Advantages:
@@ -118,7 +118,7 @@ COMMIT;
 
 ````
 
-# 3. Table-Level Locking
+### 3. Table-Level Locking
 Purpose: Locks the entire table, preventing any other transactions from accessing the table until the lock is released.
 
 Advantages:
