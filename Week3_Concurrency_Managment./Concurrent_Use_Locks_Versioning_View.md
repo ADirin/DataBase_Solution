@@ -32,7 +32,7 @@ Consider a scenario where two transactions, T1 and T2, need to update a bank acc
 In this example, T2 has to wait until T1 completes, ensuring that the balance is updated correctly and no intermediate results are visible.
 
 
-**2. Exclusive Lock (X)
+## Exclusive Lock (X)
 Purpose: Prevents other transactions from reading or modifying the data. This lock is used when a transaction needs to modify data, ensuring that no other transactions can access the data concurrently.
 
 Behavior:
