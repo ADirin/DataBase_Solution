@@ -1,4 +1,4 @@
-# DataBase_Solution (Lecture Example for the first three weeks)
+# DataBase_Solution (Lecture Example for the first four weeks)
 
 # Database Learning Guide: Normalization, Temporal Databases, Indexing, Query Optimization, Concurrency, Transactions, Locks, Versioning, and Views
 
@@ -241,5 +241,205 @@ CREATE VIEW ActiveEmployees AS
 SELECT EmployeeID, EmployeeName FROM Employees WHERE Department = 'Sales';
 
 SELECT * FROM ActiveEmployees;
+
+````
+# 8. Triggers
+Creating a Trigger
+Triggers automatically execute specified SQL code when certain events occur in the database, such as an INSERT, UPDATE, or DELETE operation.
+
+Example: Log Changes to the Accounts Table
+We'll create a trigger that logs every update to the Accounts table into an AccountChanges log table.
+
+```sql
+-- Create a log table
+CREATE TABLE AccountChanges (
+    ChangeID INT AUTO_INCREMENT PRIMARY KEY,
+    AccountID INT,
+    OldBalance DECIMAL(10, 2),
+    NewBalance DECIMAL(10, 2),
+    ChangeTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create the trigger
+DELIMITER //
+
+CREATE TRIGGER after_account_update
+AFTER UPDATE ON Accounts
+FOR EACH ROW
+BEGIN
+    INSERT INTO AccountChanges (AccountID, OldBalance, NewBalance)
+    VALUES (OLD.AccountID, OLD.Balance, NEW.Balance);
+END //
+
+DELIMITER ;
+
+
+````
+Explanation:
+AFTER UPDATE: The trigger fires after an update operation on the Accounts table.
+OLD and NEW: These keywords allow access to the row's data before and after the update.
+INSERT INTO AccountChanges: This records the change in the AccountChanges log table.
+
+
+# 9. Stored Procedures
+Creating a Stored Procedure
+Stored procedures are reusable SQL code blocks that can be called with parameters. They are useful for encapsulating business logic in the database.
+
+Example: Transfer Money Between Accounts
+We'll create a stored procedure that handles transferring money between two accounts, incorporating error handling and transaction management.
+
+```sql
+DELIMITER //
+
+CREATE PROCEDURE TransferMoney(IN fromAccountID INT, IN toAccountID INT, IN amount DECIMAL(10, 2))
+BEGIN
+    DECLARE insufficient_funds CONDITION FOR SQLSTATE '45000';
+    DECLARE EXIT HANDLER FOR insufficient_funds
+    BEGIN
+        ROLLBACK;
+        SELECT 'Insufficient funds, transaction rolled back.' AS message;
+    END;
+
+    START TRANSACTION;
+
+    -- Deduct from the sender's account
+    UPDATE Accounts SET Balance = Balance - amount WHERE AccountID = fromAccountID;
+
+    -- Check if the balance is negative
+    IF (SELECT Balance FROM Accounts WHERE AccountID = fromAccountID) < 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insufficient funds';
+    END IF;
+
+    -- Add to the recipient's account
+    UPDATE Accounts SET Balance = Balance + amount WHERE AccountID = toAccountID;
+
+    COMMIT;
+    SELECT 'Transaction successful.' AS message;
+END //
+
+DELIMITER ;
+
+````
+Explanation:
+IN parameters: Define the input parameters for the stored procedure.
+Transaction Management: The procedure uses START TRANSACTION, COMMIT, and error handling to ensure atomicity.
+Error Handling: SIGNAL SQLSTATE is used to trigger a rollback if there are insufficient funds.
+Calling the Stored Procedure
+```sql
+
+CALL TransferMoney(1, 2, 100.00);
+
+````
+# 10. Events
+Creating an Event
+Events are scheduled database tasks that run automatically at specified intervals. They are useful for automating routine tasks.
+
+Example: Daily Interest Update
+We’ll create an event that adds interest to all accounts at midnight every day.
+```sql
+DELIMITER //
+
+CREATE EVENT DailyInterestUpdate
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP + INTERVAL 1 DAY
+DO
+BEGIN
+    UPDATE Accounts SET Balance = Balance * 1.001; -- Assuming 0.1% daily interest
+END //
+
+DELIMITER ;
+
+
+````
+Explanation:
+ON SCHEDULE EVERY 1 DAY: The event runs once a day.
+STARTS: Defines when the event should start.
+UPDATE statement: Increases the balance of each account by 0.1%.
+Managing Events
+Enable or disable the event using:
+
+```sql
+
+ALTER EVENT DailyInterestUpdate ENABLE;
+ALTER EVENT DailyInterestUpdate DISABLE;
+
+````
+# 11. User Accounts and Security
+Creating User Accounts
+In MySQL/MariaDB, you can create user accounts and assign specific privileges to ensure security.
+
+Example: Creating a New User
+```sql
+CREATE USER 'bank_admin'@'localhost' IDENTIFIED BY 'secure_password';
+CREATE USER 'bank_user'@'localhost' IDENTIFIED BY 'user_password';
+
+
+````
+Granting Privileges
+You can grant specific privileges to users based on their roles.
+
+```sql
+-- Grant all privileges to bank_admin
+GRANT ALL PRIVILEGES ON CompanyDB.* TO 'bank_admin'@'localhost';
+
+-- Grant limited privileges to bank_user
+GRANT SELECT, INSERT, UPDATE ON CompanyDB.Accounts TO 'bank_user'@'localhost';
+
+-- Apply changes
+FLUSH PRIVILEGES;
+
+
+````
+Security Considerations
+Use strong passwords and enforce password policies.
+Grant the minimum necessary privileges to each user based on their role.
+Regularly review and audit user privileges to ensure security.
+
+# 12. Backups
+Creating a Backup
+Backups are essential for data protection and recovery in case of failures.
+
+Example: Full Database Backup
+```sql
+mysqldump -u root -p CompanyDB > CompanyDB_backup.sql
+````
+Restoring a Backup
+You can restore a database from a backup file:
+
+
+```sql
+mysql -u root -p CompanyDB < CompanyDB_backup.sql
+````
+Automating Backups with a Script
+You can automate backups using a cron job on Unix-based systems:
+
+Create a backup script (backup.sh):
+```sql
+#!/bin/bash
+mysqldump -u root -pYOURPASSWORD CompanyDB > /path/to/backup/CompanyDB_$(date +\%F).sql
+
+
+````
+Make the script executable:
+
+```sql
+chmod +x backup.sh
+
+
+````
+Schedule the backup script using cron:
+
+```sql
+crontab -e
+
+
+````
+
+
+Add a line to run the script daily at midnight:
+
+```sql
+0 0 * * * /path/to/backup.sh
+
 
 ````
