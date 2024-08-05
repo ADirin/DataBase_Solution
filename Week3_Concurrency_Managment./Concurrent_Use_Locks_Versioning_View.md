@@ -51,6 +51,94 @@ UPDATE employees SET salary = salary + 5000 WHERE employee_id = 123; -- Exclusiv
 COMMIT;
 ````
 
+## Intent Locks
+Purpose: Used to signal a transaction’s intention to acquire a shared or exclusive lock at a finer granularity (such as a row-level or page-level lock). Intent locks help manage hierarchical locking by coordinating lock requests at different levels.
+
+Types:
+
+- Intent Shared Lock (IS): Indicates that a transaction intends to acquire a shared lock on some lower-level data.
+- Intent Exclusive Lock (IX): Indicates that a transaction intends to acquire an exclusive lock on some lower-level data.
+  
+Behavior:
+- An intent lock at a higher level (e.g., table-level) prevents other transactions from acquiring conflicting locks at lower levels (e.g., row-level).
+
+Example:
+- Transaction T1 wants to acquire a shared lock on specific rows within a table. Before acquiring the row-level locks, it first acquires an intent shared lock at the table level.
+
+SQL Example:
+
+```sql
+BEGIN TRANSACTION;
+-- Intent locks are typically managed by the DBMS and not explicitly specified in SQL
+
+````
+
+## Lock Granularity
+Locks can be applied at different levels of granularity, each affecting the concurrency and complexity of locking:
+
+# 1. Row-Level Locking
+Purpose: Locks individual rows within a table, allowing multiple transactions to access different rows of the same table concurrently.
+
+Advantages:
+- Higher concurrency as only specific rows are locked.
+- Allows transactions to work with different parts of the data simultaneously.
+
+Disadvantages:
+- More complex management and overhead due to numerous locks.
+
+Example:
+- Transaction T1 locks rows where department = 'Sales' to update employee salaries, while Transaction T2 can still access other rows in the same table.
+
+SQL Example:
+
+```sql
+BEGIN TRANSACTION;
+UPDATE employees SET salary = salary + 5000 WHERE employee_id = 123; -- Row-level lock
+COMMIT;
+````
+
+# 2. Page-Level Locking
+Purpose: Locks a page, which is a block of rows, rather than individual rows. This strikes a balance between concurrency and management complexity.
+
+Advantages:
+- Reduces the number of locks needed compared to row-level locking.
+- Simplifies management compared to locking each row individually.
+
+Disadvantages:
+- Can lead to reduced concurrency if multiple transactions need to access different rows within the same page.
+
+Example:
+- Transaction T1 locks a page containing several rows to update multiple employees, which might block Transaction T2 from accessing any row on that page.
+SQL Example:
+
+```sql
+BEGIN TRANSACTION;
+UPDATE employees SET salary = salary + 5000 WHERE department = 'Sales'; -- Page-level lock
+COMMIT;
+
+````
+
+# 3. Table-Level Locking
+Purpose: Locks the entire table, preventing any other transactions from accessing the table until the lock is released.
+
+Advantages:
+- Simplest form of locking with minimal management overhead.
+- Guarantees no other transactions can access the table during the lock.
+
+Disadvantages:
+- Significantly reduces concurrency as the entire table is locked.
+
+Example:
+- Transaction T1 locks the entire employees table to perform batch updates, blocking Transaction T2 from accessing any part of the table.
+
+SQL Example:
+
+```sql
+BEGIN TRANSACTION;
+UPDATE employees SET salary = salary + 5000; -- Table-level lock
+COMMIT;
+
+````
 
 ## 2. Versioning
 
