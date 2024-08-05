@@ -1,4 +1,4 @@
-# DataBase_Solution (Lecture Example)
+# DataBase_Solution (Lecture Example for the first three weeks)
 
 # Database Learning Guide: Normalization, Temporal Databases, Indexing, Query Optimization, Concurrency, Transactions, Locks, Versioning, and Views
 
