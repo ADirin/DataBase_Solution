@@ -37,20 +37,19 @@ Purpose: Prevents other transactions from reading or modifying the data. This lo
 
 Behavior:
 
-Only one transaction can hold an exclusive lock on a particular piece of data at a time.
-Other transactions are blocked from acquiring either shared or exclusive locks on the same data until the exclusive lock is released.
-Example:
+- Only one transaction can hold an exclusive lock on a particular piece of data at a time.
+- Other transactions are blocked from acquiring either shared or exclusive locks on the same data until the exclusive lock is released.
 
+Example:
 Transaction T1 acquires an exclusive lock on a specific employee record to update it. While T1 is holding the lock, Transaction T2 cannot read or modify the same employee record.
 
 SQL Example:
 
-´´´sql
+```sql
 BEGIN TRANSACTION;
 UPDATE employees SET salary = salary + 5000 WHERE employee_id = 123; -- Exclusive lock acquired
 COMMIT;
-
-´´´
+````
 
 
 ## 2. Versioning
