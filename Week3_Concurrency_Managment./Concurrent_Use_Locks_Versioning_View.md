@@ -139,6 +139,17 @@ UPDATE employees SET salary = salary + 5000; -- Table-level lock
 COMMIT;
 
 ````
+# Lock Management and Deadlocks
+Deadlocks
+A deadlock occurs when two or more transactions are waiting indefinitely for each other to release locks. To manage deadlocks, databases employ strategies such as:
+- Deadlock Detection: The DBMS periodically checks for deadlocks and resolves them by aborting one of the transactions.
+- Deadlock Prevention: The DBMS may prevent deadlocks by ensuring that transactions acquire locks in a predefined order or by using timeouts.
+
+Example:
+- Transaction T1 holds a lock on A and waits for a lock on B.
+- Transaction T2 holds a lock on B and waits for a lock on A.
+
+The DBMS detects this circular wait and resolves the deadlock by aborting one of the transactions.
 
 ## 2. Versioning
 
