@@ -244,14 +244,14 @@ This guide has demonstrated how to set up a simple JPA project in IntelliJ, crea
 
 Feel free to reach out if you have any more questions or need further assistance!
 
------------------------------------------
+----------------------------------------------------------------------------------
 To add a new table in the HeidiDB new table
-- 1.  Create a new Database, e.g., "Student" in HeidiDB
-- 2.  Add the local host and the port number in the persistance file
-     ```xml
-<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Student"/>
-     ```
-- 3. Add the proper database connectivity in POM.xml
+1.  Create a new Database, e.g., "Student" in HeidiDB
+2.  Add the local host and the port number in the persistance file
+```xml
+    <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Student"/>
+```
+3. Add the proper database connectivity in POM.xml
  ```xml
  <dependency>
             <groupId>mysql</groupId>
@@ -260,7 +260,7 @@ To add a new table in the HeidiDB new table
         </dependency>
   ```
 Here is the complete file persistance file
- ```xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
     <persistence-unit name="JPAExamplePU" transaction-type="RESOURCE_LOCAL">
@@ -281,6 +281,8 @@ Here is the complete file persistance file
         </properties>
     </persistence-unit>
 </persistence>
-  ```
+
+```
+
 
  
