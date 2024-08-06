@@ -50,7 +50,7 @@ To use JPA, you'll need to include the necessary dependencies and configure a `p
 
 ### Example `pom.xml` for Maven
 
-```xml
+````xml
 <dependencies>
     <dependency>
         <groupId>javax.persistence</groupId>
