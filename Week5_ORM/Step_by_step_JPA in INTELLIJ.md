@@ -243,3 +243,44 @@ This guide will walk you through creating a simple Java application using Java P
 This guide has demonstrated how to set up a simple JPA project in IntelliJ, create an entity, configure persistence, and run basic CRUD operations. With this foundation, you can explore more advanced JPA features like JPQL, criteria queries, and mapping relationships between entities.
 
 Feel free to reach out if you have any more questions or need further assistance!
+
+-----------------------------------------
+To add a new table in the HeidiDB new table
+- 1.  Create a new Database, e.g., "Student" in HeidiDB
+- 2.  Add the local host and the port number in the persistance file
+     ```xml
+<property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Student"/>
+     ```
+- 3. Add the proper database connectivity in POM.xml
+ ```xml
+ <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version> <!-- Use the latest version available -->
+        </dependency>
+  ```
+Here is the complete file persistance file
+ ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="JPAExamplePU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.example.jpa.entity.Student</class>
+        <properties>
+            <!-- JDBC connection properties -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Student"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/> <!-- Added the driver -->
+            <property name="jakarta.persistence.jdbc.password" value="Test12"/>
+
+            <!-- Hibernate settings -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+  ```
+
+ 
