@@ -104,4 +104,4 @@ DELETE FROM logs WHERE log_date < NOW() - INTERVAL 1 YEAR;
 Conclusion
 Understanding and using triggers, stored procedures, and events in MySQL can significantly enhance the functionality and performance of your database applications. These tools allow you to automate tasks, enforce data integrity, and handle complex operations more efficiently.
 
-arduino
+
