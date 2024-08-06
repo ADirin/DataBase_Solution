@@ -78,7 +78,7 @@ To use JPA, you'll need to include the necessary dependencies and configure a `p
         <version>1.2.3</version>
     </dependency>
 </dependencies>
-
+```
 
 # Examples
 ## Entity Class
@@ -102,10 +102,11 @@ public class Employee {
 
     // Getters and Setters
 }
-````
+```
 
 ## Persistence Configuration
 The persistence.xml file configures the persistence unit and specifies database connection properties.
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
@@ -122,7 +123,7 @@ The persistence.xml file configures the persistence unit and specifies database 
         </properties>
     </persistence-unit>
 </persistence>
-````
+```
 ## CRUD Operations
 Performing CRUD operations using the EntityManager.
 
@@ -152,6 +153,6 @@ public class EmployeeDAO {
 
     // More CRUD operations...
 }
-````
+```
 # Conclusion
 This guide provides an overview of ORM and JPA, explaining their benefits, core concepts, and how to set up and use them in Java applications.
