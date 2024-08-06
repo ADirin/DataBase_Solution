@@ -49,6 +49,7 @@ JPA is a specification for accessing, persisting, and managing data between Java
 To use JPA, you'll need to include the necessary dependencies and configure a `persistence.xml` file.
 
 ### Example `pom.xml` for Maven
+
 ```xml
 <dependencies>
     <dependency>
