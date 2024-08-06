@@ -7,7 +7,7 @@
 4. Enter the Group ID (e.g., com.example) and Artifact ID (e.g., jpa-onetomany-example).
 5. Click Finish.
 ### 1.2 Add Dependencies in pom.xml
-Open the pom.xml file and add the following dependencies for JPA, Hibernate, and MySQL connector:
+- Open the pom.xml file and add the following dependencies for JPA, Hibernate, and MySQL connector:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
