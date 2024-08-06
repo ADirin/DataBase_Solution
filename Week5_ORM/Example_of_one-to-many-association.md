@@ -1,4 +1,42 @@
-# Step-by-Step Guide: JPA 1 Association
+# Step-by-Step Guide: JPA 1 to many Association
+-----------------------------------------------------------
+# Project Overview
+This project is a simple example demonstrating the use of Java Persistence API (JPA) to model a One-to-Many relationship between two entities: Student and Course. The main objective is to showcase how to establish and manage relationships in a JPA context using Hibernate as the ORM (Object-Relational Mapping) provider.
+
+![One to Many Association](./images/ontomany.JPG)
+
+
+## Classes and Their Relationships
+### 1. Student Class
+- Purpose: Represents a student in the system.
+- Attributes:
+   - id: A unique identifier for each student (primary key).
+   - name: The name of the student.
+   - email: The email address of the student.
+   - courses: A list of courses associated with the student.
+- Relationship:
+   - One-to-Many: A student can enroll in multiple courses. This is represented using the @OneToMany annotation with Course as the target entity.
+   - Cascade Operations: Cascade type ALL is used to propagate all operations (e.g., persist, remove) from the Student entity to its associated Course entities.
+   - Orphan Removal: When a course is removed from a student’s list, it is also removed from the database.
+### 2. Course Class
+- Purpose: Represents a course in which students can enroll.
+- Attributes:
+   - id: A unique identifier for each course (primary key).
+   - title: The title of the course.
+   - student: A reference to the student who is associated with the course.
+## Relationship:
+- Many-to-One: Many courses can belong to one student. This is represented using the @ManyToOne annotation, with Student as the owning entity.
+- Lazy Fetching: By default, the student associated with the course is fetched lazily, meaning it is loaded on demand.
+## Relationship Explanation
+- One-to-Many Relationship:
+    - This relationship is bidirectional. The Student class has a List<Course> representing the courses a student is enrolled in, and each Course has a reference back to the Student it belongs to.
+    - In the database, this is typically represented by a foreign key in the Course table pointing to the primary key of the Student table.
+## Project Functionality
+- Data Persistence: When the application runs, a new Student and several Course objects are created and persisted in the database. The relationships are maintained through JPA annotations.
+- Retrieval: The application retrieves and prints the student and their associated courses, demonstrating the working of the One-to-Many relationship.
+This project serves as a foundational example of how to set up and use JPA for managing relational data in a Java application.
+
+
 ## Step 1: Set Up Your Project
 ### 1.1 Create a Maven Project in IntelliJ IDEA
 1. Open IntelliJ IDEA.
