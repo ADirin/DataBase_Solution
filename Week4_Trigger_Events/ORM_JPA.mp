@@ -16,7 +16,7 @@
     - [CRUD Operations](#crud-operations)
 5. [Conclusion](#conclusion)
 
-## Introduction
+# Introduction
 This guide covers the basics of Object-Relational Mapping (ORM) and Java Persistence API (JPA). These concepts are essential for managing relational data in Java applications using object-oriented principles. ORM abstracts the database interactions by mapping database tables to Java classes, while JPA is a specification that standardizes ORM in Java.
 
 ## Object-Relational Mapping (ORM)
