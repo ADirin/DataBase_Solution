@@ -85,28 +85,36 @@ Indexing is a technique used in databases to improve the speed of data retrieval
 **Creating an Index on `LastName`:**
 ```sql
 CREATE INDEX idx_lastname ON Employees (LastName);
-
+````
 Creating a Unique Index on Email:
+```sql
 
 CREATE UNIQUE INDEX idx_email ON Users (Email);
-
-Example 2: E-commerce Database
+````
+### Example 2: E-commerce Database
 Creating a Full-Text Index on ProductDescription:
+
+```sql
 CREATE FULLTEXT INDEX ft_idx_description ON Products (Description);
-
-
+````
 Creating a Bitmap Index on Category:
+
+```sql
 CREATE BITMAP INDEX idx_category ON Products (Category);
+````
 
 
-Best Practices
+# Best Practices
 Use Indexes Sparingly: Index only those columns that will benefit the most from indexing.
 Composite Indexes: Use composite indexes for queries that filter on multiple columns.
 Analyze Query Patterns: Regularly analyze and optimize query patterns to determine the need for indexes.
 Monitor Performance: Continuously monitor the performance impact of indexes and adjust as necessary.
 Conclusion
-Indexing is a powerful tool for improving database performance, but it must be used judiciously. By understanding the different types of indexes and their use cases, you can design an efficient indexing strategy that balances the benefits and trade-offs.
+Indexing is a powerful tool for improving database performance, but it must be used judiciously. 
+By understanding the different types of indexes and their use cases, you can design an efficient indexing strategy that balances the benefits and trade-offs.
 
+
+# [Further study at](https://favtutor.com/blogs/index-sql)
 Further Reading
 Database Indexing Basics
 Index Types in SQL Server
