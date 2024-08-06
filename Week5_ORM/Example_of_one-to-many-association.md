@@ -36,6 +36,8 @@ This project is a simple example demonstrating the use of Java Persistence API (
 - Retrieval: The application retrieves and prints the student and their associated courses, demonstrating the working of the One-to-Many relationship.
 This project serves as a foundational example of how to set up and use JPA for managing relational data in a Java application.
 
+_______________________________________________________________________________---------------------------------------------------
+
 
 ## Step 1: Set Up Your Project
 ### 1.1 Create a Maven Project in IntelliJ IDEA
