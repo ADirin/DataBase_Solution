@@ -5,7 +5,6 @@ This project is a simple example demonstrating the use of Java Persistence API (
 
 ![One to Many Association](./images/onetomany.jpg)
 
-
 ## Classes and Their Relationships
 ### 1. Student Class
 - Purpose: Represents a student in the system.
