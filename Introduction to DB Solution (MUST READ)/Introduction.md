@@ -1,3 +1,11 @@
+## Copyright Notice
+
+© [2024] [Amir Dirin]. All rights reserved.
+
+This repository is licensed under the [Metropolia] License. See the [LICENSE](./LICENSE) file for more details.
+
+
+
 # Introduction to Database Solutions
 
 Welcome to the Database Solutions course! This intensive, 8-week program is designed to provide a comprehensive understanding of various aspects of database management and optimization. Throughout the course, you'll gain practical skills and theoretical knowledge necessary for effective database design and operation.
