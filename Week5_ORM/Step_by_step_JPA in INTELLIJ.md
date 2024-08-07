@@ -5,16 +5,26 @@ This guide will walk you through creating a simple Java application using Java P
 Note: Your directory structure should look something like this:
 
 ```css
-src/
-└── main/
-    └── java/
-        └── com/
-            └── example/
-                └── jpa/
-                    ├── Main.java
-                    └── entity/
-                        ├── Student.java
-                        └── Course.java
+Exampleone-one-db
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           └── jpa
+│   │   │               ├── Main.java
+│   │   │               ├── entity
+│   │   │               │   ├── Student.java
+│   │   │               │   └── Course.java
+│   │   └── resources
+│   │       └── META-INF
+│   │           └── persistence.xml
+└── target
+    └── classes
+        └── META-INF
+            └── persistence.xml
+
 
 
 ```
