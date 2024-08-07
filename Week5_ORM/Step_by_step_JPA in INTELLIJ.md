@@ -2,6 +2,24 @@
 
 This guide will walk you through creating a simple Java application using Java Persistence API (JPA) in IntelliJ IDEA. We'll use Hibernate as the JPA implementation and connect to an H2 in-memory database to demonstrate the basic concepts of Object-Relational Mapping (ORM) and JPA.
 
+Note: Your directory structure should look something like this:
+
+```css
+src/
+└── main/
+    └── java/
+        └── com/
+            └── example/
+                └── jpa/
+                    ├── Main.java
+                    └── entity/
+                        ├── Student.java
+                        └── Course.java
+
+
+```
+
+
 ## Step 1: Set Up Your IntelliJ Project
 
 ### Create a New Java Project
