@@ -1,6 +1,6 @@
 ## Copyright Notice
 
-© [2024] [Amir Dirin]. All rights reserved.
+© 2024 Amir Dirin. All rights reserved.
 
 This repository is licensed under the [Metropolia] License. See the [LICENSE](./LICENSE) file for more details.
 
