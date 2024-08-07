@@ -22,24 +22,67 @@ It checks for data conflicts only at the time of committing a transaction. If a 
 
 
 ```xml
-<!-- Example Maven dependencies -->
-<dependencies>
-    <dependency>
-        <groupId>jakarta.persistence</groupId>
-        <artifactId>jakarta.persistence-api</artifactId>
-        <version>3.0.0</version>
-    </dependency>
-    <dependency>
-        <groupId>org.hibernate.orm</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>6.2.5.Final</version>
-    </dependency>
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.32</version>
-    </dependency>
-</dependencies>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>objectlevelcon</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Hibernate Core -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.2.5.Final</version>
+        </dependency>
+
+        <!-- Jakarta Persistence API -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!-- H2 Database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.220</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Logging dependencies -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+
+        <!-- MySQL Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.32</version>
+        </dependency>
+    </dependencies>
+</project>
+
 
 ```
 ### Step 2: Create Entity Classes with Optimistic Locking
@@ -49,14 +92,14 @@ Student.java
 ```java
 package com.example.jpa.entity;
 
+import java.util.UUID;
 import jakarta.persistence.*;
 
 @Entity
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
 
     private String name;
     private String email;
@@ -65,18 +108,51 @@ public class Student {
     private Course course;
 
     @Version
-    private int version; // Version field for optimistic locking
+    private int version;
 
     // Constructors, getters, and setters
 
-    public Student() {}
+    public Student() {
+        this.id = UUID.randomUUID(); // Manually generate UUID
+    }
 
     public Student(String name, String email) {
+        this.id = UUID.randomUUID(); // Manually generate UUID
         this.name = name;
         this.email = email;
     }
 
-    // Getters and setters...
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
     public int getVersion() {
         return version;
@@ -91,7 +167,6 @@ public class Student {
         return "Student{id=" + id + ", name='" + name + '\'' + ", email='" + email + '\'' + ", course=" + course + ", version=" + version + '}';
     }
 }
-
 
 ```
 Course.java
@@ -124,7 +199,29 @@ public class Course {
         this.title = title;
     }
 
-    // Getters and setters...
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public int getVersion() {
         return version;
@@ -140,26 +237,26 @@ public class Course {
     }
 }
 
-
 ```
 ### Step 3: Set Up the Persistence Configuration
 Create a persistence.xml file in the META-INF directory for your JPA configuration.
 
 ```xml
 
-<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
-             version="3.0">
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
     <persistence-unit name="JPAExamplePU">
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/StudentCourse"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/coursecreator"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="yourpassword"/>
+            <property name="jakarta.persistence.jdbc.password" value="Test12"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>
+
 
 ```
 ### Step 4: Write the Main Class to Simulate Concurrency
@@ -170,75 +267,39 @@ Main.java
 ```java
 package com.example.jpa;
 
-import com.example.jpa.entity.Course;
 import com.example.jpa.entity.Student;
+import com.example.jpa.entity.Course;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.OptimisticLockException;
 import jakarta.persistence.Persistence;
 
 public class Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAExamplePU");
-
-        // Initial data setup
-        setupInitialData(emf);
-
-        // Simulate concurrent updates
-        simulateConcurrentUpdates(emf);
-
-        emf.close();
-    }
-
-    private static void setupInitialData(EntityManagerFactory emf) {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
 
-        // Create Students and Courses
+        // Create Students with UUIDs
         Student student1 = new Student("John Doe", "john.doe@example.com");
+        Student student2 = new Student("Jane Smith", "jane.smith@example.com");
+
+        // Create Courses
         Course course1 = new Course("Mathematics");
+        Course course2 = new Course("Computer Science");
 
-        // Set the one-to-one relationship
-        student1.setCourse(course1);
-        course1.setStudent(student1);
-
-        // Persist the entities
+        // Persist entities
         em.persist(student1);
+        em.persist(student2);
         em.persist(course1);
+        em.persist(course2);
 
         em.getTransaction().commit();
         em.close();
-    }
-
-    private static void simulateConcurrentUpdates(EntityManagerFactory emf) {
-        // Transaction 1
-        EntityManager em1 = emf.createEntityManager();
-        em1.getTransaction().begin();
-        Student student1 = em1.find(Student.class, 1L);
-        student1.setName("John Doe Updated");
-
-        // Transaction 2
-        EntityManager em2 = emf.createEntityManager();
-        em2.getTransaction().begin();
-        Student student2 = em2.find(Student.class, 1L);
-        student2.setName("Jane Doe Updated");
-
-        // Commit Transaction 1
-        em1.getTransaction().commit();
-        em1.close();
-
-        try {
-            // Commit Transaction 2
-            em2.getTransaction().commit();
-        } catch (OptimisticLockException e) {
-            System.out.println("OptimisticLockException caught: " + e.getMessage());
-            em2.getTransaction().rollback();
-        } finally {
-            em2.close();
-        }
+        emf.close();
     }
 }
+
 
 ```
 ### Step 5: Run the Project
@@ -256,8 +317,3 @@ public class Main {
 
 This approach helps prevent data inconsistencies and ensures that only one transaction successfully modifies the entity at a time, maintaining data integrity in a concurrent environment.
 
-``````
-``````
-``````
-``````
-``````
