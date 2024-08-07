@@ -6,6 +6,22 @@ In this project, the Student and Course entities have a Many-to-Many relationshi
 
 ![many to many association](../images/manytomany.jpg)
 
+Your directory structure should look something like this:
+
+```css
+src/
+└── main/
+    └── java/
+        └── com/
+            └── example/
+                └── jpa/
+                    ├── Main.java
+                    └── entity/
+                        ├── Student.java
+                        └── Course.java
+
+
+```
 
 ## Step 1: Create the Student Entity
 Create a class Student to represent the student entity.
