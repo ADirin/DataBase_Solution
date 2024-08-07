@@ -6,6 +6,60 @@ Welcome to the Database Solutions course! This intensive, 8-week program is desi
 
 Each lecture will consist of both theoretical concepts and practical examples. Students will have the opportunity to apply what they learn during the lecture through hands-on practice. Participation in these lectures is compulsory to ensure a thorough understanding of the material.
 
+# Progression Figure: Student Competence Development
+```less
+Week 1:          [Intro to Databases & Temporal Databases]
+                 /\
+                /  \
+               /    \
+Week 2:        [Query Optimization]         [Concurrent Use: Transactions & Isolation Levels]
+               /\
+              /  \
+             /    \
+Week 3:      [Locks & Versioning]            [Views]
+             /\
+            /  \
+           /    \
+Week 4:      [Triggers, Stored Procedures & Events]
+             /\
+            /  \
+           /    \
+Week 5:      [ORM with JPA: A Single Class]  [ORM with JPA: 1:M Associations]
+           /\
+          /  \
+         /    \
+Week 6:    [ORM with JPA: M:N & 1:1 Associations, Inheritance]
+         /\
+        /  \
+       /    \
+Week 7:  [ORM with JPA: JPQL & Criteria API]   [Converters, Events, Object-Level Concurrency Control]
+       /\
+      /  \
+     /    \
+Week 8:  [Final Exam]   [First & Second Resits]
+
+
+```
+
+# Description of the Figure
+
+- **Week 1:** Focuses on foundational concepts such as Temporal Databases and Indexing, setting the base for performance and query handling.
+
+- **Week 2:** Introduces Query Optimization and Concurrent Use topics, enhancing understanding of efficient query execution and transaction management.
+
+- **Week 3:** Delves into advanced concurrency control mechanisms like Locks and Versioning, and introduces Views to simplify complex queries.
+
+- **Week 4:** Covers advanced database features including Triggers, Stored Procedures, and Events, and discusses User Accounts, Security, and Backups.
+
+- **Week 5:** Begins the ORM (Object-Relational Mapping) journey with JPA, starting with single-class mappings and moving to One-to-Many associations.
+
+- **Week 6:** Expands on ORM with more complex relationships such as Many-to-Many and One-to-One associations, and inheritance strategies in JPA.
+
+- **Week 7:** Focuses on advanced JPA features like JPQL (Java Persistence Query Language), Criteria API, Converters, and Object-Level Concurrency Control.
+
+- **Week 8:** Concludes with the final exam and offers opportunities for resits, consolidating all learned concepts and assessing overall competence.
+
+
 ## Course Schedule
 
 ### Week 1 (19.8.-20.8.)
