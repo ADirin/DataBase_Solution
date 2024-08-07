@@ -6,7 +6,9 @@ we will **programmatically** create the database schema if it doesn't already ex
 ### Step 1: Create a New Maven Project
 1. Open your IDE and create a new Maven project.
 
-2. Add the following dependencies to your pom.xml:
+  ![one-to-one](../images/onetoone.jpg)
+
+3. Add the following dependencies to your pom.xml:
 
  ```xml
 <?xml version="1.0" encoding="UTF-8"?>
