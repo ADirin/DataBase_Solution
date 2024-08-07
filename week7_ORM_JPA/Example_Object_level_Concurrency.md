@@ -1,4 +1,5 @@
-#O bject-Level Concurrency in JPA
+# Object-Level Concurrency in JPA
+
 Object-Level Concurrency refers to the management of simultaneous access to the same data object in a database by multiple transactions. In a multi-user environment, it's common for different users or processes to try to modify the same data simultaneously. 
 To prevent data inconsistency and ensure data integrity, JPA provides mechanisms like Optimistic Locking and Pessimistic Locking to handle concurrency.
 
