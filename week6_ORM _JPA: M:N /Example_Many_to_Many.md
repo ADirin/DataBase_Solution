@@ -4,5 +4,8 @@ This guide provides step-by-step instructions on how to create a Many-to-Many re
 ## Project Overview
 In this project, the Student and Course entities have a Many-to-Many relationship. This means that a student can enroll in multiple courses, and a course can have multiple students enrolled. The relationship is bidirectional, meaning that both entities are aware of the relationship.
 
+![many to many association](./images/manytomany.jpg)
+
+
 ## Step 1: Create the Student Entity
 Create a class Student to represent the student entity.
