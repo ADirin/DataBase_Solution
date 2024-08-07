@@ -15,7 +15,27 @@ It checks for data conflicts only at the time of committing a transaction. If a 
 
 
 ### Step 1: Set Up Your JPA Project
+
+  Your directory structure should look something like this:
+
+```css
+src/
+└── main/
+    └── java/
+        └── com/
+            └── example/
+                └── jpa/
+                    ├── Main.java
+                    └── entity/
+                        ├── Student.java
+                        └── Course.java
+
+
+```
+  
+  
   1. Create a new Java project using your IDE (e.g., IntelliJ IDEA, Eclipse).
+
   2. Add the necessary JPA and Hibernate dependencies to your pom.xml (if using Maven) or include the required libraries in your classpath.
 
 
