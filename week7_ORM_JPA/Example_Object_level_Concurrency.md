@@ -6,10 +6,20 @@ To prevent data inconsistency and ensure data integrity, JPA provides mechanisms
 In this guide, we'll focus on Optimistic Locking, which assumes that multiple transactions can complete without affecting each other. 
 It checks for data conflicts only at the time of committing a transaction. If a conflict is detected, the transaction is rolled back, and an OptimisticLockException is thrown.
 
+
+
 ## Step-by-Step Instructions to Implement Object-Level Concurrency Using Optimistic Locking
+
+
+![Object Level Concurrency](../images/objectlevelcon.jpg)
+
+
 ### Step 1: Set Up Your JPA Project
   1. Create a new Java project using your IDE (e.g., IntelliJ IDEA, Eclipse).
   2. Add the necessary JPA and Hibernate dependencies to your pom.xml (if using Maven) or include the required libraries in your classpath.
+
+
+
 
 ```xml
 <!-- Example Maven dependencies -->
