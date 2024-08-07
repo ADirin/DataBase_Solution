@@ -8,16 +8,26 @@ This guide will walk you through the process of setting up a one-to-one relation
 Your directory structure should look something like this:
 
 ```css
-src/
-└── main/
-    └── java/
-        └── com/
-            └── example/
-                └── jpa/
-                    ├── Main.java
-                    └── entity/
-                        ├── Student.java
-                        └── Course.java
+Exampleone-one-db
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           └── jpa
+│   │   │               ├── Main.java
+│   │   │               ├── entity
+│   │   │               │   ├── Student.java
+│   │   │               │   └── Course.java
+│   │   └── resources
+│   │       └── META-INF
+│   │           └── persistence.xml
+└── target
+    └── classes
+        └── META-INF
+            └── persistence.xml
+
 
 
 ```
