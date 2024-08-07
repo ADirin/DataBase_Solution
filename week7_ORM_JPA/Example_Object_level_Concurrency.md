@@ -11,7 +11,7 @@ It checks for data conflicts only at the time of committing a transaction. If a 
 ## Step-by-Step Instructions to Implement Object-Level Concurrency Using Optimistic Locking
 
 
-![Object Level Concurrency](../images/objectlevelcon.jpg)
+![Object Level Concurrency](../images/studentcourseOL.jpg)
 
 
 ### Step 1: Set Up Your JPA Project
