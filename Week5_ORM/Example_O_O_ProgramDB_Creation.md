@@ -2,12 +2,43 @@
 ## Overview
 This guide will demonstrate how to create a Hibernate application with a one-to-one relationship between Student and Course entities. Additionally, 
 we will **programmatically** create the database schema if it doesn't already exist.
-
+ ![one-to-one](../images/onetoone.jpg)
+ 
 ### Step 1: Create a New Maven Project
 1. Open your IDE and create a new Maven project.
 
-  ![one-to-one](../images/onetoone.jpg)
 
+- The structure of the project must be implemented as shown below
+
+
+```css
+Exampleone-one-db
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           └── jpa
+│   │   │               ├── Main.java
+│   │   │               ├── DatabaseInitializer.java
+│   │   │               └── entity
+│   │   │                   ├── Student.java
+│   │   │                   └── Course.java
+│   │   └── resources
+│   │       └── META-INF
+│   │           └── persistence.xml
+└── target
+    └── classes
+        └── META-INF
+            └── persistence.xml
+
+
+
+```
+
+
+ 
 3. Add the following dependencies to your pom.xml:
 
  ```xml
