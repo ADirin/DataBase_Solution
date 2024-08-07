@@ -5,6 +5,23 @@ This project is a simple example demonstrating the use of Java Persistence API (
 
 ![One to Many Association](../images/onetomany.jpg)
 
+Your directory structure should look something like this:
+
+```css
+src/
+└── main/
+    └── java/
+        └── com/
+            └── example/
+                └── jpa/
+                    ├── Main.java
+                    └── entity/
+                        ├── Student.java
+                        └── Course.java
+
+
+```
+
 ## Classes and Their Relationships
 ### 1. Student Class
 - Purpose: Represents a student in the system.
