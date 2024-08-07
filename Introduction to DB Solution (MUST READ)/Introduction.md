@@ -66,7 +66,7 @@ Each lecture will consist of both theoretical concepts and practical examples. S
 
 ## Home Assignments
 
-Starting from the second week, home assignments will be given. These assignments are mandatory and must be completed in pairs. Students are required to present their solutions during the exercise sessions. Successful completion of these assignments is necessary to participate in the final exam.
+Starting from the second week, home assignments will be given. These assignments are mandatory and optionally may be completed in pairs. Students are required to present their solutions during the exercise sessions. Successful completion of these assignments is necessary to participate in the final exam.
 
 ## Important Notes
 
