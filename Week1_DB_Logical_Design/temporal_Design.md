@@ -101,6 +101,84 @@ A temporal database is a database that manages time-sensitive data by keeping tr
 | 101       | 10.00 | 2023-01-01  | 2023-06-30  |
 | 101       | 12.00 | 2023-07-01  | 9999-12-31  |
 
+-----------------------------------------------------------------------
+#EXAMPLE (Lecture Demo)
+
+# System-Versioned Tables in MariaDB
+
+In MariaDB, to view the transaction time (also known as system versioning), you can use system-versioned tables, which are a feature that allows the database to automatically record and keep track of the history of all changes made to the data in a table.
+
+## 1. Creating a System-Versioned Table
+
+To create a system-versioned table in MariaDB, you need to define `WITH SYSTEM VERSIONING` when creating the table. You must include two additional timestamp columns: `ROW_START` and `ROW_END`.
+
+```sql
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    name VARCHAR(255),
+    salary DECIMAL(10, 2),
+    dept_id INT,
+    row_start TIMESTAMP(6) GENERATED ALWAYS AS ROW START,
+    row_end TIMESTAMP(6) GENERATED ALWAYS AS ROW END,
+    PERIOD FOR SYSTEM_TIME (row_start, row_end)
+) WITH SYSTEM VERSIONING;
+```
+
+## 2. Inserting Data
+When you insert data into a system-versioned table, MariaDB will automatically manage the row_start and row_end columns.
+
+
+```sql
+
+INSERT INTO employees (employee_id, name, salary, dept_id)
+VALUES (1, 'John Doe', 50000, 101);
+```
+## 3. Updating Data
+When you update data, the old record is archived with its transaction times, and a new record is created with the updated information.
+
+```sql
+UPDATE employees
+SET salary = 55000
+WHERE employee_id = 1;
+
+```
+## 4. Viewing Transaction Time
+You can use the FOR SYSTEM_TIME clause to query the history of changes and view the transaction times.
+
+```sql
+
+SELECT * FROM employees
+FOR SYSTEM_TIME AS OF NOW();
+
+```
+
+Viewing Historical Data:
+
+```sql
+SELECT * FROM employees
+FOR SYSTEM_TIME ALL;
+```
+This query will return all versions of the rows, including the transaction times (i.e., the row_start and row_end timestamps).
+
+Viewing Data at a Specific Point in Time:
+
+```sql
+SELECT * FROM employees
+FOR SYSTEM_TIME AS OF '2024-08-01 12:00:00';
+```
+This query returns the rows that were valid at the specified time.
+
+## 5. Important Considerations
+Performance: System-versioned tables store historical data, so they can grow large. Regular maintenance or archiving strategies might be necessary.
+System Time Precision: Ensure that your MariaDB installation supports sufficient precision for the TIMESTAMP columns if you need high-resolution transaction times.
+
+
+```sql```
+```sql```
+
+
+
+
 
 ----------------------------------------------
 
