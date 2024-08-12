@@ -144,7 +144,7 @@ CREATE TABLE persons (
     created_at TIMESTAMP,
     updated_at TIMESTAMP
 );
-
+```
 The corresponding history table might look like this:
 
 ```sql
