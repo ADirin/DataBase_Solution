@@ -117,12 +117,12 @@ SELECT * FROM students WHERE student_id = 3;
 The index entry for student_id = 3 provides the exact location of the record in the table, resulting in quick retrieval.
 
 ## Advantages of Dense Indexing
-    - Efficient Lookups: Each query for an indexed value is very efficient because the index provides a direct reference to the record.
-    - Consistency: Useful for unique or near-unique columns where every row needs to be quickly accessible.
-    - Simplified Index Management: Since every record is indexed, there's no need to manage gaps in the index.
+  - Efficient Lookups: Each query for an indexed value is very efficient because the index provides a direct reference to the record.
+  - Consistency: Useful for unique or near-unique columns where every row needs to be quickly accessible.
+  - Simplified Index Management: Since every record is indexed, there's no need to manage gaps in the index.
 ## Disadvantages of Dense Indexing
-    - Storage Overhead: The index can become large, especially for tables with many rows, consuming additional storage.
-    - Update Overhead: Every insert, update, or delete operation requires updating the index, which can impact performance in write-heavy scenarios.
+  - Storage Overhead: The index can become large, especially for tables with many rows, consuming additional storage.
+  - Update Overhead: Every insert, update, or delete operation requires updating the index, which can impact performance in write-heavy scenarios.
 
 ### Sparse Indexing
 - **Definition:** is a type of indexing in databases where index entries are created for only some records, usually those at certain intervals.
