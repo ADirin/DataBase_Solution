@@ -51,11 +51,10 @@ Indexing is a technique used in databases to improve the speed of data retrieval
 ### Full-Text Index
 - **Definition:** An index that allows for efficient searching of text within large text columns.
 - **Example:** Full-text index on the `Description` column in a `Products` table.
-
+-------------------------------------------------------------------------------------------------------------------------------------------
 ### Dense Indexing
 - **Definition:** is a type of indexing in databases where an index entry is created for every single record in the table
 _ **Example:**
-
 # Dense Indexing
 
 Dense indexing is a type of indexing in databases where an index entry is created for every single record in the table. This contrasts with sparse indexing, where index entries are created for only some records, usually those at certain intervals.
@@ -116,19 +115,106 @@ SELECT * FROM students WHERE student_id = 3;
 ```
 The index entry for student_id = 3 provides the exact location of the record in the table, resulting in quick retrieval.
 
-## Advantages of Dense Indexing
+### Advantages of Dense Indexing
   - Efficient Lookups: Each query for an indexed value is very efficient because the index provides a direct reference to the record.
   - Consistency: Useful for unique or near-unique columns where every row needs to be quickly accessible.
   - Simplified Index Management: Since every record is indexed, there's no need to manage gaps in the index.
-## Disadvantages of Dense Indexing
+### Disadvantages of Dense Indexing
   - Storage Overhead: The index can become large, especially for tables with many rows, consuming additional storage.
   - Update Overhead: Every insert, update, or delete operation requires updating the index, which can impact performance in write-heavy scenarios.
 
-### Sparse Indexing
+
+## thin(Sparse) Indexing
 - **Definition:** is a type of indexing in databases where index entries are created for only some records, usually those at certain intervals.
 _ **Example:**
 
+# Thin Indexing Example
 
+**Thin indexing**, also known as **sparse indexing**, involves creating index entries for only a subset of the records in a table rather than every record. This approach can save space and improve performance when dealing with large tables or infrequent query patterns. Unlike **dense indexing**, where every record has an index entry, thin indexing creates entries for only some records, often at regular intervals.
+
+## Example of Thin Indexing
+
+Consider a `products` table in a database where you want to create a sparse index on the `product_id` column. Instead of indexing every record, you might choose to index every 100th record.
+
+### Table Structure
+
+Let’s assume the `products` table has the following columns:
+
+| product_id | name          | price | category_id |
+|------------|---------------|-------|-------------|
+| 1          | Widget A       | 10.99 | 1           |
+| 2          | Widget B       | 12.99 | 1           |
+| 3          | Widget C       | 8.99  | 2           |
+| 4          | Widget D       | 15.99 | 2           |
+| ...        | ...           | ...   | ...         |
+| 1000       | Widget Z       | 9.99  | 3           |
+
+### Creating a Thin Index
+
+**Objective**: Create an index on `product_id`, but only for every 100th record.
+
+**Index Structure:**
+
+In a thin index, entries are not created for every record but at intervals. For instance:
+
+| product_id | Row Pointer   |
+|------------|---------------|
+| 100        | Pointer to Row 100 |
+| 200        | Pointer to Row 200 |
+| 300        | Pointer to Row 300 |
+| ...        | ...               |
+
+**SQL to Create a Sparse Index:**
+
+Thin indexing usually involves a custom approach because standard SQL indexing mechanisms don’t support this directly. However, you can create a standard index and then selectively manage it to simulate thin indexing.
+
+1. **Create a Full Index:**
+
+   Create a full index first for all records.
+   ```sql
+   CREATE INDEX idx_product_id ON products (product_id);
+
+   ```
+
+2. Implement Custom Indexing Logic:
+    To simulate thin indexing, you would manually manage the index entries based on your requirements. For instance, if you're using a custom application or script, you could only query and     maintain index entries at certain intervals.
+
+3. Use a Secondary Table (Example):
+    Create a secondary table to store index entries at desired intervals:
+
+```sql
+
+CREATE TABLE sparse_index (
+    product_id INT PRIMARY KEY,
+    row_pointer INT
+);
+
+-- Populate the sparse index manually or via a script
+INSERT INTO sparse_index (product_id, row_pointer)
+SELECT product_id, ROW_NUMBER() OVER (ORDER BY product_id)
+FROM products
+WHERE MOD(product_id, 100) = 0;
+```
+In this example, only every 100th record is indexed. This is a simplified representation, and in practice, you would use a more automated approach to maintain and query such sparse indexes.
+
+Querying with Thin Index
+When querying the products table, you would look up the sparse_index table first to find a pointer or record efficiently.
+
+Example Query:
+```sql
+SELECT * FROM products
+WHERE product_id IN (SELECT product_id FROM sparse_index WHERE product_id = 200);
+
+
+```
+### Advantages of Thin Indexing
+1. Space Efficiency: Consumes less space compared to dense indexing as it only includes a subset of the records.
+2. Reduced Overhead: Decreases the overhead associated with maintaining the index, especially in write-heavy scenarios.
+
+### Disadvantages of Thin Indexing
+1. Potential Performance Trade-Off: Accessing records that are not directly indexed might be slower, as additional lookups or scans are required.
+2. Complexity in Management: Requires custom logic to maintain and query the sparse index effectively.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Index Structures
 ### B-Tree Index
 - **Definition:** A balanced tree data structure that maintains sorted data and allows for efficient insertion, deletion, and search operations.
