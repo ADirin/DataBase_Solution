@@ -68,8 +68,7 @@ A temporal database is a database that manages time-sensitive data by keeping tr
 - **Composite Keys:** Use composite keys that include time dimensions to uniquely identify records.
 - **Referential Integrity:** Ensure foreign keys maintain referential integrity over time.
 
-### Normalization
-- **Temporal Normal Forms:** Apply normalization principles to temporal data to avoid redundancy and ensure data integrity.
+
 
 ## Examples
 ### Example 1: Employee Temporal Database
