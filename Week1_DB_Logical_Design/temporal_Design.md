@@ -36,6 +36,10 @@ A temporal database is a database that manages time-sensitive data by keeping tr
 - **Definition:** The time period during which a fact is stored in the database.
 - **Example:** Data entry timestamps, modification timestamps.
 
+### Decision Time
+- **Definition:** This is the moment when a fact is known or when a decision about data is recorded in the database. 
+- **EXMPLE:** Employee salary raise decision date
+
 ## Temporal Data Models
 ### Snapshot Model
 - **Definition:** Each row represents the state of data at a specific point in time.
