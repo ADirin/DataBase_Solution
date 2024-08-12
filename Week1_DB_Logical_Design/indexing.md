@@ -62,9 +62,9 @@ Dense indexing is a type of indexing in databases where an index entry is create
 
 ## Key Concepts of Dense Indexing
 
-- **Every Record Indexed**: In dense indexing, each record in the table has a corresponding entry in the index. This ensures that every value of the indexed column is directly associated with a specific index entry.
-- **Index Size**: Dense indexes can be larger than sparse indexes because they contain entries for every row in the table. However, they provide faster access to data because every index entry points directly to a record.
-- **Use Case**: Dense indexing is useful when queries frequently access specific records and require quick lookups, such as when searching by a unique identifier.
+1. **Every Record Indexed**: In dense indexing, each record in the table has a corresponding entry in the index. This ensures that every value of the indexed column is directly associated with a specific index entry.
+2. **Index Size**: Dense indexes can be larger than sparse indexes because they contain entries for every row in the table. However, they provide faster access to data because every index entry points directly to a record.
+3. **Use Case**: Dense indexing is useful when queries frequently access specific records and require quick lookups, such as when searching by a unique identifier.
 
 ## Example of Dense Indexing
 
@@ -95,13 +95,6 @@ To create a dense index on the `student_id` column, where each `student_id` is u
 | 4          | Pointer to Row 4 |
 
 **SQL to Create Dense Index:**
-
-```sql
-CREATE INDEX idx_student_id ON students (student_id);
-```
-
-
-
 
 ```sql
 CREATE INDEX idx_student_id ON students (student_id);
