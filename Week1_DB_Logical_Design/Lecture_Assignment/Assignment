@@ -66,7 +66,7 @@ Summarize the practical applications of temporal databases in real-world scenari
         TransactionEndTime DATETIME,
         FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
         FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
-    ) WITH SYSTEM versioning;
+    ) WITH SYSTEM VERSIONING;
     ```
 
 ### Step 3: Data Insertion and Temporal Management
@@ -100,12 +100,12 @@ Summarize the practical applications of temporal databases in real-world scenari
 
 1. **Matti Drops the Course (Update Valid and Transaction Times):**
     ```sql
-    -- Set the valid end time for Amir's current enrollment
+    -- Set the valid end time for Matti's current enrollment
     UPDATE Enrollments
     SET DropDate = '2024-09-01', ValidTo = '2024-09-01'
     WHERE EnrollmentID = 1;
 
-    -- Insert a new record for Amir to indicate course drop with updated transaction time
+    -- Insert a new record for Matti to indicate course drop with updated transaction time
     INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
     VALUES (3, 1, 1, '2024-08-18', '2024-09-01', '2024-08-18', '2024-09-01', CURRENT_TIMESTAMP, '9999-12-31');
     ```
@@ -113,7 +113,7 @@ Summarize the practical applications of temporal databases in real-world scenari
 2. **Amir's Enrollment is Updated Due to a Data Correction:**
     ```sql
     -- Assume the initial enrollment date was incorrect and needs to be corrected
-    -- Set the valid end time for Matti's current enrollment record
+    -- Set the valid end time for Amir's current enrollment record
     UPDATE Enrollments
     SET ValidTo = CURRENT_TIMESTAMP
     WHERE EnrollmentID = 2;
@@ -123,7 +123,7 @@ Summarize the practical applications of temporal databases in real-world scenari
     VALUES (4, 2, 2, '2024-08-20', NULL, '2024-08-20', '9999-12-31', CURRENT_TIMESTAMP, '9999-12-31');
     ```
 
-### Step 5: Get the Historical Data from a System-Version Temporal Table
+### Step 5: Get the Historical Data from a System-Versioned Temporal Table
 
 ```sql
 SELECT *, row_start AS transaction_time 
