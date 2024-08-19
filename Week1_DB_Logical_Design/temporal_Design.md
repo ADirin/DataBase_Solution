@@ -235,7 +235,7 @@ CREATE TABLE persons_history (
     transaction_time TIMESTAMP,
     operation_type VARCHAR(10),
     user_id INT
-);
+) with system versioning;
 ```
 
 # B. Using Temporal Columns in the Main Table
