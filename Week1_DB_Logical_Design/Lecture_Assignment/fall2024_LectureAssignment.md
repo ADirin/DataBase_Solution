@@ -1,0 +1,131 @@
+# Temporal Database Management for Students and Courses
+
+## Aim of the Project
+
+The aim of this project is to provide an educational demonstration on the concepts and practical applications of temporal databases. Specifically, the project focuses on the implementation and understanding of key temporal elements such as transaction time, valid time, and system versioning using a simple Students and Courses database schema. By the end of this project, participants will be able to:
+
+1. Understand the importance and application of temporal data in database management.
+2. Create and manage temporal tables that track historical data and changes over time.
+3. Implement and query temporal data using SQL to view historical states and manage data integrity.
+4. Apply system versioning techniques to automatically manage historical data in relational databases.
+
+## Project Steps
+
+### 1. Database Schema Creation
+
+Design and create tables for Students, Courses, and Enrollments, incorporating fields for temporal data management (e.g., `ValidFrom`, `ValidTo`, `TransactionStartTime`, `TransactionEndTime`).
+
+### 2. Temporal Concepts Understanding
+
+Explain and demonstrate the use of transaction time, valid time, and system versioning in the context of the Students and Courses database.
+
+### 3. Data Insertion and Temporal Management
+
+Insert records into the database while considering temporal attributes, such as the enrollment and drop dates of students in courses. Address common issues related to temporal data types (e.g., handling large future dates in `TIMESTAMP` columns).
+
+### 4. Temporal Queries and System Versioning
+
+Execute SQL queries to retrieve historical data at specific points in time. Illustrate the use of system versioning to automatically manage and track changes in data.
+
+### 5. Real-World Application and Discussion
+
+Summarize the practical applications of temporal databases in real-world scenarios, emphasizing the importance of data accuracy and historical tracking.
+
+## SQL Examples
+
+### Step 1: Database Schema Creation
+
+1. **Create the Students Table:**
+    ```sql
+    CREATE TABLE Students (
+        StudentID INT PRIMARY KEY,
+        Name VARCHAR(100),
+        DateOfBirth DATE
+    );
+    ```
+
+2. **Create the Courses Table:**
+    ```sql
+    CREATE TABLE Courses (
+        CourseID INT PRIMARY KEY,
+        CourseName VARCHAR(100)
+    );
+    ```
+
+3. **Create the Enrollments Table:**
+    ```sql
+    CREATE TABLE Enrollments (
+        EnrollmentID INT PRIMARY KEY,
+        StudentID INT,
+        CourseID INT,
+        EnrollmentDate DATE,
+        DropDate DATE,
+        ValidFrom DATE,
+        ValidTo DATE,
+        TransactionStartTime TIMESTAMP,
+        TransactionEndTime DATETIME,
+        FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+        FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+    ) WITH SYSTEM versioning;
+    ```
+
+### Step 3: Data Insertion and Temporal Management
+
+1. **Insert Data into Students Table:**
+    ```sql
+    INSERT INTO Students (StudentID, Name, DateOfBirth)
+    VALUES (1, 'Matti', '2000-05-15'),
+           (2, 'Amir', '1999-09-10');
+    ```
+
+2. **Insert Data into Courses Table:**
+    ```sql
+    INSERT INTO Courses (CourseID, CourseName)
+    VALUES (1, 'Database Systems'),
+           (2, 'Data Structures');
+    ```
+
+3. **Enroll Students in Courses with Valid Time and Transaction Time:**
+    ```sql
+    -- Matti enrolls in Database Systems
+    INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
+    VALUES (1, 1, 1, '2024-08-18', NULL, '2024-08-18', '9999-12-31', CURRENT_TIMESTAMP, '9999-12-31');
+
+    -- Amir enrolls in Data Structures
+    INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
+    VALUES (2, 2, 2, '2024-08-19', NULL, '2024-08-19', '9999-12-31', CURRENT_TIMESTAMP, '9999-12-31');
+    ```
+
+### Step 4: Update Data and Explore Temporal Behavior
+
+1. **Matti Drops the Course (Update Valid and Transaction Times):**
+    ```sql
+    -- Set the valid end time for Amir's current enrollment
+    UPDATE Enrollments
+    SET DropDate = '2024-09-01', ValidTo = '2024-09-01'
+    WHERE EnrollmentID = 1;
+
+    -- Insert a new record for Amir to indicate course drop with updated transaction time
+    INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
+    VALUES (3, 1, 1, '2024-08-18', '2024-09-01', '2024-08-18', '2024-09-01', CURRENT_TIMESTAMP, '9999-12-31');
+    ```
+
+2. **Amir's Enrollment is Updated Due to a Data Correction:**
+    ```sql
+    -- Assume the initial enrollment date was incorrect and needs to be corrected
+    -- Set the valid end time for Matti's current enrollment record
+    UPDATE Enrollments
+    SET ValidTo = CURRENT_TIMESTAMP
+    WHERE EnrollmentID = 2;
+
+    -- Insert a corrected enrollment record for Amir with the right enrollment date and updated transaction time
+    INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
+    VALUES (4, 2, 2, '2024-08-20', NULL, '2024-08-20', '9999-12-31', CURRENT_TIMESTAMP, '9999-12-31');
+    ```
+
+### Step 5: Get the Historical Data from a System-Version Temporal Table
+
+```sql
+SELECT *, row_start AS transaction_time 
+FROM Enrollments 
+FOR SYSTEM_TIME ALL;
