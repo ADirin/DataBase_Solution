@@ -220,9 +220,7 @@ WHERE product_id IN (SELECT product_id FROM sparse_index WHERE product_id = 200)
 - **Definition:** A balanced tree data structure that maintains sorted data and allows for efficient insertion, deletion, and search operations.
 - **Usage:** General-purpose indexing, especially for range queries.
 
-> [Watch this youtube video]([[https://www.youtube.com/watch?v=VIDEO_ID](https://www.youtube.com/watch?v=aZjYr87r1b8&t=2232s)
-or 
-> [Watch this YouTube video]([https://www.youtube.com/watch?v=VIDEO_ID](https://www.youtube.com/watch?v=NI9wYuVIYcA)
+- > [Watch this youtube video]([[https://www.youtube.com/watch?v=VIDEO_ID](https://www.youtube.com/watch?v=aZjYr87r1b8&t=2232s)
 
 
 
