@@ -39,7 +39,7 @@ Summarize the practical applications of temporal databases in real-world scenari
     ```sql
     CREATE TABLE Students (
         StudentID INT PRIMARY KEY,
-        Name VARCHAR(100),
+        StudentName VARCHAR(100),
         DateOfBirth DATE
     );
     ```
