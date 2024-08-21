@@ -21,7 +21,7 @@ Let's take a simple scenario where we want to retrieve specific data from a univ
 
 1. **Students**:
     ```sql
-    | StudentID | Name    | Age | Major    |
+    | StudentID | StudentName    | Age | Major    |
     |-----------|---------|-----|----------|
     | 1         | Alice   | 20  | Biology  |
     | 2         | Bob     | 22  | Math     |
