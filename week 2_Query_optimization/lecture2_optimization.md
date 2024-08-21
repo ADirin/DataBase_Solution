@@ -20,15 +20,17 @@ Let's take a simple scenario where we want to retrieve specific data from a univ
 ### Tables
 
 1. **Students**:
-    ```sql
+   
+    ````sql
     | StudentID | StudentName    | DateOfBirth | Major    |
     |-----------|---------|-----|----------|
     | 1         | Alice   | 20  | Biology  |
     | 2         | Amir   | 22  | Math     |
     | 3         | Carol   | 21  | Physics  |
-    ```
 
-2. **Courses**:
+    ````
+
+3. **Courses**:
     ```sql
     | CourseID | CourseName   |
     |----------|--------------|
@@ -37,7 +39,7 @@ Let's take a simple scenario where we want to retrieve specific data from a univ
     | 103      | Physics      |
     ```
 
-3. **Enrollments**:
+4. **Enrollments**:
     ```sql
     | StudentID | CourseID |
     |-----------|----------|
