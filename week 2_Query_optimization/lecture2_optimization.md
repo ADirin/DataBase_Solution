@@ -273,15 +273,29 @@ FROM Students
 JOIN Enrollments ON Students.StudentID = Enrollments.StudentID
 JOIN Courses ON Enrollments.CourseID = Courses.CourseID
 WHERE Students.Age > 20;
-
-
-
 ````
 Result:
 | CourseName |
 |------------|
 | Math       |
 | Physics    |
+
+Step 4: Cartesian Product
+Let's consider a scenario where we want to explore all possible combinations of students and courses, regardless of their actual enrollments. 
+This is achieved using the Cartesian product.
+````sql
+SELECT Students.Name, Courses.CourseName
+FROM Students, Courses;
+````
+Result:
+
+| Name  | CourseName |
+|-------|------------|
+| Alice | Biology    |
+| Alice | Math       |
+| Alice | Physics    |
+| Bob   | Biology    |
+| Bob  
 
 
 -----------------------------------------------------------------------------
