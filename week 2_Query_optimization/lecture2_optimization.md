@@ -9,6 +9,82 @@
 
 Query optimization in MariaDB involves improving the performance of SQL queries to ensure they run as efficiently as possible. Here are some techniques and examples:
 
+## Query Optimization: An Overview
+
+Query optimization is a critical process in database management systems (DBMS) that aims to determine the most efficient way to execute a query. The goal is to minimize resource usage, such as CPU time, memory, and disk I/O, to retrieve the desired data as quickly and efficiently as possible. The optimizer considers multiple query execution plans and chooses the one with the lowest estimated cost.
+
+## Example Scenario: Optimizing a Query
+
+Let's take a simple scenario where we want to retrieve specific data from a university database with three tables: `Students`, `Courses`, and `Enrollments`.
+
+### Tables
+
+1. **Students**:
+    ```sql
+    | StudentID | Name    | Age | Major    |
+    |-----------|---------|-----|----------|
+    | 1         | Alice   | 20  | Biology  |
+    | 2         | Bob     | 22  | Math     |
+    | 3         | Carol   | 21  | Physics  |
+    ```
+
+2. **Courses**:
+    ```sql
+    | CourseID | CourseName   |
+    |----------|--------------|
+    | 101      | Biology      |
+    | 102      | Math         |
+    | 103      | Physics      |
+    ```
+
+3. **Enrollments**:
+    ```sql
+    | StudentID | CourseID |
+    |-----------|----------|
+    | 1         | 101      |
+    | 1         | 102      |
+    | 2         | 102      |
+    | 3         | 103      |
+    ```
+
+### Query: Retrieve the names of students enrolled in 'Math' who are older than 20.
+
+```sql
+SELECT s.Name
+FROM Students s
+JOIN Enrollments e ON s.StudentID = e.StudentID
+JOIN Courses c ON e.CourseID = c.CourseID
+WHERE c.CourseName = 'Math' AND s.Age > 20;
+````
+
+Step 1: Initial Query Analysis
+The initial query involves:
+
+Two joins: Joining Students with Enrollments, and Enrollments with Courses.
+Selection: Filtering based on course name ('Math') and student age (> 20).
+Projection: Selecting only the student names.
+Step 2: Understand the Execution Plan
+To optimize the query, the DBMS evaluates different execution plans. Let's look at a potential execution plan:
+
+Scan or Index Scan on Courses: The DBMS starts by finding the CourseID for 'Math'.
+Join Enrollments with Courses: Using the CourseID found in step 1, the DBMS identifies which students are enrolled in 'Math'.
+Join Students with Enrollments: The DBMS matches the StudentID from Enrollments to the Students table.
+Selection on Age: The DBMS filters out students who are not older than 20.
+Projection: Finally, the DBMS returns the names of the students.
+
+
+
+
+
+
+Example Scenario: Optimizing a Query
+Let's take a simple scenario where we want to retrieve specific data from a university database with three tables: Students, Courses, and Enrollments.
+
+Tables:
+Students:
+
+
+
 ### Indexing
 
 Indexes improve query performance by allowing the database to find rows more quickly.
@@ -21,7 +97,6 @@ CREATE INDEX idx_customer_name ON customers (name);
 EXPLAIN SELECT * FROM customers WHERE name = 'John Doe';
 
 ```
-
 ## Query Refactoring
 Query refactoring involves modifying a database query to improve its performance, maintainability, readability, or to adapt to changes in the database schema, without changing the query's output or functionality. This process is essential in database optimization and management, especially in complex systems where performance and scalability are critical.
 
