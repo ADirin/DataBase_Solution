@@ -56,33 +56,42 @@ JOIN Enrollments e ON s.StudentID = e.StudentID
 JOIN Courses c ON e.CourseID = c.CourseID
 WHERE c.CourseName = 'Math' AND s.Age > 20;
 ````
+### Step 1: Initial Query Analysis
 
-Step 1: Initial Query Analysis
 The initial query involves:
 
-Two joins: Joining Students with Enrollments, and Enrollments with Courses.
-Selection: Filtering based on course name ('Math') and student age (> 20).
-Projection: Selecting only the student names.
-Step 2: Understand the Execution Plan
+- **Two joins**: Joining `Students` with `Enrollments`, and `Enrollments` with `Courses`.
+- **Selection**: Filtering based on course name (`'Math'`) and student age (`> 20`).
+- **Projection**: Selecting only the student names.
+
+### Step 2: Understand the Execution Plan
+
 To optimize the query, the DBMS evaluates different execution plans. Let's look at a potential execution plan:
 
-Scan or Index Scan on Courses: The DBMS starts by finding the CourseID for 'Math'.
-Join Enrollments with Courses: Using the CourseID found in step 1, the DBMS identifies which students are enrolled in 'Math'.
-Join Students with Enrollments: The DBMS matches the StudentID from Enrollments to the Students table.
-Selection on Age: The DBMS filters out students who are not older than 20.
-Projection: Finally, the DBMS returns the names of the students.
+1. **Scan or Index Scan on `Courses`**: The DBMS starts by finding the `CourseID` for `'Math'`.
+2. **Join `Enrollments` with `Courses`**: Using the `CourseID` found in step 1, the DBMS identifies which students are enrolled in `'Math'`.
+3. **Join `Students` with `Enrollments`**: The DBMS matches the `StudentID` from `Enrollments` to the `Students` table.
+4. **Selection on `Age`**: The DBMS filters out students who are not older than 20.
+5. **Projection**: Finally, the DBMS returns the names of the students.
 
-Step 3: Query Optimization
+### Step 3: Query Optimization
+
 In this final step, the DBMS may apply several optimization strategies, such as:
 
-Index Utilization: Ensuring indexes are used on CourseName in Courses and Age in Students to speed up the selection process.
-Join Order Optimization: Choosing the most efficient order for performing joins, such as filtering rows early in the process to reduce the number of records to join.
-Avoiding Full Table Scans: Leveraging indexes or partitioning to avoid scanning entire tables.
-Query Rewriting: Simplifying or restructuring the query to reduce its computational cost.
+- **Index Utilization**: Ensuring indexes are used on `CourseName` in `Courses` and `Age` in `Students` to speed up the selection process.
+- **Join Order Optimization**: Choosing the most efficient order for performing joins, such as filtering rows early in the process to reduce the number of records to join.
+- **Avoiding Full Table Scans**: Leveraging indexes or partitioning to avoid scanning entire tables.
+- **Query Rewriting**: Simplifying or restructuring the query to reduce its computational cost.
+
 By applying these optimizations, the DBMS aims to execute the query with minimal resource consumption and maximum speed.
 
-Example Scenario: Optimizing a Query
-Let's take a simple scenario where we want to retrieve specific data from a university database with three tables: Students, Courses, and Enrollments.
+### Example Scenario: Optimizing a Query
+
+Let's take a simple scenario where we want to retrieve specific data from a university database with three tables: `Students`, `Courses`, and `Enrollments`.
+
+
+
+
 
 Tables:
 Students:
