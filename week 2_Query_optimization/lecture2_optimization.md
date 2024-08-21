@@ -93,6 +93,7 @@ The relational model is used to define the structure of a database and to perfor
 
 Let's explore these operations in detail:
 
+---
 
 ### 1. **Projection**
    - **What it is**: Projection is like taking a table and picking out just the columns (fields) you want to see. It’s about narrowing down the information to focus on specific attributes.
@@ -188,13 +189,99 @@ Let's explore these operations in detail:
 
      Here, Alice is enrolled in Biology, and Bob is enrolled in Math.
 
-### Summary:
-- **Projection** is about selecting specific columns.
-- **Selection** is about filtering specific rows.
-- **Cartesian Product** pairs every row of one table with every row of another.
-- **Join** combines rows from two tables based on a common attribute, like matching student IDs with course IDs.
+---
+
+### Combining All Operations in a Many-to-Many Relationship
+
+Let's consider a scenario where we combine **projection**, **selection**, **Cartesian product**, and **join** within a many-to-many relationship.
+
+#### Example Scenario: Students and Courses in a University
+
+In a university database, students can enroll in multiple courses, and each course can have multiple students. This creates a many-to-many relationship between `Students` and `Courses`. We manage this relationship using an intermediary table called `Enrollments` that links students to the courses they are taking.
+
+#### Tables:
+
+1. **Students**:
+    ```sql
+    | StudentID | Name    | Age |
+    |-----------|---------|-----|
+    | 1         | Alice   | 20  |
+    | 2         | Bob     | 22  |
+    | 3         | Carol   | 21  |
+    ```
+
+2. **Courses**:
+    ```sql
+    | CourseID | CourseName   |
+    |----------|--------------|
+    | 101      | Biology      |
+    | 102      | Math         |
+    | 103      | Physics      |
+    ```
+
+3. **Enrollments**:
+    ```sql
+    | StudentID | CourseID |
+    |-----------|----------|
+    | 1         | 101      |
+    | 1         | 102      |
+    | 2         | 102      |
+    | 3         | 103      |
+    ```
+
+### Step 1: **Join**
+
+First, we want to know which students are enrolled in which courses. We need to join the `Students` table with the `Enrollments` table on `StudentID`, and then join the result with the `Courses` table on `CourseID`.
+
+```sql
+SELECT Students.Name, Courses.CourseName
+FROM Students
+JOIN Enrollments ON Students.StudentID = Enrollments.StudentID
+JOIN Courses ON Enrollments.CourseID = Courses.CourseID;
+```
+Result:
+
+| Name  | CourseName |
+|-------|------------|
+| Alice | Biology    |
+| Alice | Math       |
+| Bob   | Math       |
+| Carol | Physics    |
+
+Step 2: Selection
+Now, let’s say we are only interested in the students who are older than 20. We can add a selection condition to filter the rows based on this criterion.
+```sql
+SELECT Students.Name, Courses.CourseName
+FROM Students
+JOIN Enrollments ON Students.StudentID = Enrollments.StudentID
+JOIN Courses ON Enrollments.CourseID = Courses.CourseID
+WHERE Students.Age > 20;
+````
+Result:
+| Name  | CourseName |
+|-------|------------|
+| Bob   | Math       |
+| Carol | Physics    |
 
 
+Step 3: Projection
+Suppose we are only interested in the course names without the student names. We can project only the CourseName column.
+
+```sql
+SELECT Courses.CourseName
+FROM Students
+JOIN Enrollments ON Students.StudentID = Enrollments.StudentID
+JOIN Courses ON Enrollments.CourseID = Courses.CourseID
+WHERE Students.Age > 20;
+
+
+
+````
+Result:
+| CourseName |
+|------------|
+| Math       |
+| Physics    |
 
 
 -----------------------------------------------------------------------------
