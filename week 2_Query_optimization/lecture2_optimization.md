@@ -21,10 +21,10 @@ Let's take a simple scenario where we want to retrieve specific data from a univ
 
 1. **Students**:
     ```sql
-    | StudentID | StudentName    | Age | Major    |
+    | StudentID | StudentName    | DateOfBirth | Major    |
     |-----------|---------|-----|----------|
     | 1         | Alice   | 20  | Biology  |
-    | 2         | Bob     | 22  | Math     |
+    | 2         | Amir   | 22  | Math     |
     | 3         | Carol   | 21  | Physics  |
     ```
 
@@ -50,12 +50,15 @@ Let's take a simple scenario where we want to retrieve specific data from a univ
 ### Query: Retrieve the names of students enrolled in 'Math' who are older than 20.
 
 ```sql
-SELECT s.Name
+SELECT s.StudentName
 FROM Students s
 JOIN Enrollments e ON s.StudentID = e.StudentID
 JOIN Courses c ON e.CourseID = c.CourseID
-WHERE c.CourseName = 'Math' AND s.Age > 20;
+WHERE c.CourseName = 'Math' AND s.DateOfBirth < '2004-01-01';
+
 ````
+Result:  Amir
+
 ### Step 1: Initial Query Analysis
 
 The initial query involves:
