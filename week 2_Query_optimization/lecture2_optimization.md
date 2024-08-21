@@ -75,7 +75,108 @@ SELECT id, name, department FROM employees;
 
 # Transactions
 A transaction in a database context is a sequence of one or more SQL operations (such as `INSERT`, `UPDATE`, `DELETE`, or `SELECT` statements) that are executed as a single unit of work. Transactions ensure that a series of operations are completed successfully and consistently, even in the presence of system failures or other concurrent operations. If any part of the transaction fails, the entire transaction can be rolled back to ensure the database remains in a consistent state.
+### 1. **Projection**
+   - **What it is**: Projection is like taking a table and picking out just the columns (fields) you want to see. It’s about narrowing down the information to focus on specific attributes.
+   - **Example**: Imagine you have a table of students:
 
+     ```sql
+     | StudentID | Name    | Age | Major    |
+     |-----------|---------|-----|----------|
+     | 1         | Alice   | 20  | Biology  |
+     | 2         | Bob     | 22  | Math     |
+     | 3         | Carol   | 21  | Physics  |
+     ```
+
+     **Projection**: If you only want to see the `Name` and `Major` of each student, you project those columns:
+
+     ```sql
+     | Name  | Major   |
+     |-------|---------|
+     | Alice | Biology |
+     | Bob   | Math    |
+     | Carol | Physics |
+     ```
+
+### 2. **Selection**
+   - **What it is**: Selection is like filtering rows from a table based on a condition. It’s about choosing only the rows that meet certain criteria.
+   - **Example**: Using the same student table, suppose you want to see only the students who are older than 20.
+
+     **Selection**: You filter the table where `Age > 20`:
+
+     ```sql
+     | StudentID | Name  | Age | Major   |
+     |-----------|-------|-----|---------|
+     | 2         | Bob   | 22  | Math    |
+     | 3         | Carol | 21  | Physics |
+     ```
+
+### 3. **Cartesian Product**
+   - **What it is**: The Cartesian product is a way to combine two tables by pairing every row of the first table with every row of the second table. The result is a new table with all possible combinations of the rows.
+   - **Example**: Suppose you have two tables:
+
+     **Students**:
+
+     ```sql
+     | StudentID | Name  |
+     |-----------|-------|
+     | 1         | Alice |
+     | 2         | Bob   |
+     ```
+
+     **Courses**:
+
+     ```sql
+     | CourseID | CourseName   |
+     |----------|--------------|
+     | 101      | Biology      |
+     | 102      | Math         |
+     ```
+
+     **Cartesian Product**: Every student is paired with every course:
+
+     ```sql
+     | StudentID | Name  | CourseID | CourseName |
+     |-----------|-------|----------|------------|
+     | 1         | Alice | 101      | Biology    |
+     | 1         | Alice | 102      | Math       |
+     | 2         | Bob   | 101      | Biology    |
+     | 2         | Bob   | 102      | Math       |
+     ```
+
+     This can generate a large table, especially if the original tables are big.
+
+### 4. **Join**
+   - **What it is**: A join combines rows from two tables based on a related column. It’s like connecting the dots between two tables using a common attribute.
+   - **Example**: Let’s use the same `Students` and `Courses` tables, but now imagine you have a third table that records which courses each student is enrolled in:
+
+     **Enrollments**:
+
+     ```sql
+     | StudentID | CourseID |
+     |-----------|----------|
+     | 1         | 101      |
+     | 2         | 102      |
+     ```
+
+     **Join**: To find out which students are taking which courses, you join the `Students` and `Enrollments` tables on `StudentID`, and then join the result with the `Courses` table on `CourseID`:
+
+     ```sql
+     | StudentID | Name  | CourseID | CourseName |
+     |-----------|-------|----------|------------|
+     | 1         | Alice | 101      | Biology    |
+     | 2         | Bob   | 102      | Math       |
+     ```
+
+     Here, Alice is enrolled in Biology, and Bob is enrolled in Math.
+
+### Summary:
+- **Projection** is about selecting specific columns.
+- **Selection** is about filtering specific rows.
+- **Cartesian Product** pairs every row of one table with every row of another.
+- **Join** combines rows from two tables based on a common attribute, like matching student IDs with course IDs.
+
+
+_____________________________________________________________
 ## Key Properties of Transactions: ACID
 
 Transactions are defined by four key properties, commonly referred to as ACID:
