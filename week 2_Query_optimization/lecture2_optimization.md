@@ -72,10 +72,14 @@ Join Students with Enrollments: The DBMS matches the StudentID from Enrollments 
 Selection on Age: The DBMS filters out students who are not older than 20.
 Projection: Finally, the DBMS returns the names of the students.
 
+Step 3: Query Optimization
+In this final step, the DBMS may apply several optimization strategies, such as:
 
-
-
-
+Index Utilization: Ensuring indexes are used on CourseName in Courses and Age in Students to speed up the selection process.
+Join Order Optimization: Choosing the most efficient order for performing joins, such as filtering rows early in the process to reduce the number of records to join.
+Avoiding Full Table Scans: Leveraging indexes or partitioning to avoid scanning entire tables.
+Query Rewriting: Simplifying or restructuring the query to reduce its computational cost.
+By applying these optimizations, the DBMS aims to execute the query with minimal resource consumption and maximum speed.
 
 Example Scenario: Optimizing a Query
 Let's take a simple scenario where we want to retrieve specific data from a university database with three tables: Students, Courses, and Enrollments.
