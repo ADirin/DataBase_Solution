@@ -1,5 +1,7 @@
 # MariaDB Learning Material
 
+![Query Optimization](./images/queryOptimize.JPG)
+
 ## Table of Contents
 1. [Query Optimization](#query-optimization)
 2. [Transactions](#transactions)
