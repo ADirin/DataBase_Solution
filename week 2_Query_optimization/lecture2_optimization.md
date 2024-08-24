@@ -1,6 +1,6 @@
 # MariaDB Learning Material
 
-![Query Optimization](./images/queryOptimize.JPG)
+![Query Optimization](../images/queryOptimize.JPG)
 
 ## Table of Contents
 1. [Query Optimization](#query-optimization)
