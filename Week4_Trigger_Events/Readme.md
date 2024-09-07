@@ -20,17 +20,18 @@
 This guide covers the basics of database triggers, stored procedures, and events in MySQL. These concepts are essential for managing automated tasks and ensuring data integrity in your databases.
 
 ## Database Triggers
-
+```mermaid
+graph TD;
+    A[Database Table] -->|Insert, Update, Delete| B[Trigger Event];
+    B --> C{Trigger Condition};
+    C -->|Condition Met| D[Trigger Action];
+    C -->|Condition Not Met| E[No Action];
+    D --> F[Execute SQL Statement];
+    F --> G[Database Updated];
+```
 ### What is a Trigger?
 A trigger is a database object that is automatically executed or fired when certain events occur. Triggers can be defined to execute before or after an `INSERT`, `UPDATE`, or `DELETE` operation on a table.
 
-```mermaid
-graph LR;
-    A[Start] --> B[Process];
-    B --> C{Complete?};
-    C -->|Yes| D[Done];
-    C -->|No| E[Repeat];
-````
 
 ### Creating a Trigger
 To create a trigger in MySQL, you can use the `CREATE TRIGGER` statement. The syntax is:
