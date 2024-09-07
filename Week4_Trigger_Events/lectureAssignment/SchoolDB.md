@@ -229,14 +229,13 @@ DO
 BEGIN
     -- Update total_courses in the students table based on enrollments
     UPDATE students s
-    SET s.total_courses = (
-        SELECT COUNT(e.course_id)
-        FROM enrollments e
-        WHERE e.student_id = s.student_id
-    );
-END;
-
-//
+    JOIN (
+        SELECT student_id, COUNT(course_id) AS course_count
+        FROM enrollments
+        GROUP BY student_id
+    ) e ON s.student_id = e.student_id
+    SET s.total_courses = e.course_count;
+END //
 
 DELIMITER ;
 
