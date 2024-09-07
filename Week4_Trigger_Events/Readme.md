@@ -33,6 +33,32 @@ CREATE TRIGGER trigger_name
 ON table_name FOR EACH ROW
 trigger_body;
 ```
+```sql
+--starts the creation of a new trigger and assigns it as name, Trigger_Nameof 
+CREATE TRIGGER Trigger_Name
+
+--this line specifies when the TRIGGER will be executed about the EVENTS, for example BEFORE an insertion OR UPDATE OR AFTER the insertion...
+(BEFORE | AFTER)
+
+--this line defines the TYPE OF operation that TRIGGERS the execution of the TRIGGER, meaning that TRIGGER will be executed when an INSERT, UPDATE, or DELETE happens
+[INSERT | UPDATE | DELETE]
+
+--The TABLE IN which the TRIGGER will be defined
+ON[TABLE_NAME]
+
+--this line defines whether the TRIGGER should be executed FOR EACH ROW affected BY triggering EVENT  OR FOR EACH column
+[for EACH ROW | FOR EACH COLUMN]
+
+-- the following contains one or more SQL statements enclosed with BEGIN---END
+[Trigger_body]
+![image](https://github.com/user-attachments/assets/4cfbcd59-b0fa-4731-9c1c-736ce2a29936)
+
+
+
+
+```
+
+
 
 Example Trigger
 Let's create a trigger that automatically updates the last_updated column to the current timestamp whenever a record is updated in the employees table.
