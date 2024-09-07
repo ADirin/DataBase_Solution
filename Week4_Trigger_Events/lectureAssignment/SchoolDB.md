@@ -219,6 +219,10 @@ You are working with a school database, SchoolDB, which contains tables for stud
 - Schedule the event to run every day.
 3. Create the Event: Write the SQL to create the event:
 ```sql
+-- Drop the existing event if it exists
+DROP EVENT IF EXISTS update_student_courses;
+
+-- Create the event
 DELIMITER //
 
 CREATE EVENT update_student_courses
@@ -238,6 +242,7 @@ BEGIN
 END //
 
 DELIMITER ;
+
 
 ```
 ```SQL
