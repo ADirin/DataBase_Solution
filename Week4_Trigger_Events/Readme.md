@@ -51,10 +51,6 @@ ON[TABLE_NAME]
 
 -- the following contains one or more SQL statements enclosed with BEGIN---END
 [Trigger_body]
-![image](https://github.com/user-attachments/assets/4cfbcd59-b0fa-4731-9c1c-736ce2a29936)
-
-
-
 
 ```
 
