@@ -145,9 +145,9 @@ By performing these tests, you can confirm that your triggers are functioning as
 
 _______________________________________________________________________________________________________________________________
 
-# EVENT
-Exercise: Automating Course Enrollment Counting Using MySQL Events
-Scenario:
+# EVENT EXAMPLE
+## Exercise: Automating Course Enrollment Counting Using MySQL Events
+**Scenario:**
 You are working with a school database, SchoolDB, which contains tables for students, courses, and enrollments. You need to create an automated system using MySQL events to update the total_courses field for each student daily. This field represents the total number of courses a student is currently enrolled in.
 
 Your task is to design and implement an event that will:
