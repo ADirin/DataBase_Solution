@@ -24,6 +24,14 @@ This guide covers the basics of database triggers, stored procedures, and events
 ### What is a Trigger?
 A trigger is a database object that is automatically executed or fired when certain events occur. Triggers can be defined to execute before or after an `INSERT`, `UPDATE`, or `DELETE` operation on a table.
 
+```mermaid
+graph LR;
+    A[Start] --> B[Process];
+    B --> C{Complete?};
+    C -->|Yes| D[Done];
+    C -->|No| E[Repeat];
+````
+
 ### Creating a Trigger
 To create a trigger in MySQL, you can use the `CREATE TRIGGER` statement. The syntax is:
 
@@ -94,6 +102,9 @@ END;
 
 
 ```
+
+
+
 
 Events
 What is an Event?
