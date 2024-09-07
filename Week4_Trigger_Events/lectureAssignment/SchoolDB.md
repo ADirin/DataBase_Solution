@@ -1,3 +1,7 @@
+Create the Database and Tables:
+
+Use the provided SQL statements to set up the database and tables.
+
 ````mermaid
 erDiagram
     students {
@@ -55,61 +59,51 @@ CREATE TABLE enrollments (
 
 ```
 2. Trigger Examples
-Now, let's create triggers to demonstrate different operations.
-
-Trigger 1: AFTER INSERT on enrollments
-This trigger will increment the total_courses column in the students table after a student enrolls in a new course.
-
+Create the Trigger:
+Create a trigger that updates the total_courses field in the students table when a record is deleted from the enrollments table.
 ```sql
 DELIMITER //
-CREATE TRIGGER afterEnrollmentInsert
-AFTER INSERT ON enrollments
+
+CREATE TRIGGER update_total_courses_after_delete
+AFTER DELETE ON enrollments
 FOR EACH ROW
 BEGIN
-    -- Increase the student's total courses by 1 after an enrollment
-    UPDATE students SET total_courses = total_courses + 1
-    WHERE student_id = NEW.student_id;
+    UPDATE students
+    SET total_courses = total_courses - 1
+    WHERE student_id = OLD.student_id;
 END;
-//
+
 DELIMITER ;
 
 ```
 Trigger 2: AFTER DELETE on enrollments
 This trigger will decrement the total_courses column in the students table after a student is unenrolled from a course.
 ```sql
-DELIMITER //
-CREATE TRIGGER afterEnrollmentDelete
-AFTER DELETE ON enrollments
-FOR EACH ROW
-BEGIN
-    -- Decrease the student's total courses by 1 after unenrollment
-    UPDATE students SET total_courses = total_courses - 1
-    WHERE student_id = OLD.student_id;
-END;
-//
-DELIMITER ;
+-- Delete an enrollment record for Alice
+DELETE FROM enrollments WHERE student_id = 1 AND course_id = 2;
 
-
+-- Check the students table to see if total_courses has been updated
+SELECT * FROM students;
 
 
 ```
-3. Test the Trigger
-To see the trigger in action, we'll insert some data into the students, courses, and enrollments tables and observe the changes in the students.total_courses.
+Test the Trigger:
 
-Insert Sample Data
-
+Delete an enrollment record and verify that the total_courses field in the students table is updated correctly.
 ```sql
 
--- Insert into students table
-INSERT INTO students (student_name) VALUES ('Alice'), ('Bob');
+DELIMITER //
 
--- Insert into courses table
-INSERT INTO courses (course_name) VALUES ('Math'), ('Science');
+CREATE TRIGGER update_total_courses_after_delete
+AFTER DELETE ON enrollments
+FOR EACH ROW
+BEGIN
+    UPDATE students
+    SET total_courses = total_courses - 1
+    WHERE student_id = OLD.student_id;
+END;
 
--- Insert enrollments (this will trigger the afterEnrollmentInsert)
-INSERT INTO enrollments (student_id, course_id, enrollment_date) 
-VALUES (1, 1, CURDATE()), (1, 2, CURDATE()), (2, 1, CURDATE());
-
+DELIMITER ;
 
 
 ```
