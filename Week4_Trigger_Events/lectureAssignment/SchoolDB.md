@@ -58,34 +58,90 @@ CREATE TABLE enrollments (
 
 
 ```
-2. Create the Trigger:
-Create a trigger that updates the total_courses field in the students table when a record is deleted from the enrollments table.
+First, check the initial state of the students table to see the starting values for total_courses.
 ```sql
-DELIMITER //
 
-CREATE TRIGGER update_total_courses_after_delete
-AFTER DELETE ON enrollments
-FOR EACH ROW
-BEGIN
-    UPDATE students
-    SET total_courses = total_courses - 1
-    WHERE student_id = OLD.student_id;
-END;
-
-DELIMITER ;
+SELECT * FROM students;
 
 ```
-3. Test the Trigger:
+2. Test the BEFORE INSERT Trigger
+Scenario: Add a new enrollment and verify that the total_courses for the corresponding student is incremented.
+```sql
+-- Add a new enrollment for a student
+INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES (1, 3, '2024-09-07');
 
-Delete an enrollment record and verify that the total_courses field in the students table is updated correctly.
+-- Check the students table to verify that total_courses has been incremented
+SELECT * FROM students;
+
+```
+Expected Outcome: The total_courses for the student with student_id = 1 should be increased by 1.
+
+3. Test the BEFORE DELETE Trigger
+Scenario: Delete an existing enrollment and verify that the total_courses for the corresponding student is decremented.
 ```sql
 
--- Delete an enrollment record for Alice
-DELETE FROM enrollments WHERE student_id = 1 AND course_id = 2;
+-- Delete an enrollment for a student
+DELETE FROM enrollments WHERE student_id = 1 AND course_id = 3;
 
--- Check the students table to see if total_courses has been updated
+-- Check the students table to verify that total_courses has been decremented
 SELECT * FROM students;
 
 
+```
+Expected Outcome: The total_courses for the student with student_id = 1 should be decreased by 1.
+
+4. Additional Tests
+Test 1: Insert and Delete Multiple Enrollments
+
+
+```sql
+-- Insert multiple enrollments
+INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES (2, 3, '2024-09-07');
+INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES (2, 4, '2024-09-08');
+
+-- Check the students table
+SELECT * FROM students;
+
+-- Delete multiple enrollments
+DELETE FROM enrollments WHERE student_id = 2 AND course_id = 3;
+DELETE FROM enrollments WHERE student_id = 2 AND course_id = 4;
+
+-- Check the students table
+SELECT * FROM students;
+
+```
+Test 2: Edge Case - Deleting Non-Existent Enrollment
+```sql
+-- Try deleting an enrollment that does not exist
+DELETE FROM enrollments WHERE student_id = 1 AND course_id = 99;
+
+-- Check the students table
+SELECT * FROM students;
+
+```
+Test 3: Insert and Delete for Multiple Students
+```sql
+-- Insert enrollments for multiple students
+INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES (1, 5, '2024-09-09');
+INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES (2, 6, '2024-09-10');
+
+-- Check the students table
+SELECT * FROM students;
+
+-- Delete enrollments for multiple students
+DELETE FROM enrollments WHERE student_id = 1 AND course_id = 5;
+DELETE FROM enrollments WHERE student_id = 2 AND course_id = 6;
+
+-- Check the students table
+SELECT * FROM students;
+
+
+```
+
+Notes:
+Verify Trigger Actions: Ensure that the changes in total_courses match the expected values after each operation.
+Error Handling: If you encounter any issues, review the trigger definitions for errors or unintended logic. Also, check if there are any constraints or data integrity issues that might affect the triggers.
+By performing these tests, you can confirm that your triggers are functioning as expected and handling various scenarios correctly.
+```sql
 
 ```
