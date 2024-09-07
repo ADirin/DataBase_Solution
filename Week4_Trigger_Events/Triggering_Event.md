@@ -136,44 +136,44 @@ DELETE FROM logs WHERE log_date < NOW() - INTERVAL 1 YEAR;
 ### Advantages of Triggers:
 
 #### Automated Enforcement of Business Rules:
-Triggers automatically enforce business rules, such as maintaining data consistency and integrity across related tables without requiring manual intervention.
+- Triggers automatically enforce business rules, such as maintaining data consistency and integrity across related tables without requiring manual intervention.
 
 #### Simplifies Code Maintenance:
-Since triggers are defined within the database, they help centralize logic like auditing, updating records, or enforcing complex rules, reducing the need for repetitive code in multiple application layers.
+- Since triggers are defined within the database, they help centralize logic like auditing, updating records, or enforcing complex rules, reducing the need for repetitive code in multiple application layers.
 
 #### Ensures Data Integrity:
-Triggers can enforce referential integrity, update related tables, or prevent invalid data operations automatically (e.g., preventing deletion of a record if it's still referenced elsewhere).
+- Triggers can enforce referential integrity, update related tables, or prevent invalid data operations automatically (e.g., preventing deletion of a record if it's still referenced elsewhere).
 
 #### Event-Driven:
-Triggers are event-driven and execute automatically in response to `INSERT`, `UPDATE`, or `DELETE` actions. This ensures real-time updates and eliminates the need for periodic checks or manual execution.
+- Triggers are event-driven and execute automatically in response to `INSERT`, `UPDATE`, or `DELETE` actions. This ensures real-time updates and eliminates the need for periodic checks or manual execution.
 
 #### Auditing and Logging:
-Triggers are commonly used for auditing changes in data. For example, logging all changes to certain tables (like tracking who made updates and when) is easier and more reliable with triggers.
+- Triggers are commonly used for auditing changes in data. For example, logging all changes to certain tables (like tracking who made updates and when) is easier and more reliable with triggers.
 
 #### Minimizes Redundancy:
-You don't have to duplicate code in different parts of your application (e.g., in stored procedures, scripts, or application logic). Triggers execute consistently for all users and applications interacting with the database.
+- You don't have to duplicate code in different parts of your application (e.g., in stored procedures, scripts, or application logic). Triggers execute consistently for all users and applications interacting with the database.
 
 ---
 
 ### Disadvantages of Triggers:
 
 #### Complex Debugging and Maintenance:
-Debugging triggers can be difficult because they execute automatically in the background. Understanding the behavior of the system can become tricky, especially when there are multiple triggers on the same table or complex trigger logic.
+- Debugging triggers can be difficult because they execute automatically in the background. Understanding the behavior of the system can become tricky, especially when there are multiple triggers on the same table or complex trigger logic.
 
 #### Performance Overhead:
-Triggers introduce additional overhead because they are executed on every data-modifying operation (`INSERT`, `UPDATE`, `DELETE`). This can lead to slower performance, especially in high-transaction environments.
+- Triggers introduce additional overhead because they are executed on every data-modifying operation (`INSERT`, `UPDATE`, `DELETE`). This can lead to slower performance, especially in high-transaction environments.
 
 #### Hidden Business Logic:
-Since triggers reside in the database, business logic may become “hidden” and harder to find or modify compared to having it clearly defined in the application layer.
+- Since triggers reside in the database, business logic may become “hidden” and harder to find or modify compared to having it clearly defined in the application layer.
 
 #### Unintended Consequences:
-If not carefully designed, triggers may cause unintended side effects. For example, a trigger could unintentionally create infinite loops if a `BEFORE` trigger makes an update to the same table that caused the trigger to fire.
+- If not carefully designed, triggers may cause unintended side effects. For example, a trigger could unintentionally create infinite loops if a `BEFORE` trigger makes an update to the same table that caused the trigger to fire.
 
 #### Limited Functionality:
-Triggers are limited to the database scope and SQL operations. More complex business logic or workflows may be better handled in the application code rather than within the database itself.
+- Triggers are limited to the database scope and SQL operations. More complex business logic or workflows may be better handled in the application code rather than within the database itself.
 
 #### Portability Issues:
-Triggers are database-specific, meaning that if you switch database systems or want to share your database structure, you might face challenges porting or reusing triggers. Not all database systems support triggers in the same way.
+- Triggers are database-specific, meaning that if you switch database systems or want to share your database structure, you might face challenges porting or reusing triggers. Not all database systems support triggers in the same way.
 
 #### Order of Execution Confusion:
-When multiple triggers are defined on a table, managing the order of execution becomes complicated. Some databases don't guarantee the order in which triggers are executed, leading to inconsistent results.
+- When multiple triggers are defined on a table, managing the order of execution becomes complicated. Some databases don't guarantee the order in which triggers are executed, leading to inconsistent results.
