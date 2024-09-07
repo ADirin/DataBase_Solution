@@ -148,15 +148,17 @@ ________________________________________________________________________________
 # EVENT EXAMPLE
 ## Exercise: Automating Course Enrollment Counting Using MySQL Events
 **Scenario:**
+
 You are working with a school database, SchoolDB, which contains tables for students, courses, and enrollments. You need to create an automated system using MySQL events to update the total_courses field for each student daily. This field represents the total number of courses a student is currently enrolled in.
 
-Your task is to design and implement an event that will:
+### Your task is to design and implement an event that will:
 
-Run daily.
-Calculate the total number of courses each student is enrolled in from the enrollments table.
-Update the total_courses field in the students table with the new value.
-Step-by-Step Instructions:
-Setup the Database and Tables: First, run the provided SQL statements to create the database and the necessary tables.
+1. Run daily.
+2. Calculate the total number of courses each student is enrolled in from the enrollments table.
+3. Update the total_courses field in the students table with the new value.
+
+### Step-by-Step Instructions:
+1. USE THE SchoolDB
 
 2. Task: Create a MySQL Event Your main task is to create a MySQL Event that will automatically update the total_courses for each student daily, based on the number of courses they are enrolled in.
 
@@ -187,6 +189,13 @@ END;
 //
 
 DELIMITER ;
+
+```
+```SQL
+ERROR:
+/* Varoitus: (1105) Event scheduler is switched off, use SET GLOBAL event_scheduler=ON to enable it. */
+-- You Have to set the event scheduler
+SET GLOBAL event_scheduler = ON;
 
 ```
 5. Verify the Event:
