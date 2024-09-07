@@ -1,3 +1,27 @@
+````mermaid
+erDiagram
+    students {
+        INT student_id PK
+        VARCHAR student_name
+        INT total_courses
+    }
+    courses {
+        INT course_id PK
+        VARCHAR course_name
+    }
+    enrollments {
+        INT enrollment_id PK
+        INT student_id FK
+        INT course_id FK
+        DATE enrollment_date
+    }
+
+    students ||--o{ enrollments : ""
+    courses ||--o{ enrollments : ""
+
+````
+
+
 ```sql
 -- Create the database
 CREATE DATABASE SchoolDB;
