@@ -177,3 +177,60 @@ DELETE FROM logs WHERE log_date < NOW() - INTERVAL 1 YEAR;
 
 #### Order of Execution Confusion:
 - When multiple triggers are defined on a table, managing the order of execution becomes complicated. Some databases don't guarantee the order in which triggers are executed, leading to inconsistent results.
+--------------------------------------------------------------------------------------------------------------------------
+
+# Stored Procedures
+## What is a Stored Procedure?
+- A stored procedure is a set of SQL statements that can be stored in the database and executed repeatedly. Stored procedures allow for more complex operations than a single SQL statement and can include control structures such as loops and conditionals.
+
+## Creating a Stored Procedure
+To create a stored procedure in MySQL, use the CREATE PROCEDURE statement. The syntax is:
+
+```sql
+CREATE PROCEDURE procedure_name (parameters)
+BEGIN
+    -- procedure body
+END;
+```
+## Example Stored Procedure
+Let's create a stored procedure that inserts a new employee into the employees table.
+
+```sql
+CREATE PROCEDURE AddEmployee(
+    IN first_name VARCHAR(50),
+    IN last_name VARCHAR(50),
+    IN hire_date DATE
+)
+BEGIN
+    INSERT INTO employees (first_name, last_name, hire_date)
+    VALUES (first_name, last_name, hire_date);
+END;
+
+```
+# Events
+## What is an Event?
+- An event in MySQL is a scheduled task that runs automatically at specified intervals. Events are useful for tasks such as cleaning up old data, sending notifications, or generating reports.
+
+## Creating an Event
+To create an event in MySQL, use the CREATE EVENT statement. The syntax is:
+```sql
+
+CREATE EVENT event_name
+ON SCHEDULE schedule
+DO
+event_body;
+
+
+
+```
+Example Event
+Let's create an event that deletes records older than one year from the logs table every day at midnight.
+
+```sql
+CREATE EVENT cleanup_old_logs
+ON SCHEDULE EVERY 1 DAY
+STARTS '2024-01-01 00:00:00'
+DO
+DELETE FROM logs WHERE log_date < NOW() - INTERVAL 1 YEAR;
+
+```
