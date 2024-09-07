@@ -58,8 +58,7 @@ CREATE TABLE enrollments (
 
 
 ```
-2. Trigger Examples
-Create the Trigger:
+2. Create the Trigger:
 Create a trigger that updates the total_courses field in the students table when a record is deleted from the enrollments table.
 ```sql
 DELIMITER //
@@ -76,60 +75,15 @@ END;
 DELIMITER ;
 
 ```
-Trigger 2: AFTER DELETE on enrollments
-This trigger will decrement the total_courses column in the students table after a student is unenrolled from a course.
-```sql
--- Delete an enrollment record for Alice
-DELETE FROM enrollments WHERE student_id = 1 AND course_id = 2;
-
--- Check the students table to see if total_courses has been updated
-SELECT * FROM students;
-
-
-```
-Test the Trigger:
+3. Test the Trigger:
 
 Delete an enrollment record and verify that the total_courses field in the students table is updated correctly.
 ```sql
 
-DELIMITER //
+-- Delete an enrollment record for Alice
+DELETE FROM enrollments WHERE student_id = 1 AND course_id = 2;
 
-CREATE TRIGGER update_total_courses_after_delete
-AFTER DELETE ON enrollments
-FOR EACH ROW
-BEGIN
-    UPDATE students
-    SET total_courses = total_courses - 1
-    WHERE student_id = OLD.student_id;
-END;
-
-DELIMITER ;
-
-
-```
-Now, check the students table to see if the total_courses has been updated correctly.
-
-```sql
-
--- Check the total courses after enrollment
-SELECT * FROM students;
-
-
-
-```
-This should show that:
-
-Alice is enrolled in 2 courses (total_courses = 2).
-Bob is enrolled in 1 course (total_courses = 1).
-Test Trigger on DELETE
-Now, let's delete one of Alice's enrollments and see how the total_courses changes.
-
-```sql
-
--- Delete an enrollment for Alice
-DELETE FROM enrollments WHERE student_id = 1 AND course_id = 1;
-
--- Check the total courses again
+-- Check the students table to see if total_courses has been updated
 SELECT * FROM students;
 
 
