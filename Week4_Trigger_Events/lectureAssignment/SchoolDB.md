@@ -142,6 +142,73 @@ Notes:
 Verify Trigger Actions: Ensure that the changes in total_courses match the expected values after each operation.
 Error Handling: If you encounter any issues, review the trigger definitions for errors or unintended logic. Also, check if there are any constraints or data integrity issues that might affect the triggers.
 By performing these tests, you can confirm that your triggers are functioning as expected and handling various scenarios correctly.
+
+_______________________________________________________________________________________________________________________________
+
+# EVENT
+Exercise: Automating Course Enrollment Counting Using MySQL Events
+Scenario:
+You are working with a school database, SchoolDB, which contains tables for students, courses, and enrollments. You need to create an automated system using MySQL events to update the total_courses field for each student daily. This field represents the total number of courses a student is currently enrolled in.
+
+Your task is to design and implement an event that will:
+
+Run daily.
+Calculate the total number of courses each student is enrolled in from the enrollments table.
+Update the total_courses field in the students table with the new value.
+Step-by-Step Instructions:
+Setup the Database and Tables: First, run the provided SQL statements to create the database and the necessary tables.
+
+2. Task: Create a MySQL Event Your main task is to create a MySQL Event that will automatically update the total_courses for each student daily, based on the number of courses they are enrolled in.
+
+**Hints:**
+
+- Use the COUNT() function to determine how many courses a student is enrolled in.
+- Join the students table with the enrollments table.
+- Schedule the event to run every day.
+3. Create the Event: Write the SQL to create the event:
 ```sql
+DELIMITER //
+
+CREATE EVENT update_student_courses
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP
+COMMENT 'Update total courses for each student daily'
+DO
+BEGIN
+    -- Update total_courses in the students table based on enrollments
+    UPDATE students s
+    SET s.total_courses = (
+        SELECT COUNT(e.course_id)
+        FROM enrollments e
+        WHERE e.student_id = s.student_id
+    );
+END;
+
+//
+
+DELIMITER ;
 
 ```
+5. Verify the Event:
+- After creating the event, check if it’s listed in the information_schema:
+```sql
+SELECT * FROM information_schema.events WHERE event_name = 'update_student_courses';
+
+```
+- Manually trigger the event (for testing purposes) to ensure the total_courses field is correctly updated:
+```sql
+SET GLOBAL event_scheduler = ON;
+CALL update_student_courses();
+
+```
+6. Test the Result: Run a query to check if the total_courses field in the students table is updated with the correct values:
+````sql
+SELECT * FROM students;
+
+`````
+You should see the total_courses field reflect the number of courses each student is enrolled in, e.g., Alice should have 2, Bob should have 1, and Charlie should have 2.
+
+## Student Questions:
+1. What would happen if the event was scheduled to run every hour instead of every day?
+2. How could you modify the event to only update students who have new enrollments (added today)?
+3. What are some potential pitfalls of using events to update tables, and how can you mitigate them?
