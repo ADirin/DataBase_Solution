@@ -67,6 +67,38 @@ SELECT * FROM students;
 2. Test the BEFORE INSERT Trigger
 Scenario: Add a new enrollment and verify that the total_courses for the corresponding student is incremented.
 ```sql
+DELIMITER //
+
+-- Trigger to update total_courses before a new enrollment is added
+CREATE TRIGGER update_total_courses_before_insert
+BEFORE INSERT ON enrollments
+FOR EACH ROW
+BEGIN
+    UPDATE students
+    SET total_courses = total_courses + 1
+    WHERE student_id = NEW.student_id;
+END;
+//
+
+-- Trigger to update total_courses before an enrollment is deleted
+CREATE TRIGGER update_total_courses_before_delete
+BEFORE DELETE ON enrollments
+FOR EACH ROW
+BEGIN
+    UPDATE students
+    SET total_courses = total_courses - 1
+    WHERE student_id = OLD.student_id;
+END;
+//
+
+DELIMITER ;
+
+
+
+```
+
+
+```sql
 -- Add a new enrollment for a student
 INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES (1, 3, '2024-09-07');
 
@@ -76,8 +108,26 @@ SELECT * FROM students;
 ```
 Expected Outcome: The total_courses for the student with student_id = 1 should be increased by 1.
 
-3. Test the BEFORE DELETE Trigger
-Scenario: Delete an existing enrollment and verify that the total_courses for the corresponding student is decremented.
+3. Test the After DELETE Trigger
+Scenario: Create a trigger that updates the total_courses field in the students table when a record is deleted from the enrollments table.
+```sql
+DELIMITER //
+
+CREATE TRIGGER update_total_courses_after_delete
+AFTER DELETE ON enrollments
+FOR EACH ROW
+BEGIN
+    UPDATE students
+    SET total_courses = total_courses - 1
+    WHERE student_id = OLD.student_id;
+END;
+
+DELIMITER ;
+```
+4. Test the Trigger
+
+Delete an enrollment record and verify that the total_courses field in the students table is updated correctly.
+
 ```sql
 
 -- Delete an enrollment for a student
