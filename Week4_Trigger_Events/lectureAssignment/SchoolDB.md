@@ -221,3 +221,83 @@ You should see the total_courses field reflect the number of courses each studen
 1. What would happen if the event was scheduled to run every hour instead of every day?
 2. How could you modify the event to only update students who have new enrollments (added today)?
 3. What are some potential pitfalls of using events to update tables, and how can you mitigate them?
+_____________________________________________________________________________________________________________________________
+Here’s an example of how you can create a stored procedure for your SchoolDB database. In this case, we will create a procedure called enroll_student_in_course to automate the process of enrolling a student in a course and updating their total courses.
+# 1. Stored Procedure Example:
+
+This procedure will:
+
+- Take a student ID, a course ID, and an enrollment date as input parameters.
+- Insert a new record into the enrollments table.
+- Update the total_courses for the student.
+Here’s the SQL code for the stored procedure:
+```sql
+DELIMITER //
+
+CREATE PROCEDURE enroll_student_in_course(
+    IN p_student_id INT,
+    IN p_course_id INT,
+    IN p_enrollment_date DATE
+)
+BEGIN
+    -- Insert a new enrollment record
+    INSERT INTO enrollments (student_id, course_id, enrollment_date)
+    VALUES (p_student_id, p_course_id, p_enrollment_date);
+
+    -- Update the total_courses field for the student
+    UPDATE students
+    SET total_courses = (
+        SELECT COUNT(*)
+        FROM enrollments
+        WHERE student_id = p_student_id
+    )
+    WHERE student_id = p_student_id;
+END //
+
+DELIMITER ;
+
+
+```
+## Explanation:
+- Parameters:
+
+  - p_student_id: The ID of the student to be enrolled.
+  - p_course_id: The ID of the course the student is enrolling in.
+  - p_enrollment_date: The date of enrollment.
+- Procedure Logic:
+
+  - First, a new record is inserted into the enrollments table with the provided student ID, course ID, and enrollment date.
+  - Then, it updates the total_courses field in the students table by counting the number of enrollments the student currently has.
+ 
+3. How to Call the Procedure:
+To enroll a student in a course using this stored procedure, you can call it like this:
+```sql
+CALL enroll_student_in_course(1, 2, CURDATE());
+```
+In this example:
+
+- Student with student_id = 1 is being enrolled in the course with course_id = 2.
+- The enrollment_date is set to the current date (CURDATE()).
+
+4. Test the Procedure:
+1. Check Before Enrollment: Query the students table to see the current total_courses for the student.
+
+```sql
+SELECT student_name, total_courses FROM students WHERE student_id = 1;
+
+```
+2. Enroll the Student: Call the procedure as shown earlier:
+   
+```sql
+CALL enroll_student_in_course(1, 2, CURDATE());
+
+```
+3. Check After Enrollment: Query the students table again to see if the total_courses has been updated:
+
+```sql
+SELECT student_name, total_courses FROM students WHERE student_id = 1;
+
+```
+The total_courses should now reflect the updated value.
+
+This procedure automates the process of enrolling a student in a course and updating their course count, making database management simpler and more efficient.
