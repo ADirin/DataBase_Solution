@@ -1,7 +1,7 @@
 # SQL Implementation Instructions in HeidiSQL
 
 
-´´´mermaid
+´´´
 sequenceDiagram
     participant User
     participant Database
