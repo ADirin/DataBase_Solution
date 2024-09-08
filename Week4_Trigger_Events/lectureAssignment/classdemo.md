@@ -1,7 +1,6 @@
 # SQL Implementation Instructions in HeidiSQL
 
-
-´´´
+````mermaid
 sequenceDiagram
     participant User
     participant Database
@@ -17,9 +16,7 @@ sequenceDiagram
     SP->>Database: Update total_courses in students
 
     Note over Trigger, SP: Both update the total_courses field
-
-
-´´´
+````
 
 ## 1. Create the `student` Table
 **Description:** Create a table named `student` with the following columns:
