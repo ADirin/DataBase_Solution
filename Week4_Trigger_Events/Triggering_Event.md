@@ -32,7 +32,7 @@ graph TD;
 ### What is a Trigger? From the user view
 A trigger is a database object that is automatically executed or fired when certain events occur. Triggers can be defined to execute before or after an `INSERT`, `UPDATE`, or `DELETE` operation on a table.
 
-```merMaid
+```mermaid
 sequenceDiagram
     participant User as User
     participant Application as App
@@ -45,9 +45,6 @@ sequenceDiagram
     Trigger->>DB: Execute Trigger Logic
     DB->>App: Confirm Insert
     App->>User: Acknowledge Operation
-
-
-
 ```
 
 ### Creating a Trigger
