@@ -147,5 +147,5 @@ END //
 DELIMITER ;
 ```
 
-**CALL InsertHighMarks();**
-**SELECT * FROM final_marks;**
+- **CALL InsertHighMarks();**
+- **SELECT * FROM final_marks;**
