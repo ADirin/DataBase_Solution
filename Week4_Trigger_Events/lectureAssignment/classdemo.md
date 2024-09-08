@@ -3,12 +3,7 @@
 
 ´´´mermaid
 sequenceDiagram
-    participant User
-    participant Database
-    participant StoredProcedure as Stored Procedure
-    participant Trigger
-    participant Event as Scheduled Event
-
+  
     User->>Database: Insert into enrollments
     Database->>Trigger: After Insert Trigger Fires
     Trigger->>Database: Update total_courses in students
@@ -17,8 +12,6 @@ sequenceDiagram
     StoredProcedure->>Database: Update total_courses in students
 
     Note over Trigger, StoredProcedure: Both update the total_courses field
-
-
 
 ´´´
 
