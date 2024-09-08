@@ -20,7 +20,6 @@ sequenceDiagram
 
 
 
-
 ´´´
 
 ## 1. Create the `student` Table
