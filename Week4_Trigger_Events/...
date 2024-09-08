@@ -17,10 +17,11 @@ CREATE TABLE student (
     City VARCHAR(50),
     Marks INT
 );
-
+```
+```sql
 INSERT INTO student (Fname, Lname, Address, City, Marks) 
 VALUES ('Timo', 'S', 'Vaasa', 'xxkatu', 20);
-
+```
 2. Create the sample_trigger Trigger
 Description: Create a BEFORE INSERT trigger named sample_trigger to add 100 to the Marks value of a new record before it is inserted into the student table.
 
