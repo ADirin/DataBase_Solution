@@ -261,7 +261,7 @@ SELECT * FROM information_schema.events WHERE event_name = 'update_student_cours
 - Manually trigger the event (for testing purposes) to ensure the total_courses field is correctly updated:
 ```sql
 SET GLOBAL event_scheduler = ON;
-CALL update_student_courses();
+
 
 ```
 6. Test the Result: Run a query to check if the total_courses field in the students table is updated with the correct values:
