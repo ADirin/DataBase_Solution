@@ -185,25 +185,26 @@ Exampleone-one-db
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
-    <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
-        <persistence-unit name="JPAExamplePU" transaction-type="RESOURCE_LOCAL">
-            <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-            <class>com.example.jpa.entity.Student</class>
-            <properties>
-                <!-- JDBC connection properties -->
-                <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:testdb"/>
-                <property name="jakarta.persistence.jdbc.user" value="sa"/>
-                <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
-                <property name="jakarta.persistence.jdbc.password" value=""/>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="JPAExamplePU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.example.jpa.entity.Student</class>
+        <properties>
+            <!-- JDBC connection properties for MySQL or MariaDB -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testdb"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.password" value="your_password"/>
 
-                <!-- Hibernate settings -->
-                <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-                <property name="hibernate.hbm2ddl.auto" value="update"/>
-                <property name="hibernate.show_sql" value="true"/>
-                <property name="hibernate.format_sql" value="true"/>
-            </properties>
-        </persistence-unit>
-    </persistence>
+            <!-- Hibernate settings -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
     ```
 
 ## Step 4: Write JPA Code to Persist Data
