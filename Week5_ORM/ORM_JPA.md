@@ -219,7 +219,7 @@ The persistence.xml file configures the persistence unit and specifies database 
 ## CRUD Operations
 Performing CRUD operations using the EntityManager.
 
-```
+```java
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
