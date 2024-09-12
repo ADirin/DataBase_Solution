@@ -37,7 +37,7 @@ ORM is a programming technique that allows developers to interact with a relatio
 
 ## Java Persistence API (JPA)
 
-````mermaid
+```mermaid
 classDiagram
     %% ORM & JPA Overview
 
