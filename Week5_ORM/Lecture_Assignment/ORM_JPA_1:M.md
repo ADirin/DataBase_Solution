@@ -49,7 +49,25 @@ classDiagram
         +setDepartment(Department department)
     }
 
+    class DepartmentDAO {
+        +createDepartment(Department department)
+        +findDepartment(Long id)
+        +updateDepartment(Department department)
+        +deleteDepartment(Long id)
+        +findAllDepartments() List<Department>
+    }
+
+    class EmployeeDAO {
+        +createEmployee(Employee employee)
+        +findEmployee(Long id)
+        +updateEmployee(Employee employee)
+        +deleteEmployee(Long id)
+        +findAllEmployees() List<Employee>
+    }
+
     Department "1" --> "0..*" Employee : has
+    DepartmentDAO --> Department : manages
+    EmployeeDAO --> Employee : manages
 
 ```
 
