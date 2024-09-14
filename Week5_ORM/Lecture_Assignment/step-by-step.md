@@ -273,8 +273,8 @@ Exampleone-one-db
     - Right-click on `src/main/resources` and create a new directory named `META-INF`.
     - Inside `META-INF`, create a new file named `persistence.xml` and add the following content:
 
-    ```xml
-    <?xml version="1.0" encoding="UTF-8"?>
+```xml
+ <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
     <persistence-unit name="JPAExamplePU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
@@ -294,8 +294,7 @@ Exampleone-one-db
         </properties>
     </persistence-unit>
 </persistence>
-
-    ```
+```
 
 ## Step 4: Write JPA Code to Persist Data
 
