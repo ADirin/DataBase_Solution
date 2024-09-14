@@ -16,6 +16,23 @@
 ## Introduction
 This guide covers the basics of handling One-to-Many (1:M) associations in Object-Relational Mapping (ORM) using Java Persistence API (JPA). These concepts are essential for managing relational data in Java applications using object-oriented principles.
 
+
+## Object-Relational Mapping (ORM)
+
+### What is ORM?
+ORM is a programming technique that allows developers to interact with a relational database using an object-oriented paradigm. ORM frameworks map database tables to Java classes, and SQL queries to method calls, abstracting the database interactions.
+
+### 1:M Associations
+In a 1:M association, one entity (parent) is associated with multiple instances of another entity (child). This is a common relationship in databases where, for example, one department has many employees.
+
+## Java Persistence API (JPA)
+
+### Setting Up JPA
+To use JPA, you'll need to include the necessary dependencies and configure a `persistence.xml` file. 
+This setup is similar to any JPA project but focuses on defining relationships between entities.
+
+
+# EXAMPLE
 ```mermaid
 
 classDiagram
@@ -70,20 +87,9 @@ classDiagram
     EmployeeDAO --> Employee : manages
 
 ```
-
-## Object-Relational Mapping (ORM)
-
-### What is ORM?
-ORM is a programming technique that allows developers to interact with a relational database using an object-oriented paradigm. ORM frameworks map database tables to Java classes, and SQL queries to method calls, abstracting the database interactions.
-
-### 1:M Associations
-In a 1:M association, one entity (parent) is associated with multiple instances of another entity (child). This is a common relationship in databases where, for example, one department has many employees.
-
-## Java Persistence API (JPA)
-
-### Setting Up JPA
-To use JPA, you'll need to include the necessary dependencies and configure a `persistence.xml` file. 
-This setup is similar to any JPA project but focuses on defining relationships between entities.
+## Overview
+In this example, we have two entity classes, Department and Employee, which demonstrate a one-to-many relationship using Java Persistence API (JPA). JPA is a specification for managing relational data in Java applications. It allows developers to map Java objects to database tables and vice versa, making database interactions more intuitive and less error-prone.
+- The following dependencies are need to utlize ORM in your code 
 
 ### Example `pom.xml` for Maven
 ```xml
@@ -122,7 +128,7 @@ This setup is similar to any JPA project but focuses on defining relationships b
     </dependencies>
 
 ```
-# Examples
+
 ## Entity Classes
 Define the entities and their relationships.
 
@@ -237,7 +243,18 @@ public class Employee {
 }
 
 ```
+## Annotations Explained
+- @Entity: Marks the class as a JPA entity, meaning it will be mapped to a database table.
+- @Id: Specifies the primary key of the entity.
+- @GeneratedValue: Indicates that the primary key value will be automatically generated.
+- @OneToMany(mappedBy = “department”, cascade = CascadeType.ALL, orphanRemoval = true): Defines a one-to-many relationship. The mappedBy attribute indicates that the department field in the Employee class owns the relationship. cascade = CascadeType.ALL means that any operation (persist, merge, remove, etc.) on the Department entity will be cascaded to the Employee entities. orphanRemoval = true ensures that if an Employee is removed from the Department’s list, it will also be removed from the database.
+- @ManyToOne: Defines a many-to-one relationship. Each Employee is associated with one Department.
+- @JoinColumn(name = “department_id”): Specifies the foreign key column in the Employee table that references the Department table
+
 ### Persistence Configuration
+
+## Setting Up the Database
+Before running the Main class, you need to create the database in HeidiSQL (or any other database management tool). Ensure that the database name matches the one specified in your persistence.xml file.
 The persistence.xml file configures the persistence unit and specifies database connection properties.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -257,13 +274,34 @@ The persistence.xml file configures the persistence unit and specifies database 
     </persistence-unit>
 </persistence>
 
-
 ```
+
+## Adding the JDBC Driver
+If necessary, add the JDBC driver to your project:
+
+1. Go to File -> Project Structure.
+2. Select Modules -> Dependencies.
+3. Click the + button and choose JARs or directories.
+4. Locate the JDBC driver on your local machine and add it to your project.
+
 ## CRUD Operations
 Performing CRUD operations using the EntityManager.
 
 ### DepartmentDAO Class
 ```java
+
+/**
+ * This package contains the Data Access Object (DAO) classes for managing 
+ * entities in the JPA (Java Persistence API) context. It includes classes 
+ * for performing CRUD (Create, Read, Update, Delete) operations on 
+ * Employee and Department entities.
+ * 
+ * The DAOs use an EntityManagerFactory to create EntityManager instances 
+ * for interacting with the persistence context. Each DAO class provides 
+ * methods to persist, find, update, and delete entities, as well as to 
+ * retrieve lists of all entities of a given type.
+ */
+
 package com.example.jpa;
 import com.example.jpa.entity.Department;
 
@@ -376,6 +414,7 @@ public class EmployeeDAO {
 }
 ```
 ## Main class to test the CRUD
+The Main class is used to test the functionality of the Department and Employee entities along with their DAOs. Make sure it is placed in the appropriate package and run it to see the results.
 ```java
 package com.example.jpa;
 
