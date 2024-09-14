@@ -87,33 +87,40 @@ This setup is similar to any JPA project but focuses on defining relationships b
 
 ### Example `pom.xml` for Maven
 ```xml
-<dependencies>
-    <dependency>
-        <groupId>javax.persistence</groupId>
-        <artifactId>javax.persistence-api</artifactId>
-        <version>2.2</version>
-    </dependency>
-    <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>5.4.30.Final</version>
-    </dependency>
-    <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-entitymanager</artifactId>
-        <version>5.4.30.Final</version>
-    </dependency>
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.7.30</version>
-    </dependency>
-    <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>1.2.3</version>
-    </dependency>
-</dependencies>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.15.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.6.15.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.8.0-beta4</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+    </dependencies>
+
 ```
 # Examples
 ## Entity Classes
@@ -121,6 +128,8 @@ Define the entities and their relationships.
 
 ### Department Class
 ```java
+package com.example.jpa.entity;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -136,13 +145,39 @@ public class Department {
     private List<Employee> employees;
 
     // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 }
+
 
 
 ```
 ### Employee Class
 
 ```java
+package com.example.jpa.entity;
+
 import javax.persistence.*;
 
 @Entity
@@ -160,6 +195,45 @@ public class Employee {
     private Department department;
 
     // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }
 
 ```
@@ -170,12 +244,12 @@ The persistence.xml file configures the persistence unit and specifies database 
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
     <persistence-unit name="examplePU">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>com.example.Department</class>
-        <class>com.example.Employee</class>
+        <class>com.example.jpa.entity.Department</class>
+        <class>com.example.jpa.entity.Employee</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/manytoone"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="password"/>
+            <property name="javax.persistence.jdbc.password" value="Test12"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
@@ -183,12 +257,16 @@ The persistence.xml file configures the persistence unit and specifies database 
     </persistence-unit>
 </persistence>
 
+
 ```
 ## CRUD Operations
 Performing CRUD operations using the EntityManager.
 
 ### DepartmentDAO Class
 ```java
+package com.example.jpa;
+import com.example.jpa.entity.Department;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -239,9 +317,14 @@ public class DepartmentDAO {
     }
 }
 
+
 ```
 ### EmployeeDAO Class
 ```java
+package com.example.jpa;
+
+import com.example.jpa.entity.Employee;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -292,6 +375,65 @@ public class EmployeeDAO {
     }
 }
 ```
+## Main class to test the CRUD
+```java
+package com.example.jpa;
+
+import com.example.jpa.entity.Department;
+import com.example.jpa.entity.Employee;
+
+
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("examplePU");
+
+        DepartmentDAO departmentDAO = new DepartmentDAO();
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+
+        // Create a new department
+        Department department = new Department();
+        department.setName("Engineering");
+
+        // Create new employees
+        Employee employee1 = new Employee();
+        employee1.setFirstName("John");
+        employee1.setLastName("Doe");
+        employee1.setEmail("john.doe@example.com");
+        employee1.setDepartment(department);
+
+        Employee employee2 = new Employee();
+        employee2.setFirstName("Jane");
+        employee2.setLastName("Smith");
+        employee2.setEmail("jane.smith@example.com");
+        employee2.setDepartment(department);
+
+        // Add employees to the department
+        department.setEmployees(List.of(employee1, employee2));
+
+        // Persist the department (which will also persist the employees)
+        departmentDAO.createDepartment(department);
+
+        // Retrieve and print all departments
+        List<Department> departments = departmentDAO.findAllDepartments();
+        for (Department dept : departments) {
+            System.out.println("Department: " + dept.getName());
+            for (Employee emp : dept.getEmployees()) {
+                System.out.println(" - Employee: " + emp.getFirstName() + " " + emp.getLastName());
+            }
+        }
+
+        // Clean up
+        emf.close();
+    }
+}
+
+
+```
+
 # Conclusion
 ## Understanding 1
 associations in ORM and JPA is crucial for managing relational data in Java applications. 
