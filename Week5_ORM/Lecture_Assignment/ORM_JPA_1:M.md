@@ -92,10 +92,9 @@ classDiagram
 In this example, we have two entity classes, Department and Employee, which demonstrate a one-to-many relationship using Java Persistence API (JPA). JPA is a specification for managing relational data in Java applications. It allows developers to map Java objects to database tables and vice versa, making database interactions more intuitive and less error-prone.
 - The following dependencies are need to utlize ORM in your code
 
+
 project-root/
-│
 ├── pom.xml
-│
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -108,11 +107,9 @@ project-root/
 │   │   │               └── entity/
 │   │   │                   ├── Department.java
 │   │   │                   └── Employee.java
-│   │   │
 │   │   └── resources/
 │   │       └── META-INF/
 │   │           └── persistence.xml
-│   │
 └── target/
 
 
