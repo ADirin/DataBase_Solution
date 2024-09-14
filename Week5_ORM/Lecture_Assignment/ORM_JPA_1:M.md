@@ -113,10 +113,6 @@ project-root/
 │   │           └── persistence.xml 
 └── target/                  
 
-
-
-
-
 ```
 
 ### Example `pom.xml` for Maven
