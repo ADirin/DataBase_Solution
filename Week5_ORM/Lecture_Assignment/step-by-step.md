@@ -274,20 +274,20 @@ Exampleone-one-db
     - Inside `META-INF`, create a new file named `persistence.xml` and add the following content:
 
 ```xml
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
     <persistence-unit name="JPAExamplePU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.example.jpa.entity.Student</class>
         <properties>
             <!-- JDBC connection properties for MySQL or MariaDB -->
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testdb"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testorm"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.password" value="your_password"/>
+            <property name="jakarta.persistence.jdbc.password" value="Test12"/>
 
             <!-- Hibernate settings -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
