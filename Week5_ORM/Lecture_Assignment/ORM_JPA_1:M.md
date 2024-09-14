@@ -94,24 +94,24 @@ In this example, we have two entity classes, Department and Employee, which demo
 
 ```css
 
-project-root/               # Project root directory
-├── pom.xml                 # Maven configuration file
-├── src/                    # Source folder
-│   ├── main/               # Main source folder
-│   │   ├── java/           # Java source code folder
+project-root/               
+├── pom.xml                 
+├── src/                   
+│   ├── main/             
+│   │   ├── java/           
 │   │   │   └── com/
 │   │   │       └── example/
-│   │   │           └── jpa/          # Main package
-│   │   │               ├── Main.java         # Entry point of the application
-│   │   │               ├── DepartmentDAO.java # Data Access Object for Department
-│   │   │               ├── EmployeeDAO.java   # Data Access Object for Employee
-│   │   │               └── entity/            # Package for JPA entities
-│   │   │                   ├── Department.java # JPA entity representing a department
-│   │   │                   └── Employee.java   # JPA entity representing an employee
-│   │   └── resources/       # Resources folder
-│   │       └── META-INF/    # Contains configuration files
-│   │           └── persistence.xml # JPA configuration file
-└── target/                  # Directory for compiled classes and build artifacts
+│   │   │           └── jpa/         
+│   │   │               ├── Main.java        
+│   │   │               ├── DepartmentDAO.java 
+│   │   │               ├── EmployeeDAO.java   
+│   │   │               └── entity/           
+│   │   │                   ├── Department.java 
+│   │   │                   └── Employee.java  
+│   │   └── resources/       
+│   │       └── META-INF/   
+│   │           └── persistence.xml 
+└── target/                  
 
 
 
