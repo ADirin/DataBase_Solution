@@ -1,3 +1,4 @@
+
 # Learning Material: 1:M Associations in ORM and JPA
 
 ## Table of Contents
@@ -89,7 +90,31 @@ classDiagram
 ```
 ## Overview
 In this example, we have two entity classes, Department and Employee, which demonstrate a one-to-many relationship using Java Persistence API (JPA). JPA is a specification for managing relational data in Java applications. It allows developers to map Java objects to database tables and vice versa, making database interactions more intuitive and less error-prone.
-- The following dependencies are need to utlize ORM in your code 
+- The following dependencies are need to utlize ORM in your code
+
+project-root/
+│
+├── pom.xml
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── example/
+│   │   │           └── jpa/
+│   │   │               ├── Main.java
+│   │   │               ├── DepartmentDAO.java
+│   │   │               ├── EmployeeDAO.java
+│   │   │               └── entity/
+│   │   │                   ├── Department.java
+│   │   │                   └── Employee.java
+│   │   │
+│   │   └── resources/
+│   │       └── META-INF/
+│   │           └── persistence.xml
+│   │
+└── target/
+
 
 ### Example `pom.xml` for Maven
 ```xml
