@@ -92,25 +92,26 @@ classDiagram
 In this example, we have two entity classes, Department and Employee, which demonstrate a one-to-many relationship using Java Persistence API (JPA). JPA is a specification for managing relational data in Java applications. It allows developers to map Java objects to database tables and vice versa, making database interactions more intuitive and less error-prone.
 - The following dependencies are need to utlize ORM in your code
 
-
-project-root/
-├── pom.xml
-├── src/
-│   ├── main/
-│   │   ├── java/
+project-root/               # Project root directory
+├── pom.xml                 # Maven configuration file
+├── src/                    # Source folder
+│   ├── main/               # Main source folder
+│   │   ├── java/           # Java source code folder
 │   │   │   └── com/
 │   │   │       └── example/
-│   │   │           └── jpa/
-│   │   │               ├── Main.java
-│   │   │               ├── DepartmentDAO.java
-│   │   │               ├── EmployeeDAO.java
-│   │   │               └── entity/
-│   │   │                   ├── Department.java
-│   │   │                   └── Employee.java
-│   │   └── resources/
-│   │       └── META-INF/
-│   │           └── persistence.xml
-└── target/
+│   │   │           └── jpa/          # Main package
+│   │   │               ├── Main.java         # Entry point of the application
+│   │   │               ├── DepartmentDAO.java # Data Access Object for Department
+│   │   │               ├── EmployeeDAO.java   # Data Access Object for Employee
+│   │   │               └── entity/            # Package for JPA entities
+│   │   │                   ├── Department.java # JPA entity representing a department
+│   │   │                   └── Employee.java   # JPA entity representing an employee
+│   │   └── resources/       # Resources folder
+│   │       └── META-INF/    # Contains configuration files
+│   │           └── persistence.xml # JPA configuration file
+└── target/                  # Directory for compiled classes and build artifacts
+
+
 
 
 ### Example `pom.xml` for Maven
