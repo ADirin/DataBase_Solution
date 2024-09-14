@@ -16,6 +16,43 @@
 ## Introduction
 This guide covers the basics of handling One-to-Many (1:M) associations in Object-Relational Mapping (ORM) using Java Persistence API (JPA). These concepts are essential for managing relational data in Java applications using object-oriented principles.
 
+```mermaid
+
+classDiagram
+    class Department {
+        Long id
+        String name
+        List<Employee> employees
+        +getId()
+        +setId(Long id)
+        +getName()
+        +setName(String name)
+        +getEmployees()
+        +setEmployees(List<Employee> employees)
+    }
+
+    class Employee {
+        Long id
+        String firstName
+        String lastName
+        String email
+        Department department
+        +getId()
+        +setId(Long id)
+        +getFirstName()
+        +setFirstName(String firstName)
+        +getLastName()
+        +setLastName(String lastName)
+        +getEmail()
+        +setEmail(String email)
+        +getDepartment()
+        +setDepartment(Department department)
+    }
+
+    Department "1" --> "0..*" Employee : has
+
+```
+
 ## Object-Relational Mapping (ORM)
 
 ### What is ORM?
