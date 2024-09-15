@@ -3,7 +3,7 @@
 # Project Overview
 This project is a simple example demonstrating the use of Java Persistence API (JPA) to model a One-to-Many relationship between two entities: Student and Course. The main objective is to showcase how to establish and manage relationships in a JPA context using Hibernate as the ORM (Object-Relational Mapping) provider.
 
-![One to Many Association](/Images/onetomany.jpg)
+![One to Many Association](/images/onetomany.jpg)
 
 Your directory structure should look something like this:
 
