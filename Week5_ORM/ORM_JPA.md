@@ -321,6 +321,38 @@ public class EmployeeDAO {
 }
 
 ```
+
+## Object State 
+
+```mermaid
+stateDiagram-v2
+    [*] --> Transient : Create New Entity
+    Transient --> Persistent : persist()
+    Persistent --> Detached : detach()
+    Detached --> Persistent : merge()
+    Persistent --> Removed : remove()
+    Removed --> [*] : commit()
+
+    note right of Transient
+      Transient (New)
+      - Created but not persisted
+    end note
+
+    note right of Persistent
+      Persistent (Managed)
+      - Persisted and managed by EntityManager
+    end note
+
+    note right of Detached
+      Detached
+      - No longer managed by EntityManager
+    end note
+
+    note right of Removed
+      Removed
+      - Marked for deletion but not yet deleted
+    end note
+```
 # Conclusion
 Understanding ORM and JPA is crucial for managing relational data in Java applications. 
 ORM simplifies database interactions by abstracting them into an object-oriented paradigm, while JPA provides a standard approach to ORM, 
