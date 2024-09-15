@@ -5,6 +5,41 @@
 ### Objective
 In this assignment, you will implement a simple **One-to-Many relationship** using **JPA (Java Persistence API)** and **Hibernate** in a Java project without Spring. You will model the relationship between a `Student` entity and an `Exam` entity with a grade scale from 1-5, where each student can have multiple exam grades.
 
+```mermaid
+classDiagram
+    class Student {
+        Long id
+        String name
+        List~Exam~ exams
+        +getId()
+        +setId(Long id)
+        +getName()
+        +setName(String name)
+        +getExams()
+        +setExams(List~Exam~ exams)
+    }
+
+    class Exam {
+        Long id
+        String subject
+        int grade
+        Student student
+        +getId()
+        +setId(Long id)
+        +getSubject()
+        +setSubject(String subject)
+        +getGrade()
+        +setGrade(int grade)
+        +getStudent()
+        +setStudent(Student student)
+    }
+
+    Student "1" -- "0..*" Exam : "has exams"
+
+```
+
+
+
 You will use **IntelliJ IDEA** and **MySQL** (through HeidiSQL or another MySQL client) as your database for this assignment. The submission will include the project files and a screenshot of the list of students and their exam grades after querying the database.
 
 ---
