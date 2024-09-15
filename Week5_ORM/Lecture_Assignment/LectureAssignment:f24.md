@@ -284,6 +284,44 @@ public class Main {
 
 ```
 
+## Sequence Diagram (The role of each classes)
+```mermaid
+sequenceDiagram
+    participant Main
+    participant StudentDAO
+    participant ExamDAO
+    participant Student
+    participant Exam
+
+    Main->>StudentDAO: saveStudent(john)
+    StudentDAO->>Student: new Student("John Doe")
+    StudentDAO-->>Main: student saved
+
+    Main->>StudentDAO: saveStudent(jane)
+    StudentDAO->>Student: new Student("Jane Smith")
+    StudentDAO-->>Main: student saved
+
+    Main->>ExamDAO: saveExam(new Exam(john, 4))
+    ExamDAO->>Exam: new Exam(john, 4)
+    ExamDAO-->>Main: exam saved
+
+    Main->>ExamDAO: saveExam(new Exam(john, 5))
+    ExamDAO->>Exam: new Exam(john, 5)
+    ExamDAO-->>Main: exam saved
+
+    Main->>ExamDAO: saveExam(new Exam(jane, 3))
+    ExamDAO->>Exam: new Exam(jane, 3)
+    ExamDAO-->>Main: exam saved
+
+    Main->>StudentDAO: getAllStudents()
+    StudentDAO-->>Main: List of Students
+
+    Main->>Student: getExams()
+    Student-->>Main: List of Exams for each student
+
+
+```
+
 
 ## Part 6: Generate Output and Submit
 1. Run the Project:
