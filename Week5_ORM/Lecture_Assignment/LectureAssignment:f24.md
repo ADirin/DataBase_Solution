@@ -19,7 +19,7 @@ You will use **IntelliJ IDEA** and **MySQL** (through HeidiSQL or another MySQL 
 <dependencies>
     <!-- JPA and Hibernate -->
     <dependency>
-        <groupId>org.hibernate</groupId>
+        <groupId>org.hibernate.orm</groupId>
         <artifactId>hibernate-core</artifactId>
         <version>6.1.5.Final</version>
     </dependency>
@@ -40,6 +40,7 @@ You will use **IntelliJ IDEA** and **MySQL** (through HeidiSQL or another MySQL 
     </dependency>
 </dependencies>
 
+
 ```
 ## Part 2: Database Setup
 
@@ -50,44 +51,34 @@ You will use **IntelliJ IDEA** and **MySQL** (through HeidiSQL or another MySQL 
 CREATE DATABASE student_exam_system;
 ```
 
-2. Configure hibernate.cfg.xml:
-- Inside the src/main/resources folder, create the hibernate.cfg.xml file to configure Hibernate and MySQL.
+2. Configure persistence.xml:
+
+- In the src/main/resources/META-INF folder, create a persistence.xml file to configure JPA for MySQL.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
-<hibernate-configuration>
-    <session-factory>
-        <!-- MySQL Database Connection Settings -->
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/student_exam_system</property>
-        <property name="hibernate.connection.username">your-username</property>
-        <property name="hibernate.connection.password">your-password</property>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.1">
+    <persistence-unit name="student_exam_system">
+        <class>com.example.Student</class>
+        <class>com.example.Exam</class>
+        
+        <!-- Database settings -->
+        <properties>
+            <!-- MySQL Database Connection Settings -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/student_exam_system"/>
+            <property name="javax.persistence.jdbc.user" value="your-username"/>
+            <property name="javax.persistence.jdbc.password" value="your-password"/>
+            
+            <!-- Hibernate settings -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
 
-        <!-- JDBC Connection Pool Settings -->
-        <property name="hibernate.c3p0.min_size">5</property>
-        <property name="hibernate.c3p0.max_size">20</property>
-
-        <!-- SQL dialect -->
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
-
-        <!-- Enable Hibernate's automatic session context management -->
-        <property name="hibernate.current_session_context_class">thread</property>
-
-        <!-- Echo all executed SQL to stdout -->
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
-
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
-
-        <!-- List of annotated classes -->
-        <mapping class="com.example.Student"/>
-        <mapping class="com.example.Exam"/>
-    </session-factory>
-</hibernate-configuration>
 
 ```
 - Make sure to replace your-username and your-password with your MySQL credentials.
@@ -170,34 +161,30 @@ public class Exam {
 ```java
 package com.example;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 import java.util.List;
 
 public class StudentDAO {
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("student_exam_system");
 
     public void saveStudent(Student student) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.save(student);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(student);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     public List<Student> getAllStudents() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Student", Student.class).list();
-        }
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        List<Student> students = entityManager.createQuery("from Student", Student.class).getResultList();
+        entityManager.close();
+        return students;
     }
 }
-
 
 ```
 
@@ -205,58 +192,26 @@ public class StudentDAO {
 ```java
 package com.example;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 public class ExamDAO {
+    private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("student_exam_system");
 
     public void saveExam(Exam exam) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.save(exam);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+        EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(exam);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 }
 
 
-```
-## Part 5: Hibernate Utility Class
-1. Create Hibernate Utility:
-- Create a HibernateUtil class to handle session factory creation.
-
-```java
-package com.example;
-
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-public class HibernateUtil {
-
-    private static SessionFactory sessionFactory;
-
-    static {
-        try {
-            sessionFactory = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-}
 
 ```
-
-## Part 6: Main Class (Application Runner)
+## Part 5: Main Class (Application Runner)
 1. Create Application Logic to Test:
 - Create a Main class to add sample data and test the relationship.
 ```java
@@ -291,7 +246,10 @@ public class Main {
     }
 }
 
+
 ```
+
+
 ## Part 6: Generate Output and Submit
 1. Run the Project:
 
