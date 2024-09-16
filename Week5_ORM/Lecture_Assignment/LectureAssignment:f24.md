@@ -321,7 +321,10 @@ sequenceDiagram
 
 
 ```
-
+## Additional tasks:
+Extend the code above with additional filds
+- Add grade saving date
+- Add also the temporality feature in Exam
 
 ## Part 6: Generate Output and Submit
 1. Run the Project:
