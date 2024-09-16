@@ -92,19 +92,24 @@ CREATE DATABASE student_exam_system;
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.1">
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+    http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
     <persistence-unit name="student_exam_system">
-        <class>com.example.Student</class>
-        <class>com.example.Exam</class>
-        
+        <class>com.example.jpa.entity.Student</class>
+        <class>com.example.jpa.entity.Exam</class>
+
         <!-- Database settings -->
         <properties>
             <!-- MySQL Database Connection Settings -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/student_exam_system"/>
-            <property name="javax.persistence.jdbc.user" value="your-username"/>
-            <property name="javax.persistence.jdbc.password" value="your-password"/>
-            
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="Test12"/>
+
             <!-- Hibernate settings -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
@@ -113,7 +118,6 @@ CREATE DATABASE student_exam_system;
         </properties>
     </persistence-unit>
 </persistence>
-
 
 ```
 - Make sure to replace your-username and your-password with your MySQL credentials.
