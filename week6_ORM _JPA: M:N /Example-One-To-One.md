@@ -193,6 +193,10 @@ public class Student {
 }
 
 ```
+A one-to-one relationship is used when an entity logically has a single counterpart. In our example, a `Student` can enroll in exactly one `Course`, and each Course can have exactly one Student.
+
+This type of relationship is common when two related entities have a unique, tightly coupled association in a domain model.
+
 ```mermaid
 classDiagram
     class Student {
