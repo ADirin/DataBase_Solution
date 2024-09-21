@@ -1,7 +1,7 @@
 # Step-by-Step Guide to Creating a One-to-One Relationship in JPA
 This guide will walk you through the process of setting up a one-to-one relationship between two entities using Java Persistence API (JPA). In this example, we'll create a Student entity and a Course entity, where each student is associated with one course, and each course is associated with one student.
 
-![One-To-One](/images/ontooone.JPG)
+![One-To-One](images/ontooone.JPG)
 
 
 ## 1. Set Up Your Project Structure
