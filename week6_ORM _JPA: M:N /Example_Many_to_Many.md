@@ -35,6 +35,21 @@ Exampleone-one-db
 ```
 
 ## Step 1: Create the Student Entity
+
+```mermaid
+
+    class Student {
+        +Long id
+        +String name
+        +String email
+        +Set~Course~ courses
+    }
+
+    Course --* Student : "Many-to-Many (Inverse)"
+    Student --> Course : "Many-to-Many (Owning)"
+
+
+```
 Create a class Student to represent the student entity.
 
 ```jave
