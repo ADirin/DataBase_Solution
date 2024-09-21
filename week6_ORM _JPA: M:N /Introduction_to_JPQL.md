@@ -95,6 +95,11 @@ public class Main {
 }
 
 ```
+**Driver Entity**
+
+- For completeness, here’s a simple Driver entity that you can also use:
+
+
 ```java
 import javax.persistence.*;
 
@@ -163,7 +168,8 @@ public class Driver {
 
 ```
 **Car Entity**
-For completeness, here’s a simple Car entity that you can also use:
+
+- For completeness, here’s a simple Car entity that you can also use:
 ```java
 import javax.persistence.*;
 
