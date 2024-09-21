@@ -42,7 +42,99 @@ em.close();
 
 ```
 
----
+## JPQL Example
+
+```java
+import org.hibernate.SessionFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = null;
+
+            try {
+                transaction = session.beginTransaction();
+
+                // Create a new Driver entity
+                Driver driver = new Driver("Matti", 10);
+                session.save(driver);
+
+                // Create a new Car entity
+                Car car = new Car("Honda");
+                car.setDriver(driver);
+                session.save(car);
+
+                transaction.commit();
+
+                // Example JPQL query to find drivers with names containing 'T'
+                String jpql = "SELECT d.name FROM Driver d WHERE d.name LIKE :namePattern";
+                TypedQuery<String> query = session.createQuery(jpql, String.class);
+                query.setParameter("namePattern", "%T%"); // Set the value of the parameter
+
+                List<String> driversWithNameContainingT = query.getResultList();
+
+                for (String driverName : driversWithNameContainingT) {
+                    System.out.println("Driver Name: " + driverName);
+                }
+            } catch (Exception e) {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            }
+        } finally {
+            sessionFactory.close();
+        }
+    }
+}
+
+```
+```java
+// Example JPQL query to find drivers with names containing 'T'
+String jpql = "SELECT d.name FROM Driver d WHERE d.name LIKE :namePattern";
+TypedQuery<String> query = session.createQuery(jpql, String.class);
+query.setParameter("namePattern", "%T%"); // Set the value of the parameter
+
+List<String> driversWithNameContainingT = query.getResultList();
+
+for (String driverName : driversWithNameContainingT) {
+    System.out.println("Driver Name: " + driverName);
+}
+
+
+
+```
+### Update the driver experience by one year
+```java
+private static void incrementDriverExperience(Session session) {
+    // Create update query to increment experience by one year
+    Query query = session.createQuery("UPDATE Driver SET experience = experience + 1");
+
+    // Execute update query
+    int rowCount = query.executeUpdate();
+
+
+
+```
+### Parameterized query ()
+To add a parameterized query in JPQL, you can use the setParameter method provided by the Query interface
+
+```java
+// Parameterized JPQL update query
+Query updateQuery = session.createQuery("UPDATE Driver SET experience = experience + 1 WHERE name = :driverName");
+updateQuery.setParameter("driverName", "Amir");
+int rowsUpdated = updateQuery.executeUpdate();
+System.out.println(rowsUpdated + " rows updated.");
+
+
+```
+-----------
 
 # SQL
 
