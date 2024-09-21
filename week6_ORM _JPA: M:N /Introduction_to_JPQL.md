@@ -96,6 +96,130 @@ public class Main {
 
 ```
 ```java
+import javax.persistence.*;
+
+@Entity
+@Table(name = "drivers")
+public class Driver {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "experience")
+    private int experience;
+
+    @OneToOne(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Car car;
+
+    // Constructors
+    public Driver() {}
+
+    public Driver(String name, int experience) {
+        this.name = name;
+        this.experience = experience;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+        if (car != null) {
+            car.setDriver(this); // Set the bi-directional relationship
+        }
+    }
+}
+
+
+```
+**Car Entity**
+For completeness, here’s a simple Car entity that you can also use:
+```java
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cars")
+public class Car {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @OneToOne
+    @JoinColumn(name = "driver_id")
+    private Driver driver;
+
+    // Constructors
+    public Car() {}
+
+    public Car(String name) {
+        this.name = name;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+}
+
+
+
+
+```
+```java
 // Example JPQL query to find drivers with names containing 'T'
 String jpql = "SELECT d.name FROM Driver d WHERE d.name LIKE :namePattern";
 TypedQuery<String> query = session.createQuery(jpql, String.class);
