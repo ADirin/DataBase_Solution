@@ -38,6 +38,13 @@ Exampleone-one-db
 
 ````mermaid
 
+  classDiagram
+    class Course {
+        +Long id
+        +String title
+        +Set~Student~ students
+    }
+
     class Student {
         +Long id
         +String name
