@@ -14,6 +14,34 @@ Update the driver experience by one year.
 
 To add a parameterized query in JPQL, you can use the `setParameter` method provided by the `Query` interface.
 
+### Examples of JPQL Queries
+#### Find All Employees
+```java
+EntityManager em = emf.createEntityManager();
+List<Employee> employees = em.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
+em.close();
+```
+### Find Employees by Department
+```java
+EntityManager em = emf.createEntityManager();
+List<Employee> employees = em.createQuery("SELECT e FROM Employee e WHERE e.department.name = :deptName", Employee.class)
+                             .setParameter("deptName", "Sales")
+                             .getResultList();
+em.close();
+
+
+```
+### Find Employees with Projects
+
+```java
+EntityManager em = emf.createEntityManager();
+List<Employee> employees = em.createQuery("SELECT e FROM Employee e JOIN e.projects p WHERE p.name = :projectName", Employee.class)
+                             .setParameter("projectName", "New Project")
+                             .getResultList();
+em.close();
+
+```
+
 ---
 
 # SQL
