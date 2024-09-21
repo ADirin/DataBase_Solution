@@ -296,6 +296,28 @@ When executing native SQL queries with JPA's `createNativeQuery()` method, addit
 
 The N+1 problem is a performance issue that commonly occurs in object-relational mapping (ORM) frameworks like Hibernate, including when using Java Persistence API (JPA). It arises due to the way ORM frameworks handle the lazy loading of entity associations.
 
+```mermaid
+graph TD
+    A[Client] -->|Request List of Drivers| B[Database]
+    B -->|Query 1| C{Retrieve List of Drivers}
+
+    C --> D1[Driver 1]
+    C --> D2[Driver 2]
+    C --> DN[Driver N]
+
+    subgraph N+1 Problem
+        D1 -->|Query 2| E1[Retrieve Car for Driver 1]
+        D2 -->|Query 3| E2[Retrieve Car for Driver 2]
+        DN -->|Query N+1| EN[Retrieve Car for Driver N]
+    end
+
+    subgraph Optimized Solution
+        O[Fetch all Drivers and Cars in one query] --> F[Database]
+    end
+
+```
+
+
 - **Getting the Initial Data**: Let's say we ask the database for a list of N things, like a list of books.
 - **Fetching More Info**: Now, for each of these N things, we need additional details, like the author's name.
 - **Extra Queries**: So, we end up making N extra queries to the database to get this extra info.
