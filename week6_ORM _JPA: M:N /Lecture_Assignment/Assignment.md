@@ -86,6 +86,23 @@ public class Driver {
 **Problem Statement**
 - A single driver may own multiple cars, but each car has only one owner. This establishes a one-to-many relationship between Driver and Car.
 
+```mermaid
+erDiagram
+    DRIVER ||--o{ CAR : "owns"
+    DRIVER {
+        Long id
+        String name
+        int experience
+    }
+    CAR {
+        Long id
+        String model
+    }
+
+
+```
+
+
 **Goal**
 Implement a one-to-many relationship between the Driver and Car entities.
 
@@ -138,6 +155,22 @@ public class Car {
 ### 3. Many-to-Many Relationship
 **Problem Statement**
 A driver can have multiple cars, and a car can be shared by multiple drivers. This establishes a many-to-many relationship between Driver and Car.
+
+```mermaid
+erDiagram
+    DRIVER }o--o{ CAR : "shares"
+    DRIVER {
+        Long id
+        String name
+        int experience
+    }
+    CAR {
+        Long id
+        String model
+    }
+
+
+```
 
 **Goal**
 Implement a many-to-many relationship between the Driver and Car entities.
