@@ -88,3 +88,160 @@ Here's how the Criteria API works:
 5. **Join**: This interface represents a join operation between two entities in a query. Joins are used to fetch related entities and navigate relationships.
 
 > **Note**: Hibernate’s native Criteria API (`org.hibernate.Criteria`) is deprecated and should not be used. Use JPA implementation (`jakarta.persistence.criteria`) instead.
+
+
+## Examples of Criteria API Queries
+Find All Employees
+``` java
+EntityManager em = emf.createEntityManager();
+CriteriaBuilder cb = em.getCriteriaBuilder();
+CriteriaQuery<Employee> cq = cb.createQuery(Employee.class);
+Root<Employee> employee = cq.from(Employee.class);
+cq.select(employee);
+List<Employee> employees = em.createQuery(cq).getResultList();
+em.close();
+```
+
+### Find Employees with Projects
+
+```java
+EntityManager em = emf.createEntityManager();
+CriteriaBuilder cb = em.getCriteriaBuilder();
+CriteriaQuery<Employee> cq = cb.createQuery(Employee.class);
+Root<Employee> employee = cq.from(Employee.class);
+Join<Employee, Project> project = employee.join("projects");
+cq.select(employee).where(cb.equal(project.get("name"), "New Project"));
+List<Employee> employees = em.createQuery(cq).getResultList();
+em.close();
+
+```
+
+## Entity Classes
+The following entity classes will be used in the examples above.
+
+### Employee Class
+
+```java
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String email;
+
+    @ManyToMany(mappedBy = "employees")
+    private List<Project> projects;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private EmployeeDetails employeeDetails;
+
+    // Getters and Setters
+}
+
+
+
+### Project Class
+```java
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+public class Project {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+
+    @ManyToMany
+    @JoinTable(
+        name = "project_employee",
+        joinColumns = @JoinColumn(name = "project_id"),
+        inverseJoinColumns = @JoinColumn(name = "employee_id")
+    )
+    private List<Employee> employees;
+
+    // Getters and Setters
+}
+
+
+```
+
+### Department Class
+
+```java
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+public class Department {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
+
+    // Getters and Setters
+}
+
+
+```
+
+### EmployeeDetails Class
+
+```java
+import javax.persistence.*;
+
+@Entity
+public class EmployeeDetails {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String address;
+    private String phoneNumber;
+
+    @OneToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    // Getters and Setters
+}
+
+```
+### Persistence Configuration
+The persistence.xml file configures the persistence unit and specifies database connection properties.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+    <persistence-unit name="examplePU">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>com.example.Project</class>
+        <class>com.example.Employee</class>
+        <class>com.example.Department</class>
+        <class>com.example.EmployeeDetails</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="password"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+```
