@@ -44,7 +44,7 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+@Entity //The Student entity is the owning side of the relationship because it defines the @ManyToMany annotation with a @JoinTable. 
 public class Student {
 
     @Id
@@ -54,7 +54,7 @@ public class Student {
     private String name;
     private String email;
 
-    @ManyToMany
+    @ManyToMany 
     @JoinTable(
             name = "student_course",
             joinColumns = @JoinColumn(name = "student_id"),
@@ -115,7 +115,7 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+@Entity //The Course entity has a bidirectional relationship with Student.
 public class Course {
 
     @Id
@@ -124,7 +124,8 @@ public class Course {
 
     private String title;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses") //The @ManyToMany(mappedBy = "courses") on the Course side indicates that Course is the inverse side of the     
+    // relationship, and Student is the owner.
     private Set<Student> students = new HashSet<>();
 
     // Constructors, Getters, Setters
@@ -162,6 +163,11 @@ public class Course {
 
 ```
 ## Step 3: Define the Relationship
+
+In a bidirectional many-to-many relationship using JPA, both entities (in this case, `Course` and `Student`) reference each other, allowing navigation from either entity to the other. One entity is considered the **owning side**, and the other is the **inverse side** (non-owning).
+- The **owning side** is responsible for managing the relationship and determining how it is persisted in the database. In this example, the Student entity is the owning side because it directly defines the @ManyToMany relationship along with the @JoinTable annotation.
+- The **inverse side** (or non-owning side) refers to the entity that simply reflects the relationship, but does not directly manage the persistence of the relationship data. The Course entity is the inverse side, as indicated by the @ManyToMany(mappedBy = "courses") annotation. This tells JPA that the Course entity’s relationship with Student is controlled by the Student entity, and thus JPA will look at the Student side to determine how to persist the relationship.
+
 - Annotation Overview:
 
   - @ManyToMany: Indicates a many-to-many relationship between the Student and Course entities.
