@@ -4,6 +4,27 @@ The main concept behind JPA (Java Persistence API) is to shield the software dev
 
 However, some operations may not be efficiently executed using these methods alone. For instance, tasks such as retrieving all employees earning €2000/month or more, or granting a 5% pay rise to all employees, present challenges. Attempting to perform these tasks by individually retrieving and persisting relevant objects would be highly inefficient. This approach would result in a substantial number of SQL statements being generated, despite the fact that a single SQL statement could accomplish each task more effectively. Therefore, JPA aims to optimize these operations by providing more efficient mechanisms for handling such tasks, ultimately simplifying database interactions for developers.
 
+```mermaid
+graph TD
+    A[Client] -->|Request Data| B[Application Layer]
+    B -->|Build JPQL Query| C[JPQL Query]
+    C -->|Send to| D[EntityManager]
+    D -->|Translate to SQL| E[Database]
+
+    subgraph Database Operations
+        E -->|Execute SQL Query| F[Database Table]
+        F -->|Return Data| E
+    end
+
+    E -->|Return Results| D
+    D -->|Convert to Entities| G[Java Objects]
+    G -->|Send Data to| A
+
+
+
+```
+
+
 ## JPQL
 
 ### An Update Query
