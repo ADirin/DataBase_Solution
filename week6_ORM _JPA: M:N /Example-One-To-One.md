@@ -193,6 +193,28 @@ public class Student {
 }
 
 ```
+```mermaid
+classDiagram
+    class Student {
+        +Long id
+        +String name
+        +String email
+        +Course course
+    }
+
+    class Course {
+        +Long id
+        +String title
+        +Student student
+    }
+
+    Student --> Course : "one-to-one"
+    Course --> Student : "one-to-one"
+
+
+```
+
+
 Course.java
 
 ```java
