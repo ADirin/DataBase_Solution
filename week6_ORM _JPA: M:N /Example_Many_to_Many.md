@@ -36,7 +36,7 @@ Exampleone-one-db
 
 ## Step 1: Create the Student Entity
 
-```mermaid
+````mermaid
 
     class Student {
         +Long id
@@ -49,7 +49,7 @@ Exampleone-one-db
     Student --> Course : "Many-to-Many (Owning)"
 
 
-```
+````
 Create a class Student to represent the student entity.
 
 ```jave
