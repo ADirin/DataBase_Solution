@@ -17,6 +17,25 @@ This lecture assignment will walk students through the process of implementing *
 #### Problem Statement
 Each car is driven by only one driver, and each driver can drive only one car. This establishes a **one-to-one** relationship between **Car** and **Driver**.
 
+```mermaid
+erDiagram
+    CAR ||--|| DRIVER : "has"
+    CAR {
+        Long id
+        String model
+    }
+    DRIVER {
+        Long id
+        String name
+        int experience
+    }
+
+
+
+
+```
+
+
 #### Goal
 Implement a one-to-one relationship between the `Car` and `Driver` entities.
 
