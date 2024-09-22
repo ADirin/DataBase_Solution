@@ -72,6 +72,15 @@ import org.hibernate.Transaction;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+package com.example.entity;
+
+import jakarta.persistence.TypedQuery;
+import org.hibernate.SessionFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -84,12 +93,18 @@ public class Main {
 
                 // Create a new Driver entity
                 Driver driver = new Driver("Matti", 10);
+                Driver driver1= new Driver("Mikhail", 11);
+                Driver driver2= new Driver("Timo", 1);
                 session.save(driver);
+                session.save(driver1);
+                session.save(driver2);
 
                 // Create a new Car entity
                 Car car = new Car("Honda");
+                Car car1 = new Car("BMW");
                 car.setDriver(driver);
                 session.save(car);
+                session.save(car1);
 
                 transaction.commit();
 
@@ -122,26 +137,23 @@ public class Main {
 
 
 ```java
-import javax.persistence.*;
+package com.example.entity;
+
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "drivers")
 public class Driver {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "experience")
     private int experience;
 
-    @OneToOne(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "driver", cascade = CascadeType.ALL)
     private Car car;
 
-    // Constructors
     public Driver() {}
 
     public Driver(String name, int experience) {
@@ -150,6 +162,7 @@ public class Driver {
     }
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -180,36 +193,31 @@ public class Driver {
 
     public void setCar(Car car) {
         this.car = car;
-        if (car != null) {
-            car.setDriver(this); // Set the bi-directional relationship
-        }
     }
 }
-
 
 ```
 **Car Entity**
 
 - For completeness, here’s a simple Car entity that you can also use:
 ```java
-import javax.persistence.*;
+package com.example.entity;
+
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "cars")
 public class Car {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToOne
     @JoinColumn(name = "driver_id")
     private Driver driver;
 
-    // Constructors
     public Car() {}
 
     public Car(String name) {
@@ -217,6 +225,7 @@ public class Car {
     }
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -242,8 +251,92 @@ public class Car {
     }
 }
 
+```
+**HibernateUtil**
+````java
+package com.example.entity;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class HibernateUtil {
+    private static SessionFactory sessionFactory;
+
+    static {
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void shutdown() {
+        getSessionFactory().close();
+    }
+}
 
 
+```
+**hibernate.cfg.xml**
+```xml
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC connection properties -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jpqldb</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">Test12</property>
+
+        <!-- Hibernate settings -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Class mappings -->
+        <mapping class="com.example.entity.Car"/>
+        <mapping class="com.example.entity.Driver"/>
+
+    </session-factory>
+</hibernate-configuration>
+
+
+```
+**Extend to test**
+````css
+my-hibernate-jpql-project/
+├── pom.xml
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── example/
+│   │   │           └── entity/
+│   │   │               ├── Car.java
+│   │   │               ├── Driver.java
+│   │   │               ├── HibernateUtil.java
+│   │   │               ├── Main.java
+│   │   │               └── JPQLQueries.java
+│   │   └── resources/
+│   │       ├── hibernate.cfg.xml
+│   │       └── META-INF/
+│   │           └── persistence.xml (if using JPA)
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── example/
+│                   └── entity/
+│                       └── (Optional test files)
+├── target/ (generated after building the project)
 
 ```
 ```java
