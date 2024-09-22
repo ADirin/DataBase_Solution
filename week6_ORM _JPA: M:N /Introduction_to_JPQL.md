@@ -54,38 +54,7 @@ em.close();
 ```
 ### Find Employees with Projects
 
-```mermaid
-classDiagram
-    class Driver {
-        +String name
-        +int experience
-        +int age
-        +Car car
-        +getName()
-        +getExperience()
-        +getAge()
-    }
 
-    class Car {
-        +String model
-        +String name
-        +Driver driver
-        +getName()
-    }
-
-    class JPQLQueries {
-        +main(String[] args)
-        +fetchAllDrivers()
-        +fetchCarsByModel(String model)
-        +findDriversOlderThan(int age)
-        +countTotalCars()
-    }
-
-    Driver "1" --> "1" Car : has
-    JPQLQueries --> Driver : queries
-    JPQLQueries --> Car : queries
-
-```
 
 ```java
 EntityManager em = emf.createEntityManager();
@@ -392,6 +361,39 @@ for (String driverName : driversWithNameContainingT) {
 
 ```
 ### Sample of JPQL class
+
+```mermaid
+classDiagram
+    class Driver {
+        +String name
+        +int experience
+        +int age
+        +Car car
+        +getName()
+        +getExperience()
+        +getAge()
+    }
+
+    class Car {
+        +String model
+        +String name
+        +Driver driver
+        +getName()
+    }
+
+    class JPQLQueries {
+        +main(String[] args)
+        +fetchAllDrivers()
+        +fetchCarsByModel(String model)
+        +findDriversOlderThan(int age)
+        +countTotalCars()
+    }
+
+    Driver "1" --> "1" Car : has
+    JPQLQueries --> Driver : queries
+    JPQLQueries --> Car : queries
+
+```
 
 ```java
 package com.example.entity;
