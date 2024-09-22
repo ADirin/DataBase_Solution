@@ -54,6 +54,39 @@ em.close();
 ```
 ### Find Employees with Projects
 
+```mermaid
+classDiagram
+    class Driver {
+        +String name
+        +int experience
+        +int age
+        +Car car
+        +getName()
+        +getExperience()
+        +getAge()
+    }
+
+    class Car {
+        +String model
+        +String name
+        +Driver driver
+        +getName()
+    }
+
+    class JPQLQueries {
+        +main(String[] args)
+        +fetchAllDrivers()
+        +fetchCarsByModel(String model)
+        +findDriversOlderThan(int age)
+        +countTotalCars()
+    }
+
+    Driver "1" --> "1" Car : has
+    JPQLQueries --> Driver : queries
+    JPQLQueries --> Car : queries
+
+```
+
 ```java
 EntityManager em = emf.createEntityManager();
 List<Employee> employees = em.createQuery("SELECT e FROM Employee e JOIN e.projects p WHERE p.name = :projectName", Employee.class)
@@ -253,7 +286,8 @@ public class Car {
 
 ```
 **HibernateUtil**
-````java
+
+```java
 package com.example.entity;
 
 import org.hibernate.SessionFactory;
@@ -280,9 +314,9 @@ public class HibernateUtil {
     }
 }
 
-
 ```
 **hibernate.cfg.xml**
+- Example content for hibernate.cfg.xml:
 ```xml
 
 <!DOCTYPE hibernate-configuration PUBLIC
@@ -312,6 +346,8 @@ public class HibernateUtil {
 
 ```
 **Extend to test**
+
+-  Lets test the JPQL 
 ````css
 my-hibernate-jpql-project/
 ├── pom.xml
@@ -338,7 +374,8 @@ my-hibernate-jpql-project/
 │                       └── (Optional test files)
 ├── target/ (generated after building the project)
 
-```
+````
+
 ```java
 // Example JPQL query to find drivers with names containing 'T'
 String jpql = "SELECT d.name FROM Driver d WHERE d.name LIKE :namePattern";
@@ -354,6 +391,65 @@ for (String driverName : driversWithNameContainingT) {
 
 
 ```
+### Sample of JPQL class
+
+```java
+package com.example.entity;
+
+import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
+
+import java.util.List;
+
+public class JPQLQueries {
+    public static void main(String[] args) {
+        // Open the Hibernate session
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        // Example 1: Fetch all drivers
+        TypedQuery<Driver> driverQuery = session.createQuery("SELECT d FROM Driver d", Driver.class);
+        List<Driver> drivers = driverQuery.getResultList();
+
+        System.out.println("List of Drivers:");
+        for (Driver driver : drivers) {
+            System.out.println(driver.getName() + ", experience: " + driver.getExperience() + " years");
+        }
+
+        // Example 2: Fetch all cars with a specific model (e.g., Tesla Model S)
+        TypedQuery<Car> carQuery = session.createQuery("SELECT c FROM Car c WHERE c.name = :name", Car.class);
+        carQuery.setParameter("name", "Tesla Model S");
+        List<Car> cars = carQuery.getResultList();
+
+        System.out.println("\nCars of model Tesla Model S:");
+        for (Car car : cars) {
+            System.out.println(car.getName());
+        }
+
+        // Example 3: Find all drivers older than a certain age (e.g., age > 10)
+        TypedQuery<Driver> ageQuery = session.createQuery("SELECT d FROM Driver d WHERE d.experience > :age", Driver.class);
+        ageQuery.setParameter("age", 10);
+        List<Driver> experiencedDrivers = ageQuery.getResultList();
+
+        System.out.println("\nDrivers older than 10 years:");
+        for (Driver experiencedDriver : experiencedDrivers) {
+            System.out.println(experiencedDriver.getName() + ", age: " + experiencedDriver.getExperience());
+        }
+
+        // Example 4: Count the total number of cars
+        TypedQuery<Long> countQuery = session.createQuery("SELECT COUNT(c) FROM Car c", Long.class);
+        Long carCount = countQuery.getSingleResult();
+
+        System.out.println("\nTotal number of cars: " + carCount);
+
+        // Close the Hibernate session
+        session.close();
+    }
+}
+
+
+```
+
+
 ### Update the driver experience by one year
 ```java
 private static void incrementDriverExperience(Session session) {
