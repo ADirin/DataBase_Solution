@@ -14,6 +14,11 @@ Each  `student` is enrolled in exactly one `course`, and each `course` is associ
 
 ![One-To-One](/images/ontoone.JPG)
 
+## Establish the One-to-One Relationship
+We define the one-to-one relationship between Student and Course using the `@OneToOne` annotation.
+
+- **Owning Side:** The entity that **holds** the `foreign key`.
+- **Mapped (Inverse) Side:** The entity that refers back to the owning side.
 
 ## 1. Set Up Your Project Structure
 1. Create a new Java project in your IDE (e.g., IntelliJ IDEA, Eclipse).
