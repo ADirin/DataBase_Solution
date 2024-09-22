@@ -9,6 +9,7 @@ This guide will walk you through the process of setting up a one-to-one relation
 
     - Student: Represents the student entity (table).
     - Course: Represents the course entity (table).
+      
 
 Each  `student` is enrolled in exactly one `course`, and each `course` is associated with one `student`. This is a classic one-to-one relationship.
 
@@ -19,6 +20,70 @@ We define the one-to-one relationship between Student and Course using the `@One
 
 - **Owning Side:** The entity that **holds** the `foreign key`.
 - **Mapped (Inverse) Side:** The entity that refers back to the owning side.
+
+
+In the Course entity, you will use the `@OneToOne` annotation and the `@JoinColumn` annotation to specify the **foreign key column** ´ `(student_id)`.
+
+```
+@Entity
+public class Course {
+
+    @OneToOne
+   @JoinColumn(name = "student_id")
+    private Student student;
+    
+    // Other fields, getters, and setters
+}
+
+
+```
+- `@JoinColumn(name = "student_id"):` This tells JPA that the Course table will have a foreign key column named `student_id`, referencing the Student table. The Course entity is the **owning side** of the relationship.
+
+
+## Annotations on the Inverse Side (Student Entity)
+- In the Student entity, use the `@OneToOne` annotation with the `mappedBy` attribute to indicate that the relationship is managed by the Course entity.
+
+```java
+@Entity
+public class Student {
+
+    @OneToOne(mappedBy = "student")
+    private Course course;
+    
+    // Other fields, getters, and setters
+}
+
+```
+- mappedBy = "student": This tells JPA that the Course entity owns the relationship, and the foreign key resides in the Course table. The Student entity is the inverse side of the relationship.
+
+## Cascade and Fetch Types (Optional)
+You can configure cascade operations and fetching strategies:
+
+- **Cascade:** If you want operations like persist, merge, and remove to propagate from Student to Course, use CascadeType.ALL.
+```java
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "student_id")
+private Student student;
+
+```
+
+- **Fetch Type:** By default, @OneToOne relationships are fetched eagerly (FetchType.EAGER). If you want lazy loading, specify FetchType.LAZY.
+```java
+
+@OneToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "student_id")
+private Student student;
+
+
+```
+## Why Use These Annotations?
+- @Entity: Marks the class as a JPA entity.
+- @OneToOne: Defines a one-to-one relationship between two entities.
+- @JoinColumn: Specifies the foreign key column in the owning entity (in this case, Course).
+- mappedBy: Indicates that this is the inverse side of the relationship, and it's managed by the owning entity.
+- CascadeType: Controls cascading behavior (e.g., saving/removing related entities automatically).
+- FetchType: Determines whether the related entity should be fetched eagerly or lazily.
+
 
 ## 1. Set Up Your Project Structure
 1. Create a new Java project in your IDE (e.g., IntelliJ IDEA, Eclipse).
