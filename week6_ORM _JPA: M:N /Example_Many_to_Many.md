@@ -93,6 +93,31 @@ You can configure cascade and fetch types:
 private Set<Course> courses = new HashSet<>();
 
 ```
+- Fetch Type: By default, @ManyToMany uses **FetchType.LAZY**, meaning related entities are only loaded when accessed.
+
+```java
+@ManyToMany(fetch = FetchType.LAZY)
+@JoinTable(
+    name = "student_course",
+    joinColumns = @JoinColumn(name = "student_id"),
+    inverseJoinColumns = @JoinColumn(name = "course_id")
+)
+private Set<Course> courses = new HashSet<>();
+
+```
+The annotations result in the following database structure:
+
+- A join table named student_course is created.
+- The student_course table has two foreign keys: student_id (references Student) and course_id (references Course).
+
+ ## Why Use These Annotations?
+- @Entity: Marks the class as a JPA entity.
+- @ManyToMany: Defines a many-to-many relationship between two entities.
+- @JoinTable: Specifies the join table that stores the association between students and courses.
+- mappedBy: Indicates that the other side (Student) manages the relationship.
+- CascadeType: Controls cascading behavior (e.g., saving/removing related entities).
+- FetchType: Determines whether related entities are loaded eagerly or lazily.
+
 
 
 # JPA Many-to-Many Association Example
