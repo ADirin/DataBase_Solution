@@ -133,10 +133,9 @@ public class Main {
 }
 
 ```
-**Driver Entity**
-
-- For completeness, here’s a simple Driver entity that you can also use:
-
+**1. Driver class**
+- **Purpose:** Represents a driver entity with attributes such as name, experience, and age. It may also have a relationship with a Car entity.
+- **Functionality:** Contains getter methods for accessing its properties and can be used to persist driver data in the database.
 
 ```java
 package com.example.entity;
@@ -199,9 +198,10 @@ public class Driver {
 }
 
 ```
-**Car Entity**
+**2. Car Entity**
+- **Purpose:** Represents a car entity with attributes like model and name, and it has a relationship with a Driver.
+- **Functionality:** Contains a getter method for its properties and is used to persist car data associated with drivers.
 
-- For completeness, here’s a simple Car entity that you can also use:
 ```java
 package com.example.entity;
 
@@ -254,8 +254,9 @@ public class Car {
 }
 
 ```
-**HibernateUtil**
-
+**3. HibernateUtil**
+- **Purpose:** Provides a singleton session factory for Hibernate to facilitate database operations.
+- **Functionality:** Initializes the session factory using Hibernate configuration and provides a method to retrieve it. It ensures efficient management of Hibernate sessions.
 ```java
 package com.example.entity;
 
@@ -285,7 +286,8 @@ public class HibernateUtil {
 
 ```
 **hibernate.cfg.xml**
-- Example content for hibernate.cfg.xml:
+- **Purpose:** Configuration file for Hibernate, specifying settings required for connecting to the database.
+- **Contents:** Includes database connection properties (like URL, username, and password), Hibernate dialect, and mapping information for entity classes. It defines how Hibernate should behave and interact with the database.
 ```xml
 
 <!DOCTYPE hibernate-configuration PUBLIC
@@ -394,7 +396,9 @@ classDiagram
     JPQLQueries --> Car : queries
 
 ```
-
+**4. JPQLQueries**
+- **Purpose:** Contains methods for executing JPQL queries to interact with the Driver and Car entities.
+- **Functionality:** Includes methods to fetch all drivers, find cars by model, find drivers older than a certain age, and count total cars. It encapsulates query logic in a single class for better organization.
 ```java
 package com.example.entity;
 
