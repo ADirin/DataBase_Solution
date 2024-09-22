@@ -4,7 +4,7 @@ In a many-to-many relationship, each instance of one entity can be associated wi
 - A student can enroll in multiple courses.
 - A course can have multiple students.
 
-## 1. Entities and Relationship Identification
+## Entities and Relationship Identification
 We have two entities:
 
 - Student: Represents students who can enroll in courses.
