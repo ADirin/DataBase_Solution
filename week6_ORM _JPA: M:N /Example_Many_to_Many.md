@@ -4,15 +4,15 @@ In a many-to-many relationship, each instance of one entity can be associated wi
 - A student can enroll in multiple courses.
 - A course can have multiple students.
 
-1. Entities and Relationship Identification
+## 1. Entities and Relationship Identification
 We have two entities:
 
 - Student: Represents students who can enroll in courses.
 - Course: Represents courses that students can enroll in.
-A many-to-many relationship exists because:
 
-- A single student can enroll in multiple courses.
-- A single course can be taken by multiple students.
+- A many-to-many relationship exists because:
+    - A single student can enroll in multiple courses.
+    - A single course can be taken by multiple students.
 
 Both Student and Course classes are annotated with @Entity, marking them as database tables.
 ```java
