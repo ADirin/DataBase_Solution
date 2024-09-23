@@ -67,67 +67,83 @@ em.close();
 
 ## JPQL Example
 
+Exampleone-one-db
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           └── jpa
+│   │   │               ├── Main.java
+│   │   │               ├── entity
+│   │   │               │   ├── Student.java
+│   │   │               │   └── Course.java
+│   │   └── resources
+│   │       └── META-INF
+│   │           └── persistence.xml
+└── target
+    └── classes
+        └── META-INF
+            └── persistence.xml
+
+
 ```java
-import org.hibernate.SessionFactory;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import javax.persistence.TypedQuery;
-import java.util.List;
-
-package com.example.entity;
-
+import com.example.jpa.entity.Car;
+import com.example.jpa.entity.Driver;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
-import org.hibernate.SessionFactory;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("yourPersistenceUnitName");
+        EntityManager em = emf.createEntityManager();
 
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = null;
+        try {
+            em.getTransaction().begin();
 
-            try {
-                transaction = session.beginTransaction();
+            // Create new Driver entities
+            Driver driver1 = new Driver("Matti", 10);
+            Driver driver2 = new Driver("Mikhail", 11);
+            Driver driver3 = new Driver("Timo", 1);
+            em.persist(driver1);
+            em.persist(driver2);
+            em.persist(driver3);
 
-                // Create a new Driver entity
-                Driver driver = new Driver("Matti", 10);
-                Driver driver1= new Driver("Mikhail", 11);
-                Driver driver2= new Driver("Timo", 1);
-                session.save(driver);
-                session.save(driver1);
-                session.save(driver2);
+            // Create new Car entities and associate them with drivers
+            Car car1 = new Car("Honda");
+            car1.setDriver(driver1); // Set driver for Honda
+            em.persist(car1);
 
-                // Create a new Car entity
-                Car car = new Car("Honda");
-                Car car1 = new Car("BMW");
-                car.setDriver(driver);
-                session.save(car);
-                session.save(car1);
+            Car car2 = new Car("BMW");
+            car2.setDriver(driver2); // Set driver for BMW
+            em.persist(car2);
 
-                transaction.commit();
+            // Flush changes to the database
+            em.flush();
 
-                // Example JPQL query to find drivers with names containing 'T'
-                String jpql = "SELECT d.name FROM Driver d WHERE d.name LIKE :namePattern";
-                TypedQuery<String> query = session.createQuery(jpql, String.class);
-                query.setParameter("namePattern", "%T%"); // Set the value of the parameter
+            em.getTransaction().commit();
 
-                List<String> driversWithNameContainingT = query.getResultList();
+            // Example JPQL query to find drivers with names containing 'T'
+            String jpql = "SELECT d.name FROM Driver d WHERE d.name LIKE :namePattern";
+            TypedQuery<String> query = em.createQuery(jpql, String.class);
+            query.setParameter("namePattern", "%T%");
 
-                for (String driverName : driversWithNameContainingT) {
-                    System.out.println("Driver Name: " + driverName);
-                }
-            } catch (Exception e) {
-                if (transaction != null) {
-                    transaction.rollback();
-                }
-                e.printStackTrace();
+            List<String> driversWithNameContainingT = query.getResultList();
+
+            for (String driverName : driversWithNameContainingT) {
+                System.out.println("Driver Name: " + driverName);
             }
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
         } finally {
-            sessionFactory.close();
+            em.close();
+            emf.close();
         }
     }
 }
@@ -138,7 +154,7 @@ public class Main {
 - **Functionality:** Contains getter methods for accessing its properties and can be used to persist driver data in the database.
 
 ```java
-package com.example.entity;
+package com.example.jpa.entity;
 
 import jakarta.persistence.*;
 
@@ -163,7 +179,6 @@ public class Driver {
     }
 
     // Getters and Setters
-
     public Long getId() {
         return id;
     }
@@ -194,8 +209,12 @@ public class Driver {
 
     public void setCar(Car car) {
         this.car = car;
+        if (car != null && car.getDriver() != this) {
+            car.setDriver(this); // Maintain the bidirectional relationship
+        }
     }
 }
+
 
 ```
 **2. Car Entity**
@@ -203,7 +222,7 @@ public class Driver {
 - **Functionality:** Contains a getter method for its properties and is used to persist car data associated with drivers.
 
 ```java
-package com.example.entity;
+package com.example.jpa.entity;
 
 import jakarta.persistence.*;
 
@@ -227,7 +246,6 @@ public class Car {
     }
 
     // Getters and Setters
-
     public Long getId() {
         return id;
     }
@@ -250,72 +268,41 @@ public class Car {
 
     public void setDriver(Driver driver) {
         this.driver = driver;
-    }
-}
-
-```
-**3. HibernateUtil**
-- **Purpose:** Provides a singleton session factory for Hibernate to facilitate database operations.
-- **Functionality:** Initializes the session factory using Hibernate configuration and provides a method to retrieve it. It ensures efficient management of Hibernate sessions.
-```java
-package com.example.entity;
-
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-public class HibernateUtil {
-    private static SessionFactory sessionFactory;
-
-    static {
-        try {
-            sessionFactory = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            System.err.println("SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
+        if (driver != null && driver.getCar() != this) {
+            driver.setCar(this); // Maintain the bidirectional relationship
         }
     }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void shutdown() {
-        getSessionFactory().close();
-    }
 }
 
-```
-**hibernate.cfg.xml**
-- **Purpose:** Configuration file for Hibernate, specifying settings required for connecting to the database.
-- **Contents:** Includes database connection properties (like URL, username, and password), Hibernate dialect, and mapping information for entity classes. It defines how Hibernate should behave and interact with the database.
-```xml
-
-<!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-
-<hibernate-configuration>
-    <session-factory>
-        <!-- JDBC connection properties -->
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/jpqldb</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">Test12</property>
-
-        <!-- Hibernate settings -->
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
-        <property name="hibernate.show_sql">true</property>
-
-        <!-- Class mappings -->
-        <mapping class="com.example.entity.Car"/>
-        <mapping class="com.example.entity.Driver"/>
-
-    </session-factory>
-</hibernate-configuration>
-
 
 ```
+3. persistance.xml
+```
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="yourPersistenceUnitName">
+        <class>com.example.jpa.entity.Driver</class>
+        <class>com.example.jpa.entity.Car</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpql_car_drive"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="Test12"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+```
+----------------------------------------------------------------------------------------------
+
 **Extend to test**
 
 -  Lets test the JPQL 
