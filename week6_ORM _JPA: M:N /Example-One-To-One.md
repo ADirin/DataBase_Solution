@@ -13,6 +13,40 @@ This guide will walk you through the process of setting up a one-to-one relation
 
 Each  `student` is enrolled in exactly one `course`, and each `course` is associated with one `student`. This is a classic one-to-one relationship.
 
+There are two types of one-to-one association:
+1. *bidirectional* which means both entities aware of each other, follow the example below
+2. *non-bidirectional* which only the owner entities aware of the other entity for example Student only aware of the course.
+   - Sample class structure:
+```java
+@Entity
+public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    // CascadeType.ALL ensures that any operation on Student will cascade to its courses
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id")  // Foreign key in Course table
+    private List<Course> courses;
+
+    // Getters and Setters
+}
+
+@Entity
+public class Course {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+
+    // Getters and Setters
+}
+
+```
+
 ![One-To-One](/images/ontoone.JPG)
 
 ## Establish the *bidirectional* One-to-One Relationship
