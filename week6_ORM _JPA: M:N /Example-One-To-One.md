@@ -15,7 +15,7 @@ Each  `student` is enrolled in exactly one `course`, and each `course` is associ
 
 ![One-To-One](/images/ontoone.JPG)
 
-## Establish the One-to-One Relationship
+## Establish the *bidirectional* One-to-One Relationship
 We define the one-to-one relationship between Student and Course using the `@OneToOne` annotation.
 
 - **Owning Side:** The entity that **holds** the `foreign key`.
