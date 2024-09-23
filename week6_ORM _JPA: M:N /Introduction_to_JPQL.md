@@ -67,6 +67,7 @@ em.close();
 
 ## JPQL Example
 
+````css
 Exampleone-one-db
 ├── pom.xml
 ├── src
@@ -86,6 +87,8 @@ Exampleone-one-db
     └── classes
         └── META-INF
             └── persistence.xml
+
+````
 
 
 ```java
