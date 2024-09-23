@@ -1,3 +1,78 @@
+# Introduction to Querying in Java
+In Java applications, especially those that interact with relational databases, developers have multiple options for constructing and executing SQL queries. Understanding these options is crucial for efficient data retrieval and manipulation, as well as for leveraging the full power of the underlying database systems.
+
+```mermaid
+
+graph TD
+    A[Query Approaches] --> B[JPQL]
+    A --> C[SQL]
+    A --> D[Criteria API]
+
+    B --> B1[Object-oriented syntax]
+    B --> B2[Operates on entities]
+    B --> B3[Supports relationships]
+
+    C --> C1[Direct SQL syntax]
+    C --> C2[Interacts with database schema]
+    C --> C3[Fine-tuned control]
+
+    D --> D1[Type-safe queries]
+    D --> D2[Programmatic construction]
+    D --> D3[Dynamic query generation]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+
+
+```
+
+
+## Overview of Querying Options
+1. JPQL (Java Persistence Query Language): As part of the Java Persistence API (JPA), JPQL allows developers to write queries that are closely aligned with their object-oriented model. Instead of dealing directly with tables and columns, JPQL operates on entities, making it easier to work with complex data structures and relationships.
+- Description: JPQL is an object-oriented query language that is part of the Java Persistence API (JPA). It operates on the entity objects rather than directly on the database tables.
+- Usage: Developers can write queries that resemble SQL but are based on the entity model. For example, it supports inheritance, polymorphism, and navigation through relationships.
+-**EXAMPLE**
+
+```java
+String jpql = "SELECT d FROM Driver d WHERE d.name LIKE :namePattern";
+TypedQuery<Driver> query = entityManager.createQuery(jpql, Driver.class);
+
+```
+
+2. SQL (Structured Query Language): SQL is the traditional language used for managing and manipulating relational databases. It provides a powerful way to write queries that directly interact with the database schema. While it allows for fine-tuned control and optimization, it requires a good understanding of SQL syntax and the specific database being used.
+
+- Description: SQL is the standard language for interacting directly with relational databases. It allows developers to write queries that execute against the database schema directly.
+- Usage: It is used for complex queries, data manipulation, and schema management. Developers have full control over the SQL syntax and can leverage database-specific features
+
+**EXAMPLE**
+```
+String sql = "SELECT * FROM Driver WHERE name LIKE ?";
+Query query = entityManager.createNativeQuery(sql, Driver.class);
+query.setParameter(1, "%T%");
+
+```
+- Description: The Criteria API is a programmatic way to create queries in a type-safe manner. It allows developers to build queries using Java objects rather than string-based queries.
+- Usage: It is useful for dynamic query generation, where conditions may change based on runtime criteria. It avoids issues with string concatenation and provides compile-time checking.
+
+**EXAMPLE**
+```java
+CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+CriteriaQuery<Driver> cq = cb.createQuery(Driver.class);
+Root<Driver> driver = cq.from(Driver.class);
+cq.select(driver).where(cb.like(driver.get("name"), "%T%"));
+TypedQuery<Driver> query = entityManager.createQuery(cq);
+
+
+
+```
+
+3. Criteria API: This programmatic approach to creating queries provides a type-safe way to construct queries using Java objects. The Criteria API is particularly useful for dynamic queries where conditions may vary at runtime, enabling developers to avoid the pitfalls of string manipulation and providing compile-time checks.
+
+
+
+
 # JPQL
 
 The main concept behind JPA (Java Persistence API) is to shield the software developer from directly interacting with the relational database. Instead, JPA provides a more intuitive approach where persistence and retrieval of objects are typically handled through methods like `persist()` and `find()` within the `EntityManager`.
