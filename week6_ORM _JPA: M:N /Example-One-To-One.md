@@ -19,23 +19,42 @@ There are two types of one-to-one association:
 classDiagram
     class Student {
         +String name
-        +Address address
-        +getAddress()
-        +setAddress(Address address)
+        +Course course
+        +getCourse()
+        +setCourse(Course course)
     }
 
-    class Address {
-        +String street
+    class Course {
+        +String title
         +Student student
         +getStudent()
         +setStudent(Student student)
     }
 
-    Student "1" --> "1" Address : has
-    Address "1" --> "1" Student : belongs to
+    Student "1" --> "1" Course : has
+    Course "1" --> "1" Student : belongs to
 
    ```
-3. *non-bidirectional* which only the owner entities aware of the other entity for example Student only aware of the course.
+2. *non-bidirectional* which only the owner entities aware of the other entity for example Student only aware of the course.
+
+```mermaid
+classDiagram
+    class Student {
+        +String name
+        +Course course
+        +getCourse()
+        +setCourse(Course course)
+    }
+
+    class Course {
+        +String title
+    }
+
+    Student "1" --> "1" Course : has
+
+
+
+```
    - Sample class structure:
 ```java
 @Entity
