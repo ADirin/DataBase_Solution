@@ -15,7 +15,27 @@ Each  `student` is enrolled in exactly one `course`, and each `course` is associ
 
 There are two types of one-to-one association:
 1. *bidirectional* which means both entities aware of each other, follow the example below
-2. *non-bidirectional* which only the owner entities aware of the other entity for example Student only aware of the course.
+```mermaid
+classDiagram
+    class Student {
+        +String name
+        +Address address
+        +getAddress()
+        +setAddress(Address address)
+    }
+
+    class Address {
+        +String street
+        +Student student
+        +getStudent()
+        +setStudent(Student student)
+    }
+
+    Student "1" --> "1" Address : has
+    Address "1" --> "1" Student : belongs to
+
+   ```
+3. *non-bidirectional* which only the owner entities aware of the other entity for example Student only aware of the course.
    - Sample class structure:
 ```java
 @Entity
