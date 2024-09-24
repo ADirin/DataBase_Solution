@@ -110,15 +110,19 @@ TypedQuery<Driver> query = entityManager.createQuery(cq);
 
 ```
 - Get CriteriaBuilder: The CriteriaBuilder is obtained from the entityManager.
-- CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+-- ````java CriteriaBuilder cb = entityManager.getCriteriaBuilder();````
 - Create CriteriaQuery: A new CriteriaQuery object is created for the Driver class.
-- CriteriaQuery<Driver> cq = cb.createQuery(Driver.class);
+- ````java CriteriaQuery<Driver> cq = cb.createQuery(Driver.class);````
+  
 - Define Root: The root of the query is defined, specifying the entity (Driver) that is being queried.
-- Root<Driver> driver = cq.from(Driver.class);
+- ````java Root<Driver> driver = cq.from(Driver.class);````
+-
 - Build Query: The SELECT and WHERE clauses are defined using the CriteriaBuilder, with a LIKE condition filtering names containing "T".
-- cq.select(driver).where(cb.like(driver.get("name"), "%T%"));
-- Create TypedQuery: The query is finalized and turned into a TypedQuery.
-- TypedQuery<Driver> query = entityManager.createQuery(cq);
+- ````java cq.select(driver).where(cb.like(driver.get("name"), "%T%"));````
+
+-  Create TypedQuery: The query is finalized and turned into a TypedQuery.
+- ````java TypedQuery<Driver> query = entityManager.createQuery(cq);````
+- 
 - Execute Query: The query is executed.
 - Return Results: The results are returned from the query execution.
 
@@ -143,21 +147,8 @@ graph TD
     E -->|Return Results| D
     D -->|Convert to Entities| G[Java Objects]
     G -->|Send Data to| A
-
-
-
 ```
 
-
-## JPQL
-
-### An Update Query
-
-Update the driver experience by one year.
-
-### Parameterized Query
-
-To add a parameterized query in JPQL, you can use the `setParameter` method provided by the `Query` interface.
 
 ### Examples of JPQL Queries
 #### Find All Employees
@@ -166,7 +157,7 @@ EntityManager em = emf.createEntityManager();
 List<Employee> employees = em.createQuery("SELECT e FROM Employee e", Employee.class).getResultList();
 em.close();
 ```
-### Find Employees by Department
+#### Find Employees by Department
 ```java
 EntityManager em = emf.createEntityManager();
 List<Employee> employees = em.createQuery("SELECT e FROM Employee e WHERE e.department.name = :deptName", Employee.class)
@@ -176,9 +167,7 @@ em.close();
 
 
 ```
-### Find Employees with Projects
-
-
+#### Find Employees with Projects
 
 ```java
 EntityManager em = emf.createEntityManager();
