@@ -1,3 +1,14 @@
+1. [Introduction to Query in Java](#Introduction to Querying in Java)
+2. [JPQ by Example](#JPQL)
+3. [SQL by Example](#SQL)
+4. [Criteria APPI](#Criteria API)
+5. [Eager vs. Lazy](#Eager vs. Lazy Loading in JPA)
+6. [N+1 Problem](#N+1 Problem)
+
+[Link Text](#section-title)
+
+
+
 # Introduction to Querying in Java
 In Java applications, especially those that interact with relational databases, developers have multiple options for constructing and executing SQL queries. Understanding these options is crucial for efficient data retrieval and manipulation, as well as for leveraging the full power of the underlying database systems.
 
@@ -703,100 +714,6 @@ When executing native SQL queries with JPA's `createNativeQuery()` method, addit
    - This approach offers the most flexibility and control over the mapping process. You can define complex mappings, handle entity inheritance, and map results to DTOs (Data Transfer Objects) or non-entity classes.
 
 -----------------------------------------------------------------------------------------------------------------------------------------
-# Eager vs. Lazy Loading in JPA
-
-In Java Persistence API (JPA), eager and lazy loading are two strategies used to fetch related entities from the database. Understanding these strategies is crucial for optimizing performance and managing resources effectively. Here are the key differences between them:
-
-## 1. Fetching Strategy
-
-### Eager Loading:
-- When an entity is loaded, its related entities are also fetched immediately.
-- This is done regardless of whether the related entities are actually needed.
-- Typically implemented using the `FetchType.EAGER` annotation.
-
-### Lazy Loading:
-- Related entities are not fetched until they are specifically accessed.
-- This can improve performance by reducing the amount of data retrieved initially.
-- Typically implemented using the `FetchType.LAZY` annotation.
-
-## 2. Performance
-
-### Eager Loading:
-- Can lead to performance issues, especially if there are many related entities or if the relationships are deep (e.g., one-to-many, many-to-many).
-- The initial query can become complex and resource-intensive, as it retrieves more data than might be needed.
-
-### Lazy Loading:
-- Generally more efficient in terms of initial load time, as only the primary entity is fetched initially.
-- However, accessing related entities later may trigger additional queries, which can lead to performance overhead if not managed properly.
-
-## 3. Use Cases
-
-### Eager Loading:
-- Suitable when you are certain that related entities will be needed immediately.
-- Common in scenarios where relationships are critical for the application logic.
-
-### Lazy Loading:
-- Preferred in scenarios where related entities may not always be needed.
-- Useful for improving performance when working with large datasets or complex object graphs.
-
-
-
-------------------------------------------------------------------------------------------------------------------------------------------
-
-# N+1 Problem
-
-The N+1 problem is a performance issue that commonly occurs in object-relational mapping (ORM) frameworks like Hibernate, including when using Java Persistence API (JPA). It arises due to the way ORM frameworks handle the lazy loading of entity associations.
-
-```mermaid
-graph TD
-    A[Client] -->|Request List of Drivers| B[Database]
-    B -->|Query 1| C{Retrieve List of Drivers}
-
-    C --> D1[Driver 1]
-    C --> D2[Driver 2]
-    C --> DN[Driver N]
-
-    subgraph N+1 Problem
-        D1 -->|Query 2| E1[Retrieve Car for Driver 1]
-        D2 -->|Query 3| E2[Retrieve Car for Driver 2]
-        DN -->|Query N+1| EN[Retrieve Car for Driver N]
-    end
-
-    subgraph Optimized Solution
-        O[Fetch all Drivers and Cars in one query] --> F[Database]
-    end
-
-```
-
-
-- **Getting the Initial Data**: Let's say we ask the database for a list of N things, like a list of books.
-- **Fetching More Info**: Now, for each of these N things, we need additional details, like the author's name.
-- **Extra Queries**: So, we end up making N extra queries to the database to get this extra info.
-- **Total Queries**: In total, we make N+1 queries: 1 for the initial data and N for each additional detail we need.
-
-In the first query, all will be fetched and printed, while in the second query, it goes through the whole database and assesses one by one element. This leads to performance and resource consumption issues, especially in large databases. In a small database, that won’t be a problem, but when we have lots of entities, then it is important to be mindful of the queries.  
-
-In the following example, Hibernate will execute an additional query for each driver to fetch their associated cars.
-
-### Cause
-
-Lazy loading is often the culprit. Lazy loading means the app only gets the extra info when it's asked for. So, when we loop through our list of things, each time we ask for the extra info, it triggers another database query.
-
-### Impact
-
-This can slow down our app, especially with lots of data. More queries mean more time waiting for responses, which can make our app feel sluggish. It can even put a strain on the database server, making things slow for everyone.
-
-### How to Fix It
-
-- **Eager Loading**: Instead of lazy loading, fetch all the info you need upfront. For example:
-
-- **Batch Fetching**: Get multiple sets of extra info in one go, reducing the number of queries.
-
-- **Fetch Joins**: Use special queries to fetch everything you need in a single query.
-
-- **DTO Projections**: Only fetch the data you need, instead of loading everything.
-
----
 
 # Criteria API
 
@@ -968,3 +885,106 @@ The persistence.xml file configures the persistence unit and specifies database 
     </persistence-unit>
 </persistence>
 ```
+
+
+
+
+__________________________________________________
+
+
+
+# Eager vs. Lazy Loading in JPA
+
+In Java Persistence API (JPA), eager and lazy loading are two strategies used to fetch related entities from the database. Understanding these strategies is crucial for optimizing performance and managing resources effectively. Here are the key differences between them:
+
+## 1. Fetching Strategy
+
+### Eager Loading:
+- When an entity is loaded, its related entities are also fetched immediately.
+- This is done regardless of whether the related entities are actually needed.
+- Typically implemented using the `FetchType.EAGER` annotation.
+
+### Lazy Loading:
+- Related entities are not fetched until they are specifically accessed.
+- This can improve performance by reducing the amount of data retrieved initially.
+- Typically implemented using the `FetchType.LAZY` annotation.
+
+## 2. Performance
+
+### Eager Loading:
+- Can lead to performance issues, especially if there are many related entities or if the relationships are deep (e.g., one-to-many, many-to-many).
+- The initial query can become complex and resource-intensive, as it retrieves more data than might be needed.
+
+### Lazy Loading:
+- Generally more efficient in terms of initial load time, as only the primary entity is fetched initially.
+- However, accessing related entities later may trigger additional queries, which can lead to performance overhead if not managed properly.
+
+## 3. Use Cases
+
+### Eager Loading:
+- Suitable when you are certain that related entities will be needed immediately.
+- Common in scenarios where relationships are critical for the application logic.
+
+### Lazy Loading:
+- Preferred in scenarios where related entities may not always be needed.
+- Useful for improving performance when working with large datasets or complex object graphs.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+# N+1 Problem
+
+The N+1 problem is a performance issue that commonly occurs in object-relational mapping (ORM) frameworks like Hibernate, including when using Java Persistence API (JPA). It arises due to the way ORM frameworks handle the lazy loading of entity associations.
+
+```mermaid
+graph TD
+    A[Client] -->|Request List of Drivers| B[Database]
+    B -->|Query 1| C{Retrieve List of Drivers}
+
+    C --> D1[Driver 1]
+    C --> D2[Driver 2]
+    C --> DN[Driver N]
+
+    subgraph N+1 Problem
+        D1 -->|Query 2| E1[Retrieve Car for Driver 1]
+        D2 -->|Query 3| E2[Retrieve Car for Driver 2]
+        DN -->|Query N+1| EN[Retrieve Car for Driver N]
+    end
+
+    subgraph Optimized Solution
+        O[Fetch all Drivers and Cars in one query] --> F[Database]
+    end
+
+```
+
+
+- **Getting the Initial Data**: Let's say we ask the database for a list of N things, like a list of books.
+- **Fetching More Info**: Now, for each of these N things, we need additional details, like the author's name.
+- **Extra Queries**: So, we end up making N extra queries to the database to get this extra info.
+- **Total Queries**: In total, we make N+1 queries: 1 for the initial data and N for each additional detail we need.
+
+In the first query, all will be fetched and printed, while in the second query, it goes through the whole database and assesses one by one element. This leads to performance and resource consumption issues, especially in large databases. In a small database, that won’t be a problem, but when we have lots of entities, then it is important to be mindful of the queries.  
+
+In the following example, Hibernate will execute an additional query for each driver to fetch their associated cars.
+
+### Cause
+
+Lazy loading is often the culprit. Lazy loading means the app only gets the extra info when it's asked for. So, when we loop through our list of things, each time we ask for the extra info, it triggers another database query.
+
+### Impact
+
+This can slow down our app, especially with lots of data. More queries mean more time waiting for responses, which can make our app feel sluggish. It can even put a strain on the database server, making things slow for everyone.
+
+### How to Fix It
+
+- **Eager Loading**: Instead of lazy loading, fetch all the info you need upfront. For example:
+
+- **Batch Fetching**: Get multiple sets of extra info in one go, reducing the number of queries.
+
+- **Fetch Joins**: Use special queries to fetch everything you need in a single query.
+
+- **DTO Projections**: Only fetch the data you need, instead of loading everything.
+
+---
+
