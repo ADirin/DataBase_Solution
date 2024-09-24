@@ -1,4 +1,4 @@
-1. [Introduction to Query in Java](#Introduction to Querying in Java)
+1. [Introduction to Query in Java](#Introduction)
 2. [JPQ by Example](#JPQL)
 3. [SQL by Example](#SQL)
 4. [Criteria APPI](#Criteria API)
