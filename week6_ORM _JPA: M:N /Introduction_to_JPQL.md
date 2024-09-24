@@ -40,6 +40,16 @@ String jpql = "SELECT d FROM Driver d WHERE d.name LIKE :namePattern";
 TypedQuery<Driver> query = entityManager.createQuery(jpql, Driver.class);
 
 ```
+- **TypedQuery<Driver>**
+    - This defines a strongly-typed query that will return Driver entities as results. By using TypedQuery, the query ensures that the returned result is of the specified type (Driver in this case), which provides type safety at compile time.
+
+- entityManager.createQuery(jpql, Driver.class)
+    - This creates a query using the EntityManager object.
+
+- entityManager: This is the JPA EntityManager that handles the persistence operations, including executing JPQL queries.
+    - .createQuery(jpql, Driver.class): This method creates a new TypedQuery object for the provided JPQL string and the type of entity expected as the result (Driver.class).
+    - The first argument is the JPQL query string, and the second argument is the type of the result (in this case, Driver).
+
 
 2. SQL (Structured Query Language): SQL is the traditional language used for managing and manipulating relational databases. It provides a powerful way to write queries that directly interact with the database schema. While it allows for fine-tuned control and optimization, it requires a good understanding of SQL syntax and the specific database being used.
 
