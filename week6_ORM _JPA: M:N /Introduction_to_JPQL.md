@@ -39,6 +39,8 @@ graph TD
 String jpql = "SELECT d FROM Driver d WHERE d.name LIKE :namePattern";
 TypedQuery<Driver> query = entityManager.createQuery(jpql, Driver.class);
 
+
+```
 ```merimaid
 graph TD;
     A[JPQL Query] --> B[Create TypedQuery]
@@ -48,7 +50,6 @@ graph TD;
 
 ```
 
-```
 - **TypedQuery<Driver>**
     - This defines a strongly-typed query that will return Driver entities as results. By using TypedQuery, the query ensures that the returned result is of the specified type (Driver in this case), which provides type safety at compile time.
 
