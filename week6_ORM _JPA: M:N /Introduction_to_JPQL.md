@@ -43,8 +43,8 @@ TypedQuery<Driver> query = entityManager.createQuery(jpql, Driver.class);
 
 2. SQL (Structured Query Language): SQL is the traditional language used for managing and manipulating relational databases. It provides a powerful way to write queries that directly interact with the database schema. While it allows for fine-tuned control and optimization, it requires a good understanding of SQL syntax and the specific database being used.
 
-- Description: SQL is the standard language for interacting directly with relational databases. It allows developers to write queries that execute against the database schema directly.
-- Usage: It is used for complex queries, data manipulation, and schema management. Developers have full control over the SQL syntax and can leverage database-specific features
+    - Description: SQL is the standard language for interacting directly with relational databases. It allows developers to write queries that execute against the database schema directly.
+    - Usage: It is used for complex queries, data manipulation, and schema management. Developers have full control over the SQL syntax and can leverage database-specific features
 
 **EXAMPLE**
 ```
@@ -53,8 +53,11 @@ Query query = entityManager.createNativeQuery(sql, Driver.class);
 query.setParameter(1, "%T%");
 
 ```
-- Description: The Criteria API is a programmatic way to create queries in a type-safe manner. It allows developers to build queries using Java objects rather than string-based queries.
-- Usage: It is useful for dynamic query generation, where conditions may change based on runtime criteria. It avoids issues with string concatenation and provides compile-time checking.
+  
+3. Criteria API: This programmatic approach to creating queries provides a type-safe way to construct queries using Java objects. The Criteria API is particularly useful for dynamic queries where conditions may vary at runtime, enabling developers to avoid the pitfalls of string manipulation and providing compile-time checks.
+
+  - Description: The Criteria API is a programmatic way to create queries in a type-safe manner. It allows developers to build queries using Java objects rather than string-based queries.
+    - Usage: It is useful for dynamic query generation, where conditions may change based on runtime criteria. It avoids issues with string concatenation and provides compile-time checking.
 
 **EXAMPLE**
 ```java
@@ -67,10 +70,6 @@ TypedQuery<Driver> query = entityManager.createQuery(cq);
 
 
 ```
-
-3. Criteria API: This programmatic approach to creating queries provides a type-safe way to construct queries using Java objects. The Criteria API is particularly useful for dynamic queries where conditions may vary at runtime, enabling developers to avoid the pitfalls of string manipulation and providing compile-time checks.
-
-
 
 
 # JPQL
