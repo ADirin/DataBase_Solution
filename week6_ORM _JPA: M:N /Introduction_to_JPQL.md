@@ -41,7 +41,7 @@ TypedQuery<Driver> query = entityManager.createQuery(jpql, Driver.class);
 
 
 ```
-```merimaid
+```mermaid
 graph TD;
     A[JPQL Query] --> B[Create TypedQuery]
     B --> C[Execute Query]
