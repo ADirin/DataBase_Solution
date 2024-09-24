@@ -88,6 +88,17 @@ _________________________________________________________
 
     - Description: The Criteria API is a programmatic way to create queries in a type-safe manner. It allows developers to build queries using Java objects rather than string-based queries.
     - Usage: It is useful for dynamic query generation, where conditions may change based on runtime criteria. It avoids issues with string concatenation and provides compile-time checking.
+  
+```mermaid
+graph TD;
+    A[Get CriteriaBuilder] --> B[Create CriteriaQuery]
+    B --> C[Define Root]
+    C --> D[Build Query]
+    D --> E[Create TypedQuery]
+    E --> F[Execute Query]
+    F --> G[Return Results]
+
+```
 
 **EXAMPLE**
 ```java
@@ -97,10 +108,19 @@ Root<Driver> driver = cq.from(Driver.class);
 cq.select(driver).where(cb.like(driver.get("name"), "%T%"));
 TypedQuery<Driver> query = entityManager.createQuery(cq);
 
-
-
 ```
-
+- Get CriteriaBuilder: The CriteriaBuilder is obtained from the entityManager.
+- CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+- Create CriteriaQuery: A new CriteriaQuery object is created for the Driver class.
+- CriteriaQuery<Driver> cq = cb.createQuery(Driver.class);
+- Define Root: The root of the query is defined, specifying the entity (Driver) that is being queried.
+- Root<Driver> driver = cq.from(Driver.class);
+- Build Query: The SELECT and WHERE clauses are defined using the CriteriaBuilder, with a LIKE condition filtering names containing "T".
+- cq.select(driver).where(cb.like(driver.get("name"), "%T%"));
+- Create TypedQuery: The query is finalized and turned into a TypedQuery.
+- TypedQuery<Driver> query = entityManager.createQuery(cq);
+- Execute Query: The query is executed.
+- Return Results: The results are returned from the query execution.
 
 # JPQL
 
