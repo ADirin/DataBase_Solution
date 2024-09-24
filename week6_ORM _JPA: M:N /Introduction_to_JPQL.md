@@ -59,7 +59,7 @@ graph TD;
 - entityManager: This is the JPA EntityManager that handles the persistence operations, including executing JPQL queries.
     - .createQuery(jpql, Driver.class): This method creates a new TypedQuery object for the provided JPQL string and the type of entity expected as the result (Driver.class).
     - The first argument is the JPQL query string, and the second argument is the type of the result (in this case, Driver).
-
+__________________________________________________________________________
 
 2. SQL (Structured Query Language): SQL is the traditional language used for managing and manipulating relational databases. It provides a powerful way to write queries that directly interact with the database schema. While it allows for fine-tuned control and optimization, it requires a good understanding of SQL syntax and the specific database being used.
 
@@ -73,7 +73,7 @@ Query query = entityManager.createNativeQuery(sql, Driver.class);
 query.setParameter(1, "%T%");
 
 ```
-  
+_________________________________________________________
 3. Criteria API: This programmatic approach to creating queries provides a type-safe way to construct queries using Java objects. The Criteria API is particularly useful for dynamic queries where conditions may vary at runtime, enabling developers to avoid the pitfalls of string manipulation and providing compile-time checks.
 
     - Description: The Criteria API is a programmatic way to create queries in a type-safe manner. It allows developers to build queries using Java objects rather than string-based queries.
