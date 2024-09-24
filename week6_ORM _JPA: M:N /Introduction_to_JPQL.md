@@ -702,7 +702,46 @@ When executing native SQL queries with JPA's `createNativeQuery()` method, addit
    - With `@SqlResultSetMapping`, you can specify how columns from the result set should be mapped to entity fields or constructor parameters.
    - This approach offers the most flexibility and control over the mapping process. You can define complex mappings, handle entity inheritance, and map results to DTOs (Data Transfer Objects) or non-entity classes.
 
----
+-----------------------------------------------------------------------------------------------------------------------------------------
+# Eager vs. Lazy Loading in JPA
+
+In Java Persistence API (JPA), eager and lazy loading are two strategies used to fetch related entities from the database. Understanding these strategies is crucial for optimizing performance and managing resources effectively. Here are the key differences between them:
+
+## 1. Fetching Strategy
+
+### Eager Loading:
+- When an entity is loaded, its related entities are also fetched immediately.
+- This is done regardless of whether the related entities are actually needed.
+- Typically implemented using the `FetchType.EAGER` annotation.
+
+### Lazy Loading:
+- Related entities are not fetched until they are specifically accessed.
+- This can improve performance by reducing the amount of data retrieved initially.
+- Typically implemented using the `FetchType.LAZY` annotation.
+
+## 2. Performance
+
+### Eager Loading:
+- Can lead to performance issues, especially if there are many related entities or if the relationships are deep (e.g., one-to-many, many-to-many).
+- The initial query can become complex and resource-intensive, as it retrieves more data than might be needed.
+
+### Lazy Loading:
+- Generally more efficient in terms of initial load time, as only the primary entity is fetched initially.
+- However, accessing related entities later may trigger additional queries, which can lead to performance overhead if not managed properly.
+
+## 3. Use Cases
+
+### Eager Loading:
+- Suitable when you are certain that related entities will be needed immediately.
+- Common in scenarios where relationships are critical for the application logic.
+
+### Lazy Loading:
+- Preferred in scenarios where related entities may not always be needed.
+- Useful for improving performance when working with large datasets or complex object graphs.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
 
 # N+1 Problem
 
