@@ -65,6 +65,15 @@ __________________________________________________________________________
 
     - Description: SQL is the standard language for interacting directly with relational databases. It allows developers to write queries that execute against the database schema directly.
     - Usage: It is used for complex queries, data manipulation, and schema management. Developers have full control over the SQL syntax and can leverage database-specific features
+```mermaid
+graph TD;
+    A[SQL Query] --> B[Create NativeQuery]
+    B --> C[Set Parameter]
+    C --> D[Execute Query]
+    D --> E[Return Results]
+
+
+```
 
 **EXAMPLE**
 ```
@@ -73,6 +82,7 @@ Query query = entityManager.createNativeQuery(sql, Driver.class);
 query.setParameter(1, "%T%");
 
 ```
+- The query parameter ? is set using query.setParameter(). The value "1" specifies the position of the parameter, and "%T%" is the pattern that matches any name containing the letter "T".
 _________________________________________________________
 3. Criteria API: This programmatic approach to creating queries provides a type-safe way to construct queries using Java objects. The Criteria API is particularly useful for dynamic queries where conditions may vary at runtime, enabling developers to avoid the pitfalls of string manipulation and providing compile-time checks.
 
