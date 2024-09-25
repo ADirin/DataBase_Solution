@@ -31,10 +31,57 @@ To implement a JPA Converter:
 
 Let’s use Student and Course entities to demonstrate how JPA Converters work. In this example, the CourseStatus enumeration is used for course statuses, which are stored as integers in the database.
 
+```mermaid
+
+classDiagram
+    direction LR
+    class Student {
+        +Long id
+        +String name
+        +Course course
+        +getId() Long
+        +getName() String
+        +setName(String name)
+        +getCourse() Course
+        +setCourse(Course course)
+    }
+
+    class Course {
+        +Long id
+        +String courseName
+        +CourseStatus status
+        +Student student
+        +getId() Long
+        +getCourseName() String
+        +setCourseName(String name)
+        +getStatus() CourseStatus
+        +setStatus(CourseStatus status)
+        +getStudent() Student
+        +setStudent(Student student)
+    }
+
+    class CourseStatus {
+        <<enum>>
+        ACTIVE
+        INACTIVE
+    }
+
+    class CourseStatusConverter {
+        +convertToDatabaseColumn(CourseStatus) Integer
+        +convertToEntityAttribute(Integer) CourseStatus
+    }
+
+    Student "1" -- "1" Course : has
+    CourseStatusConverter --> CourseStatus : converts
+
+
+
+
+```
+
 #### Step-by-Step Example
 
-1. **Create the Converter:**
-
+1. Course
  ```java
     package com.example.jpa.entity;
 
@@ -68,7 +115,7 @@ public class Course {
 
   ```
 
-2. 
+2. Student.java
 
 ```java
 package com.example.jpa.entity;
@@ -163,7 +210,9 @@ public class Application {
 
 
 ```
-4.  persistence.xml
+4.  persistence.xml: persistence.xml is used to define the configuration for JPA. It typically resides in the src/main/resources/META-INF/ directory.
+
+Here’s an example of how your persistence.xml would look:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
@@ -191,7 +240,7 @@ public class Application {
     </persistence-unit>
 </persistence>
 ```
-5. POM.xml
+5. POM.xml: 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
