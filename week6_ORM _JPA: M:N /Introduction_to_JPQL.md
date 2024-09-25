@@ -1,9 +1,9 @@
 1. [Introduction to Query in Java](#Introduction)
 2. [JPQ by Example](#JPQL)
 3. [SQL by Example](#SQL)
-4. [Criteria APPI](#Criteria API)
-5. [Eager vs. Lazy](#Eager vs. Lazy Loading in JPA)
-6. [N+1 Problem](#N+1 Problem)
+4. [Criteria APPI](#Criteria)
+5. [Eager vs. Lazy](#Eager)
+6. [N+1 Problem](#N+1)
 
 [Link Text](#section-title)
 
