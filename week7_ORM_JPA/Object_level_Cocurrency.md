@@ -19,7 +19,7 @@ JPA Converters are used to customize how Java objects are mapped to database col
 
 For example, if you have an enumeration, a custom class, or a non-standard type that needs to be stored in a standard format in the database (like String or Integer), JPA converters handle the transformation.
 
-## HOw Do Conveters Work?
+## How Do Conveters Work?
 
 To implement a JPA Converter:
 
