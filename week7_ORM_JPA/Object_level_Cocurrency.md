@@ -329,26 +329,44 @@ Here’s an example of how your persistence.xml would look:
 ```
 
 # Events
-In JPA (Java Persistence API), an event refers to a lifecycle callback method that is triggered at specific points in an entity’s lifecycle, such as when it is created, updated, deleted, or loaded from the database. These events allow developers to hook into the lifecycle of an entity and execute custom logic when these events occur. JPA provides support for several lifecycle events via annotations or by implementing EntityListener classes.
+# Events in Java Persistence API (JPA)
 
-Here’s an elaborate explanation of JPA events and how they work:
+Events in Java Persistence API (JPA) are mechanisms that allow developers to react to changes in the state of persistent entities. They serve as the object-level counterpart of database triggers, enabling developers to execute custom logic when specific operations occur on entity objects.
 
-1. Entity Lifecycle Events in JPA
-Entity lifecycle events occur at different stages of an entity’s lifecycle when interacting with the EntityManager (e.g., when an entity is persisted, updated, or removed). These events include:
+## Key Concepts
 
-- @PrePersist: Triggered before an entity is persisted (saved) to the database. It is typically used to initialize values or set defaults before the entity is inserted into the database.
+### Idea of Events:
+- An event listener class is attached to the target entity class. This listener class is responsible for reacting to state changes of the target entity objects.
+- When an entity object's state changes in a manner defined by the developer, a callback method in the listener class is automatically invoked.
 
-- @PostPersist: Triggered after an entity has been persisted (saved). This is used when you need to perform actions after a successful insertion into the database, like logging or auditing.
+### Event Types:
+JPA provides several types of events that correspond to different lifecycle points of an entity object:
 
-- @PreUpdate: Triggered before an entity is updated. It can be used to modify data before the update is committed to the database.
+- `@PrePersist` and `@PostPersist`: These events occur **before** and **after** an entity is saved to the database, respectively.
+- `@PreUpdate` and `@PostUpdate`: These events occur **before** and **after** an entity is updated in the database, respectively.
+- `@PreRemove` and `@PostRemove`: These events occur **before** and **after** an entity is deleted from the database, respectively.
+- `@PostLoad`: This event occurs **after** an entity is loaded from the database.
 
-- @PostUpdate: Triggered after an entity has been updated in the database.
+## Example Use Case:
+Consider a scenario where you want to perform certain actions every time an entity is saved or updated in the database:
 
-- @PreRemove: Triggered before an entity is removed (deleted) from the database. This can be used to perform cleanup operations or validation before deletion.
+- You can utilize events to achieve this by defining event listener methods annotated with `@PrePersist` and `@PreUpdate`.
+- For example, you might want to automatically update a modification timestamp whenever an entity is persisted or updated. You can achieve this by defining `@PrePersist` and `@PreUpdate` event listener methods that set the modification timestamp before saving or updating the entity.
 
-- @PostRemove: Triggered after an entity has been removed from the database.
+```java
+@Entity
+public class MyEntity {
 
-- @PostLoad: Triggered after an entity has been loaded from the database (but before the transaction is completed). It can be used to initialize transient fields or perform calculations after loading.
+    private Date lastModified;
 
-2. How to Use JPA Lifecycle Annotations
-These events can be implemented directly in the entity class or using a separate listener class.
+    @PrePersist
+    @PreUpdate
+    public void updateTimestamp() {
+        lastModified = new Date();
+    }
+
+    // Other fields, getters, and setters
+}
+
+```
+# Object-level-concurrency-control
