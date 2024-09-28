@@ -174,6 +174,25 @@ public class CourseStatusConverter implements AttributeConverter<CourseStatus, I
     - Converting the CourseStatus to an Integer when persisting (writing to the database).
     - Converting the Integer from the database back to a CourseStatus when retrieving data (reading from the database).
 
+Purpose: Converts the CourseStatus enum to its corresponding integer value for storage in the database.
+
+**convertToDatabaseColumn Method:**
+- Purpose: Converts the CourseStatus enum to its corresponding integer value for storage in the database.
+Logic:
+
+    - If the status is ACTIVE, the method returns 1.
+    - If the status is INACTIVE, it returns 0.
+    - If the status is null (i.e., the field has no value), it returns null, meaning no value will be stored in the database.
+- Practical Application: When saving a CourseStatus to the database, ACTIVE will be stored as 1 and INACTIVE as 0.
+
+**convertToEntityAttribute Method:**
+- Purpose: Converts the integer value from the database back into the CourseStatus enum.
+Logic:
+    - If the dbData (database value) is 1, it converts it to CourseStatus.ACTIVE.
+    - If the dbData is 0, it converts it to CourseStatus.INACTIVE.
+    - If the dbData is null, it returns null, meaning the CourseStatus attribute will not have a value in the entity.
+- Practical Application: When reading from the database, 1 is interpreted as ACTIVE and 0 is interpreted as INACTIVE.
+
 ```java
 package com.example.jpa.entity;
 
