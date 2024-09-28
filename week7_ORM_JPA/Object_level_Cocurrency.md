@@ -167,10 +167,13 @@ public class CourseStatusConverter implements AttributeConverter<CourseStatus, I
         return (dbData == 1) ? CourseStatus.ACTIVE : CourseStatus.INACTIVE;
     }
 }
-
-
-
 ```
+- @Converter(autoApply = true): This annotation indicates that this converter should be applied automatically to all entity attributes of type CourseStatus. You don't need to specify it explicitly for every entity field.
+    - autoApply = true: Automatically applies this conversion whenever CourseStatus is encountered in entities.
+- AttributeConverter<CourseStatus, Integer>: This specifies that the converter will convert from CourseStatus (the enum) to Integer (for database storage) and vice versa. This means it handles both:
+    - Converting the CourseStatus to an Integer when persisting (writing to the database).
+    - Converting the Integer from the database back to a CourseStatus when retrieving data (reading from the database).
+
 ```java
 package com.example.jpa.entity;
 
@@ -180,6 +183,12 @@ public enum CourseStatus {
 }
 
 ```
+- Enum Definition: CourseStatus is an enumeration that represents the possible states of a course. There are two values:
+  - ACTIVE: Indicates the course is currently active.
+  - INACTIVE: Indicates the course is not active.
+- Purpose: This enum is used to maintain the status of a course in the application and maps it to specific values in the database.
+
+
 3.  Main
 ```java
 import com.example.jpa.entity.Student;
