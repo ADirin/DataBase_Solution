@@ -723,3 +723,44 @@ This problem arises when a transaction calculates an aggregate value (such as a 
 ### Phantom Read:
 
 A phantom read occurs when a transaction reads a set of rows that match a certain condition, and another transaction inserts or deletes rows that would affect the result of that query before the first transaction is complete. As a result, the first transaction may see different results upon subsequent reads, leading to unpredictable behavior and potentially incorrect decisions based on those reads.
+
+#### Summery of the problems
+```mermaid
+sequenceDiagram
+    participant UserA as Transaction 1 (User A)
+    participant UserB as Transaction 2 (User B)
+    participant DB as Database
+
+    %% Lost Update Scenario
+    UserA->>DB: Read Data (X)
+    UserB->>DB: Read Same Data (X)
+    UserA->>DB: Update Data (X = new value)
+    UserB->>DB: Update Data (X = another value)
+    DB->>UserA: Confirm Update (Data Overwritten)
+    DB->>UserB: Confirm Update (Data Overwritten)
+    Note right of DB: **Lost Update**\n (One transaction's update overwrites another's)
+
+    %% Dirty Read Scenario
+    UserA->>DB: Modify Data (Uncommitted)
+    UserB->>DB: Read Uncommitted Data (X)
+    UserA->>DB: Rollback Changes
+    Note right of UserB: User B reads invalid data (not committed).
+    UserB->>UserB: Result: Invalid Data Read
+    Note right of UserB: **Dirty Read**\n (Reading uncommitted changes)
+
+    %% Incorrect Summary Scenario
+    UserA->>DB: Read Data for Summary (Y)
+    UserB->>DB: Update Data (Y = new value)
+    UserA->>DB: Calculate Summary with old data
+    UserA->>UserA: Result: Incorrect Summary
+    Note right of UserA: **Incorrect Summary**\n (Summary based on stale data)
+
+    %% Phantom Read Scenario
+    UserA->>DB: Read Set of Rows (where condition)
+    UserB->>DB: Insert/Delete Row (affecting condition)
+    UserA->>DB: Read Set of Rows Again
+    UserA->>UserA: Result: Different Set of Rows Read
+    Note right of UserA: **Phantom Read**\n (Different result set after modification)
+
+
+```
