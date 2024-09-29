@@ -525,8 +525,7 @@ public class MyEntity {
  - Create an instance of MyEntity.
  - Persist the entity (triggering the @PrePersist event).
  - Modify the entity (triggering the @PreUpdate event).
-
--- Print the entity’s name and lastModified timestamp to the console.
+ - Print the entity’s name and lastModified timestamp to the console.
 
 ```java
 import javax.persistence.EntityManager;
