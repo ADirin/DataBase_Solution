@@ -595,15 +595,40 @@ public class Main {
     }
 }
 
-
-
 ```
+
+----------------------------------------------------------------------------------
 
 # Object-level-concurrency-control
 
 Java Persistence API (JPA) provides mechanisms to manage concurrent access to data in a database. When multiple transactions are trying to access the same data simultaneously, concurrency control is essential to ensure data consistency and integrity.
 
 In JPA, there are two primary strategies for handling concurrency: Optimistic Locking and Pessimistic Locking.
+
+```mermaid
+flowchart TD
+    A[Start] --> B[Entity Access]
+    
+    subgraph OL[Optimistic Locking]
+        B1[Read Entity] --> B2[Modify Entity] --> B3[Check Version]
+        B4{Version Matches?} -->|Yes| B5[Update Entity]
+        B4 -->|No| B6[Throw OptimisticLockException]
+        B5 --> B7[Commit Transaction]
+    end
+
+    subgraph PL[Pessimistic Locking]
+        C1[Read Entity with Lock] --> C2[Hold Lock]
+        C3[Modify Entity] --> C4[Release Lock]
+        C4 --> C5[Commit Transaction]
+    end
+
+    B --> OL
+    B --> PL
+    A --> B
+
+
+```
+
 
 ## 1. Optimistic Locking
 Optimistic locking assumes that multiple transactions can complete without interfering with each other. It checks for conflicts only when updating the data. If a conflict is detected (e.g., another transaction has modified the data), an exception is thrown, and the transaction can be retried.
