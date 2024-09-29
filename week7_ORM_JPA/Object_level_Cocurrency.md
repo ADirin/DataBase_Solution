@@ -600,3 +600,81 @@ public class Main {
 ```
 
 # Object-level-concurrency-control
+
+Java Persistence API (JPA) provides mechanisms to manage concurrent access to data in a database. When multiple transactions are trying to access the same data simultaneously, concurrency control is essential to ensure data consistency and integrity.
+
+In JPA, there are two primary strategies for handling concurrency: Optimistic Locking and Pessimistic Locking.
+
+## 1. Optimistic Locking
+Optimistic locking assumes that multiple transactions can complete without interfering with each other. It checks for conflicts only when updating the data. If a conflict is detected (e.g., another transaction has modified the data), an exception is thrown, and the transaction can be retried.
+**Implementation Steps:**
+
+1. Add a version field to the entity.
+2. JPA automatically manages the version field.
+3. When updating an entity, JPA checks if the version in the database matches the version in the entity.
+
+```java
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Version;
+
+@Entity
+public class MyEntity {
+
+    @Id
+    private Long id;
+
+    @Version
+    private Long version;
+
+    private String data;
+
+    // Getters and Setters
+}
+
+
+```
+**How it Works:**
+
+- When an entity is read, it retrieves the current version from the database.
+- When the entity is updated, JPA checks if the version in the database is the same as the one in the entity.
+   - If they match, the update is successful, and the version is incremented.
+   - If they don't match, an OptimisticLockException is thrown.
+
+**2. Pessimistic Locking**
+Pessimistic locking assumes that conflicts are likely, so it locks the data when it's being read. This prevents other transactions from modifying the data until the lock is released.
+
+**Implementation Steps:**
+
+- Use JPA's locking annotations or methods when querying data.
+Example:
+
+```java
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lock;
+import javax.persistence.LockModeType;
+
+@Entity
+public class MyEntity {
+
+    @Id
+    private Long id;
+
+    private String data;
+
+    // Getters and Setters
+}
+
+// In a repository or service class
+@Transactional
+public MyEntity findEntity(Long id) {
+    return entityManager.find(MyEntity.class, id, LockModeType.PESSIMISTIC_WRITE);
+}
+
+
+```
+**How it Works:**
+
+- When an entity is fetched with a pessimistic lock, it locks the database row for the duration of the transaction.
+- Other transactions trying to access the locked row will be blocked until the lock is released.
