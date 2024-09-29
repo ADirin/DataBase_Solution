@@ -703,3 +703,23 @@ public MyEntity findEntity(Long id) {
 
 - When an entity is fetched with a pessimistic lock, it locks the database row for the duration of the transaction.
 - Other transactions trying to access the locked row will be blocked until the lock is released.
+
+
+## Problems in Database Level Transactions
+In database transactions, several concurrency issues can arise, leading to data inconsistency and integrity problems. Here are four common problems:
+
+### Lost Update:
+
+This occurs when two transactions read the same data and then update it based on the value they read. If the first transaction's update is lost because the second transaction overwrites it, the first transaction's changes are effectively ignored. This can lead to inconsistencies in the data.
+
+### Dirty Read:
+
+A dirty read happens when a transaction reads data that has been modified by another transaction that has not yet been committed. If the first transaction rolls back, the second transaction would have read an invalid or temporary state of the data, leading to inaccurate results and potential business logic errors.
+
+### Incorrect Summary:
+
+This problem arises when a transaction calculates an aggregate value (such as a sum or average) based on data that is concurrently being modified by another transaction. If the underlying data changes after the summary is calculated but before the transaction commits, the result may not accurately reflect the intended state, leading to misleading insights.
+
+### Phantom Read:
+
+A phantom read occurs when a transaction reads a set of rows that match a certain condition, and another transaction inserts or deletes rows that would affect the result of that query before the first transaction is complete. As a result, the first transaction may see different results upon subsequent reads, leading to unpredictable behavior and potentially incorrect decisions based on those reads.
