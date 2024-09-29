@@ -380,12 +380,81 @@ Consider a scenario where you want to perform certain actions every time an enti
 
 - You can utilize events to achieve this by defining event listener methods annotated with `@PrePersist` and `@PreUpdate`.
 - For example, you might want to automatically update a modification timestamp whenever an entity is persisted or updated. You can achieve this by defining `@PrePersist` and `@PreUpdate` event listener methods that set the modification timestamp before saving or updating the entity.
+- POM.xml
+  
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.example</groupId>
+    <artifactId>jpa-events</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <!-- Hibernate and JPA API -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.15.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <!-- MySQL Driver for connecting to the database -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+
+
+```
+
+- ENTITY class
 ```java
+import javax.persistence.*;
+import java.util.Date;
+
 @Entity
+@Table(name = "my_entity")
 public class MyEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastModified;
+
+    @Column(nullable = false)
+    private String name;
+
+    public MyEntity() {}
+
+    public MyEntity(String name) {
+        this.name = name;
+    }
 
     @PrePersist
     @PreUpdate
@@ -393,8 +462,108 @@ public class MyEntity {
         lastModified = new Date();
     }
 
-    // Other fields, getters, and setters
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(Date lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
 
 ```
+- persistence.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="jpa-example" transaction-type="RESOURCE_LOCAL">
+        <!-- Specify the JPA provider -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Database connection settings -->
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa_event_test"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="Test12"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+
+            <!-- Hibernate settings -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
+
+
+```
+- Main.class
+
+```java
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.EntityTransaction;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // Create EntityManagerFactory using the "jpa-example" persistence unit
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-example");
+        EntityManager em = emf.createEntityManager();
+
+        // Start a transaction
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+
+        // Create a new entity
+        MyEntity entity = new MyEntity("First Entry");
+        em.persist(entity);  // This will trigger @PrePersist
+
+        // Commit the transaction
+        transaction.commit();
+
+        System.out.println("Entity Created: " + entity.getName() + ", Last Modified: " + entity.getLastModified());
+
+        // Update the entity (trigger @PreUpdate)
+        transaction.begin();
+        entity.setName("Updated Entry");
+        em.merge(entity);  // This will trigger @PreUpdate
+        transaction.commit();
+
+        System.out.println("Entity Updated: " + entity.getName() + ", Last Modified: " + entity.getLastModified());
+
+        // Close EntityManager and EntityManagerFactory
+        em.close();
+        emf.close();
+    }
+}
+
+
+
+```
+
 # Object-level-concurrency-control
