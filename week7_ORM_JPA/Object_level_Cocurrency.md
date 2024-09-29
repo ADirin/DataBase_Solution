@@ -380,8 +380,9 @@ Consider a scenario where you want to perform certain actions every time an enti
 
 - You can utilize events to achieve this by defining event listener methods annotated with `@PrePersist` and `@PreUpdate`.
 - For example, you might want to automatically update a modification timestamp whenever an entity is persisted or updated. You can achieve this by defining `@PrePersist` and `@PreUpdate` event listener methods that set the modification timestamp before saving or updating the entity.
-- POM.xml
-  
+- *POM.xml*
+  - In the pom.xml file, include the necessary dependencies for JPA, Hibernate, and MySQL (assuming HeidiSQL is connected to a MySQL database).
+Here is an example pom.xml: 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -426,8 +427,6 @@ Consider a scenario where you want to perform certain actions every time an enti
         </plugins>
     </build>
 </project>
-
-
 
 ```
 
@@ -490,6 +489,7 @@ public class MyEntity {
 
 ```
 - persistence.xml
+    - Here is an example of what persistence.xml might look like:     
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
@@ -521,6 +521,12 @@ public class MyEntity {
 
 ```
 - Main.class
+
+ - Create an instance of MyEntity.
+ - Persist the entity (triggering the @PrePersist event).
+ - Modify the entity (triggering the @PreUpdate event).
+
+-- Print the entity’s name and lastModified timestamp to the console.
 
 ```java
 import javax.persistence.EntityManager;
