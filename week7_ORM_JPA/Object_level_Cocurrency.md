@@ -378,6 +378,34 @@ JPA provides several types of events that correspond to different lifecycle poin
 ## Example Use Case:
 Consider a scenario where you want to perform certain actions every time an entity is saved or updated in the database:
 
+```mermaid
+sequenceDiagram
+    participant Main
+    participant Test
+    participant MyEntity
+    participant EntityManager
+    participant Database
+
+    Main->>Test: Create Test Instance
+    Test->>EntityManager: Create EntityManager
+    Test->>MyEntity: Create MyEntity Instance
+    MyEntity->>MyEntity: Update lastModified (PrePersist)
+    Test->>EntityManager: Persist MyEntity
+    EntityManager->>Database: Save MyEntity
+    EntityManager-->>Test: Commit Transaction
+
+    Test->>MyEntity: Update MyEntity
+    MyEntity->>MyEntity: Update lastModified (PreUpdate)
+    Test->>EntityManager: Merge MyEntity
+    EntityManager->>Database: Update MyEntity
+    EntityManager-->>Test: Commit Update Transaction
+
+    Test->>EntityManager: Close EntityManager
+    EntityManager-->>Main: Process Complete
+
+```
+
+
 - You can utilize events to achieve this by defining event listener methods annotated with `@PrePersist` and `@PreUpdate`.
 - For example, you might want to automatically update a modification timestamp whenever an entity is persisted or updated. You can achieve this by defining `@PrePersist` and `@PreUpdate` event listener methods that set the modification timestamp before saving or updating the entity.
 - *POM.xml*
