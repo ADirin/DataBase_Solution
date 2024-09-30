@@ -72,8 +72,11 @@ Building on the concepts from Week 2, this week delves deeper into advanced quer
 
 **Key Concepts:**
 - **Advanced Query Optimization**: Further techniques to improve SQL performance.
+    - Advanced Query Optimization in MariaDB: Use ANALYZE TABLE and optimize queries by partitioning large tables for better performance.
 - **Concurrency Management**: Prevents conflicts when multiple transactions access the same data.
+    - Concurrency Management in MariaDB: Use ROW-LEVEL LOCKING to prevent conflicts and improve concurrent transaction handling.
 - **Transactions and Rollbacks**: Ensure the database remains consistent even when operations fail.
+    - Transactions and Rollbacks in MariaDB: Use SAVEPOINT within transactions to mark specific points, allowing partial rollbacks without undoing the entire transaction.
 
 _Practical Example:_ A social media platform optimizing database queries for user activity feeds while managing concurrent actions like posting comments and likes.
 
@@ -96,8 +99,13 @@ This week introduces automation in databases with triggers, stored procedures, a
 
 **Key Concepts:**
 - **Triggers**: Automatically execute actions like updating timestamps when certain events (INSERT, UPDATE, DELETE) occur.
+    - Triggers in MariaDB: Use CREATE TRIGGER to automatically execute actions (e.g., updating a timestamp) after INSERT, UPDATE, or DELETE operations.
+ 
 - **Stored Procedures**: Reusable SQL code blocks that can handle complex operations.
+    - Stored Procedures in MariaDB: Use CREATE PROCEDURE to define reusable blocks of SQL code for handling complex database operations.
+
 - **Events**: Automate tasks such as regular data cleanup or report generation at scheduled intervals.
+    - Events in MariaDB: Use CREATE EVENT to schedule tasks like data cleanup or report generation to run at specific intervals.
 
 _Practical Example:_ A payroll system where triggers automatically log changes to employee salary records and events schedule monthly payroll calculations.
 ```mermaid
