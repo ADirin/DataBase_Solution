@@ -1,6 +1,6 @@
-# Summert of Database Solution topics
+# Summery of Database Solution topics
 ## Important Note:
-*This summary is not intended for learning material. For the exam, you must review the details of the respective weeks in GitHub and the provided lecture notes in Moodle.* 
+*This summary is **NOT** intended for learning material. For the exam, you must review the details of the respective weeks in GitHub and the provided lecture notes in Moodle.* 
 
 ## Week 1: Logical Design and Database Concepts
 
