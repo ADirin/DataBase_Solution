@@ -23,7 +23,8 @@ For example, if you have an enumeration, a custom class, or a non-standard type 
 
 To implement a JPA Converter:
 
-    1. Define a class that implements the javax.persistence.AttributeConverter<X, Y> interface, where X is the entity attribute type and Y is the database column type.
+    1. Define a class that implements the `javax.persistence.AttributeConverter<X, Y>` interface, 
+    where X is the entity attribute type and Y is the database column type.
     2. Use annotations like @Converter and @Convert to apply the converter in the entity class.To implement a JPA Converter:
 
 
