@@ -11,7 +11,9 @@ Logical design is a crucial step in the database design process, where a concept
 - **Logical Design**: Focuses on defining the structure of data elements and their relationships, independent of physical implementation.
 - **Database Performance Simulation**: Involves testing different scenarios to assess how factors like indexing and query optimization impact performance.
 - **Indexing**: Enhances data retrieval speed by creating a data structure that allows for fast access to rows in a table.
+    - Indexing in MariaDB: Use CREATE INDEX index_name ON table_name(column_name); to create an index for faster data retrieval.
 - **Temporal Database**: Keeps track of historical data, making it suitable for time-sensitive applications like financial systems.
+    - Temporal in MariaDB: Use GENERATED columns and SYSTEM VERSIONING with CREATE TABLE to manage temporal data and track historical changes.    
 
 _Practical Example:_ A retail system where indexing is used to speed up product searches, and a temporal database is applied to track pricing changes over time.
 
