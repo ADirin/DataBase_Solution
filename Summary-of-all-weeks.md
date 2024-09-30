@@ -38,10 +38,16 @@ This week focuses on optimizing SQL queries and managing database transactions. 
 
 **Key Concepts:**
 - **Query Optimization in MariaDB**: Techniques to ensure SQL queries are executed efficiently.
-- **Query Refactoring**: Modifying queries for better performance without changing their functionality.
-- **Transactions**: Ensure a sequence of SQL operations is executed as a single unit of work, maintaining data integrity.
-- **Concurrency Management**: MariaDB uses locks and isolation levels to handle multiple transactions simultaneously without data conflicts.
+    - Use EXPLAIN SELECT to analyze query performance and optimize execution plans.
 
+- **Query Refactoring**: Modifying queries for better performance without changing their functionality.
+    - Query Refactoring in MariaDB: Simplify complex JOIN queries or replace subqueries with JOINs for better performance.
+
+
+- **Transactions**: Ensure a sequence of SQL operations is executed as a single unit of work, maintaining data integrity.
+    - Transactions in MariaDB: Use START TRANSACTION, COMMIT, and ROLLBACK to execute and control a sequence of operations as a single transaction.
+- **Concurrency Management**: MariaDB uses locks and isolation levels to handle multiple transactions simultaneously without data conflicts.
+    - Concurrency Management in MariaDB: Use LOCK TABLES and adjust TRANSACTION ISOLATION LEVEL to manage concurrent data access and ensure data consistency.
 _Practical Example:_ Optimizing an e-commerce system's checkout process to reduce transaction times and prevent data inconsistencies when multiple users are purchasing items.
 
 ```mermaid
