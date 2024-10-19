@@ -10,6 +10,8 @@ This repository is licensed under the [Metropolia] License. See the [LICENSE](./
 
 Welcome to the Database Solutions course! This intensive, 8-week program is designed to provide a comprehensive understanding of various aspects of database management and optimization. Throughout the course, you'll gain practical skills and theoretical knowledge necessary for effective database design and operation.
 
+![Database](/Images/join.gif)
+
 ## Course Structure
 
 Each lecture will consist of both theoretical concepts and practical examples. Students will have the opportunity to apply what they learn during the lecture through hands-on practice. Participation in these lectures is compulsory to ensure a thorough understanding of the material.
