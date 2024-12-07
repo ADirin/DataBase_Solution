@@ -612,7 +612,7 @@ UPDATE accounts SET balance = balance + 100 WHERE account_id = 2;
 ```
 By understanding and implementing these concepts, you can optimize query performance, manage transactions effectively, and handle concurrency in MariaDB to ensure your database operations are efficient and reliable.
 
-This single Markdown file can be used in a GitHub repository to provide comprehensive learning material on query optimization, transactions, and concurrency management in MariaDB.
+
 
 
 
