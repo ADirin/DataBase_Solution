@@ -38,34 +38,6 @@ Understanding database performance is critical for ensuring efficiency, scalabil
 ## What is Database Performance Simulation?  
 Database performance simulation involves creating a controlled environment to mimic the behavior of a database under different workloads and configurations. By simulating real-world scenarios, developers and administrators can analyze system performance, identify bottlenecks, and optimize configurations without impacting production environments.
 
-```mermaid
-flowchart LR
-    A[Database Table] --> B[Primary Key Index]
-    A[Database Table] --> C[Unique Index]
-    A[Database Table] --> D[Composite Index]
-    A[Database Table] --> E[Full-Text Index]
-    
-    B --> B1[Automatically Created with Primary Key]
-    B --> B2[Ensures Uniqueness of Rows]
-    B --> B3[Optimizes Queries Using Primary Key]
-    B --> B4[Improves Query Performance]
-    
-    C --> C1[Enforces Uniqueness on Specific Columns]
-    C --> C2[Optimizes Queries with Unique Constraints]
-    C --> C3[Improves Query Performance]
-    
-    D --> D1[Indexes Multiple Columns Together]
-    D --> D2[Optimizes Complex Queries with Multi-Column Conditions]
-    D --> D3[Improves Query Performance]
-    
-    E --> E1[Optimizes Search on Large Text Fields]
-    E --> E2[Improves Full-Text Search Queries]
-    E --> E3[Improves Query Performance]
-
-
-
-```
-
 ---
 
 ## Why Simulate Database Performance?  
@@ -394,6 +366,33 @@ ________________________________________________________________________________
 
 ## Introduction
 Indexing is a technique used in databases to improve the speed of data retrieval operations. An index is a data structure that allows for fast access to the rows in a table based on the values of one or more columns.
+```mermaid
+flowchart LR
+    A[Database Table] --> B[Primary Key Index]
+    A[Database Table] --> C[Unique Index]
+    A[Database Table] --> D[Composite Index]
+    A[Database Table] --> E[Full-Text Index]
+    
+    B --> B1[Automatically Created with Primary Key]
+    B --> B2[Ensures Uniqueness of Rows]
+    B --> B3[Optimizes Queries Using Primary Key]
+    B --> B4[Improves Query Performance]
+    
+    C --> C1[Enforces Uniqueness on Specific Columns]
+    C --> C2[Optimizes Queries with Unique Constraints]
+    C --> C3[Improves Query Performance]
+    
+    D --> D1[Indexes Multiple Columns Together]
+    D --> D2[Optimizes Complex Queries with Multi-Column Conditions]
+    D --> D3[Improves Query Performance]
+    
+    E --> E1[Optimizes Search on Large Text Fields]
+    E --> E2[Improves Full-Text Search Queries]
+    E --> E3[Improves Query Performance]
+
+
+
+```
 
 ## Why Use Indexes?
 - **Improve Query Performance:** Indexes significantly reduce the amount of data that needs to be scanned for query execution.
