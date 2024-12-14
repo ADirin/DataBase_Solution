@@ -1,9 +1,9 @@
-# Table of Content
+# Topics that we'll cover in Week 1
 1. [Database Performance Simulations](#Database-Performance-Simulations)
 2. [Database Normalization](#Database-Normalization)
 3. [Indexing in Databases](#Indexing-in-Databases)
 4. [Temporal Database Design](#Temporal-Database-Design)
-5. [Modeling History Tables in Database Schema](#Modeling-History-Tables and-Fields-in-a-Database-Schema)
+5. [Modeling-History-Tables](#Modeling-History-Tables)
 
 
 # Database-Performance-Simulations
@@ -762,7 +762,7 @@ System Time Precision: Ensure that your MariaDB installation supports sufficient
 
 ----------------------------------------------
 
-# Modeling-History-Tables and-Fields-in-a-Database-Schema
+# Modeling-History-Tables and Fields in a Database Schema
 
 Historical data modeling is essential for maintaining an audit trail, tracking data changes, and supporting temporal queries. Below is a detailed explanation of how to model history tables and fields in a database schema, including different approaches, considerations, and examples.
 
