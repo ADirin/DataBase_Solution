@@ -1,10 +1,10 @@
 # DataBase_Solution (Lecture Example for the first four weeks)
 
-# Database Learning Guide: Normalization, Temporal Databases, Indexing, Query Optimization, Concurrency, Transactions, Locks, Versioning, and Views
+## Database Learning Guide: Normalization, Temporal Databases, Indexing, Query Optimization, Concurrency, Transactions, Locks, Versioning, and Views
 
-## 1. Database Creation and Normalization
+### 1. Database Creation and Normalization
 
-### Step 1: Create a Database
+#### Step 1: Create a Database
 
 First, create a new database:
 
@@ -51,9 +51,9 @@ CREATE TABLE Projects (
 
 - The tables are already in 3NF because all non-key attributes are dependent only on the primary key.
 
-# 2. Temporal Database
+## 2. Temporal Database
 
-## Step 4: Implement a Temporal Table
+### Step 4: Implement a Temporal Table
 Temporal tables track changes to records over time. Let's extend the Employees table to a temporal table.
 
 ```sql
@@ -136,8 +136,8 @@ VALUES
 (5, 'Michael Johnson', 3000.00);
 
 ````
-# 3. Indexing
-## Step 6: Create Indexes for Performance
+## 3. Indexing
+### Step 6: Create Indexes for Performance
 Indexes improve query performance by allowing the database to find rows faster.
 
 ```sql
@@ -152,8 +152,8 @@ You can compare the execution time of queries with and without using indexes:
 EXPLAIN SELECT * FROM Employees WHERE EmployeeName = 'John Doe';
 
 ````
-# 4. Query Optimization
-# Step 8: Use Query Optimization Techniques
+## 4. Query Optimization
+## Step 8: Use Query Optimization Techniques
 Optimize queries by selecting only the necessary columns, avoiding SELECT *, and using joins effectively.
 
 Before Optimization:
@@ -169,7 +169,7 @@ JOIN Projects ON Employees.EmployeeID = Projects.EmployeeID
 WHERE Employees.Department = 'Sales';
 
 ````
-## Step 9: Use Explain Plans
+### Step 9: Use Explain Plans
 Use EXPLAIN to analyze and optimize query execution plans:
 ```sql
 EXPLAIN SELECT Employees.EmployeeID, Employees.EmployeeName, Projects.ProjectName
@@ -178,9 +178,9 @@ JOIN Projects ON Employees.EmployeeID = Projects.EmployeeID
 WHERE Employees.Department = 'Sales';
 ````
 
-# 5. Concurrency and Transactions
+## 5. Concurrency and Transactions
 
-## Step 10: Implement Transactions
+### Step 10: Implement Transactions
 Transactions ensure data integrity. Let’s perform a money transfer between two accounts.
 ```sql
 START TRANSACTION;
@@ -194,7 +194,7 @@ COMMIT;
 
 If any statement fails, the ROLLBACK command would revert all changes.
 
-## Step 11: Demonstrate Locks
+### Step 11: Demonstrate Locks
 Use locks to manage concurrent transactions.
 
 Example of a Shared Lock:
@@ -222,8 +222,8 @@ UPDATE Employees SET EmployeeName = 'John Doe Updated' WHERE EmployeeID = 1;
 
 COMMIT;
 ````
-# 6. Versioning
-## Step 12: Implement Multiversion Concurrency Control (MVCC)
+## 6. Versioning
+### Step 12: Implement Multiversion Concurrency Control (MVCC)
 Many databases like PostgreSQL implement MVCC, allowing multiple versions of a record to exist.
 
 ```sql
@@ -232,8 +232,8 @@ UPDATE Employees SET EmployeeName = 'Jane Doe' WHERE EmployeeID = 1;
 -- Version 1 is still visible to other transactions until this transaction commits
 COMMIT;
 ````
-# 7. Views
-## Step 13: Create and Use Views
+## 7. Views
+### Step 13: Create and Use Views
 Views can present data in a specific format or subset.
 
 ```sql
@@ -243,7 +243,7 @@ SELECT EmployeeID, EmployeeName FROM Employees WHERE Department = 'Sales';
 SELECT * FROM ActiveEmployees;
 
 ````
-# 8. Triggers
+## 8. Triggers
 Creating a Trigger
 Triggers automatically execute specified SQL code when certain events occur in the database, such as an INSERT, UPDATE, or DELETE operation.
 
@@ -281,7 +281,7 @@ OLD and NEW: These keywords allow access to the row's data before and after the 
 INSERT INTO AccountChanges: This records the change in the AccountChanges log table.
 
 
-# 9. Stored Procedures
+## 9. Stored Procedures
 Creating a Stored Procedure
 Stored procedures are reusable SQL code blocks that can be called with parameters. They are useful for encapsulating business logic in the database.
 
@@ -330,7 +330,7 @@ Calling the Stored Procedure
 CALL TransferMoney(1, 2, 100.00);
 
 ````
-# 10. Events
+## 10. Events
 Creating an Event
 Events are scheduled database tasks that run automatically at specified intervals. They are useful for automating routine tasks.
 
@@ -364,7 +364,7 @@ ALTER EVENT DailyInterestUpdate ENABLE;
 ALTER EVENT DailyInterestUpdate DISABLE;
 
 ````
-# 11. User Accounts and Security
+## 11. User Accounts and Security
 Creating User Accounts
 In MySQL/MariaDB, you can create user accounts and assign specific privileges to ensure security.
 
@@ -395,7 +395,7 @@ Use strong passwords and enforce password policies.
 Grant the minimum necessary privileges to each user based on their role.
 Regularly review and audit user privileges to ensure security.
 
-# 12. Backups
+## 12. Backups
 Creating a Backup
 Backups are essential for data protection and recovery in case of failures.
 
