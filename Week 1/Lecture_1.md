@@ -762,7 +762,7 @@ System Time Precision: Ensure that your MariaDB installation supports sufficient
 
 ----------------------------------------------
 
-# Modeling-History-Tables and Fields in a Database Schema
+# Modeling-History-Tables
 
 Historical data modeling is essential for maintaining an audit trail, tracking data changes, and supporting temporal queries. Below is a detailed explanation of how to model history tables and fields in a database schema, including different approaches, considerations, and examples.
 
