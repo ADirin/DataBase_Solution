@@ -142,180 +142,198 @@ This guide is structured to be clear, actionable, and easy to follow, making it 
 
 ---------------------------------------------------------------------------------------------------
 
+# Database Normalization  
 
-# Database-Normalization
+## Table of Contents  
+1. [Introduction](#introduction)  
+2. [Why Normalize?](#why-normalize)  
+3. [Normalization Forms](#normalization-forms)  
+   - [First Normal Form (1NF)](#first-normal-form-1nf)  
+   - [Second Normal Form (2NF)](#second-normal-form-2nf)  
+   - [Third Normal Form (3NF)](#third-normal-form-3nf)  
+   - [Boyce-Codd Normal Form (BCNF)](#boyce-codd-normal-form-bcnf)  
+4. [Examples](#examples)  
+5. [Conclusion](#conclusion)  
+6. [Further Reading](#further-reading)  
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Why Normalize?](#why-normalize)
-3. [Normalization Forms](#normalization-forms)
-    - [First Normal Form (1NF)](#first-normal-form-1nf)
-    - [Second Normal Form (2NF)](#second-normal-form-2nf)
-    - [Third Normal Form (3NF)](#third-normal-form-3nf)
-    - [Boyce-Codd Normal Form (BCNF)](#boyce-codd-normal-form-bcnf)
-4. [Examples](#examples)
-5. [Conclusion](#conclusion)
-6. [Further Reading](#further-reading)
+---
 
-## Introduction
+## Introduction  
 Database normalization is a process used to organize a database into tables and columns. The main aim is to reduce data redundancy and improve data integrity. The process involves dividing large tables into smaller ones and defining relationships between them.
 
-## Why Normalize?
-- **Eliminate Redundant Data:** Avoid storing the same data in multiple places.
-- **Ensure Data Dependencies Make Sense:** Store related data together.
-- **Improve Data Integrity:** Maintain accuracy and consistency of data over its entire lifecycle.
-- **Optimize Queries:** Simplify and speed up database queries.
+---
 
-## Normalization Forms
-Normalization is typically divided into several steps, each building on the previous one. These steps are referred to as normal forms. The most common normal forms are 1NF, 2NF, 3NF, and BCNF.
+## Why Normalize?  
+Database normalization helps to:  
+- **Eliminate Redundant Data:** Avoid storing the same data in multiple places.  
+- **Ensure Data Dependencies Make Sense:** Store related data together logically.  
+- **Improve Data Integrity:** Maintain accuracy and consistency of data throughout its lifecycle.  
+- **Optimize Queries:** Simplify and speed up database queries.  
 
-### First Normal Form (1NF)
-- **Definition:** A table is in 1NF if:
-  - It contains only atomic (indivisible) values.
-  - Each entry in a column is of the same data type.
-  - Each column contains only a single value.
-  - Each column has a unique name.
-  - The order in which data is stored does not matter.
+---
 
-**Example:**
+## Normalization Forms  
+Normalization is divided into multiple stages called "normal forms," with each step building upon the previous one. The most common normal forms are **1NF, 2NF, 3NF,** and **BCNF**.  
 
-| StudentID | Name       | Courses           |
-|-----------|------------|-------------------|
-| 1         | Alice      | Math, Physics     |
-| 2         | Bob        | Math, Chemistry   |
+### First Normal Form (1NF)  
+- **Definition:** A table is in 1NF if:  
+  - It contains only atomic (indivisible) values.  
+  - Each column has a single value and a unique name.  
+  - All data entries in a column are of the same type.  
+  - The order of data does not matter.  
 
-**Normalized to 1NF:**
+**Example:**  
 
-| StudentID | Name  | Course    |
-|-----------|-------|-----------|
-| 1         | Alice | Math      |
-| 1         | Alice | Physics   |
-| 2         | Bob   | Math      |
-| 2         | Bob   | Chemistry |
+| StudentID | Name       | Courses           |  
+|-----------|------------|-------------------|  
+| 1         | Alice      | Math, Physics     |  
+| 2         | Bob        | Math, Chemistry   |  
 
-### Second Normal Form (2NF)
-- **Definition:** A table is in 2NF if:
-  - It is in 1NF.
-  - It has no partial dependency; that is, no non-prime attribute is dependent on any proper subset of any candidate key of the table.
+**Normalized to 1NF:**  
 
-**Example:**
+| StudentID | Name  | Course    |  
+|-----------|-------|-----------|  
+| 1         | Alice | Math      |  
+| 1         | Alice | Physics   |  
+| 2         | Bob   | Math      |  
+| 2         | Bob   | Chemistry |  
 
-| StudentID | Course    | Instructor |
-|-----------|-----------|------------|
-| 1         | Math      | Prof. A    |
-| 1         | Physics   | Prof. B    |
-| 2         | Math      | Prof. A    |
-| 2         | Chemistry | Prof. C    |
+---
 
-**Normalized to 2NF:**
+### Second Normal Form (2NF)  
+- **Definition:** A table is in 2NF if:  
+  - It is already in 1NF.  
+  - It has no partial dependency (i.e., no non-prime attribute depends on part of a candidate key).  
 
-**Students Table:**
+**Example:**  
 
-| StudentID | Name  |
-|-----------|-------|
-| 1         | Alice |
-| 2         | Bob   |
+| StudentID | Course    | Instructor |  
+|-----------|-----------|------------|  
+| 1         | Math      | Prof. A    |  
+| 1         | Physics   | Prof. B    |  
+| 2         | Math      | Prof. A    |  
+| 2         | Chemistry | Prof. C    |  
 
-**Courses Table:**
+**Normalized to 2NF:**  
 
-| CourseID | Course    | Instructor |
-|----------|-----------|------------|
-| 101      | Math      | Prof. A    |
-| 102      | Physics   | Prof. B    |
-| 103      | Chemistry | Prof. C    |
+**Students Table:**  
 
-**Enrollment Table:**
+| StudentID | Name  |  
+|-----------|-------|  
+| 1         | Alice |  
+| 2         | Bob   |  
 
-| StudentID | CourseID |
-|-----------|----------|
-| 1         | 101      |
-| 1         | 102      |
-| 2         | 101      |
-| 2         | 103      |
+**Courses Table:**  
 
-### Third Normal Form (3NF)
-- **Definition:** A table is in 3NF if:
-  - It is in 2NF.
-  - It has no transitive dependency; that is, no non-prime attribute depends on another non-prime attribute.
+| CourseID | Course    | Instructor |  
+|----------|-----------|------------|  
+| 101      | Math      | Prof. A    |  
+| 102      | Physics   | Prof. B    |  
+| 103      | Chemistry | Prof. C    |  
 
-**Example:**
+**Enrollment Table:**  
 
-**Courses Table:**
+| StudentID | CourseID |  
+|-----------|----------|  
+| 1         | 101      |  
+| 1         | 102      |  
+| 2         | 101      |  
+| 2         | 103      |  
 
-| CourseID | Course    | InstructorID |
-|----------|-----------|--------------|
-| 101      | Math      | 1            |
-| 102      | Physics   | 2            |
-| 103      | Chemistry | 3            |
+---
 
-**Instructors Table:**
+### Third Normal Form (3NF)  
+- **Definition:** A table is in 3NF if:  
+  - It is already in 2NF.  
+  - It has no transitive dependencies (i.e., no non-prime attribute depends on another non-prime attribute).  
 
-| InstructorID | InstructorName |
-|--------------|----------------|
-| 1            | Prof. A        |
-| 2            | Prof. B        |
-| 3            | Prof. C        |
+**Example:**  
 
-### Boyce-Codd Normal Form (BCNF)
-- **Definition:** A table is in BCNF if:
-  - It is in 3NF.
-  - For every one of its non-trivial functional dependencies `X -> Y`, `X` is a super key.
+**Courses Table:**  
 
-## Examples
-### Example 1: Employee Database
+| CourseID | Course    | InstructorID |  
+|----------|-----------|--------------|  
+| 101      | Math      | 1            |  
+| 102      | Physics   | 2            |  
+| 103      | Chemistry | 3            |  
 
-**Unnormalized Table:**
+**Instructors Table:**  
 
-| EmpID | EmpName | Dept     | DeptHead |
-|-------|---------|----------|----------|
-| 1     | John    | IT       | Alice    |
-| 2     | Jane    | HR       | Bob      |
-| 3     | Jake    | IT       | Alice    |
+| InstructorID | InstructorName |  
+|--------------|----------------|  
+| 1            | Prof. A        |  
+| 2            | Prof. B        |  
+| 3            | Prof. C        |  
 
-**1NF:**
+---
 
-| EmpID | EmpName | Dept     | DeptHead |
-|-------|---------|----------|----------|
-| 1     | John    | IT       | Alice    |
-| 2     | Jane    | HR       | Bob      |
-| 3     | Jake    | IT       | Alice    |
+### Boyce-Codd Normal Form (BCNF)  
+- **Definition:** A table is in BCNF if:  
+  - It is already in 3NF.  
+  - For every non-trivial functional dependency `X -> Y`, `X` must be a superkey.  
 
-**2NF:**
+---
 
-**Employee Table:**
+## Examples  
 
-| EmpID | EmpName |
-|-------|---------|
-| 1     | John    |
-| 2     | Jane    |
-| 3     | Jake    |
+### Example 1: Employee Database  
 
-**Department Table:**
+**Unnormalized Table:**  
 
-| DeptID | DeptName | DeptHead |
-|--------|----------|----------|
-| 1      | IT       | Alice    |
-| 2      | HR       | Bob      |
+| EmpID | EmpName | Dept     | DeptHead |  
+|-------|---------|----------|----------|  
+| 1     | John    | IT       | Alice    |  
+| 2     | Jane    | HR       | Bob      |  
+| 3     | Jake    | IT       | Alice    |  
 
-**EmployeeDepartment Table:**
+**1NF:**  
 
-| EmpID | DeptID |
-|-------|--------|
-| 1     | 1      |
-| 2     | 2      |
-| 3     | 1      |
+| EmpID | EmpName | Dept     | DeptHead |  
+|-------|---------|----------|----------|  
+| 1     | John    | IT       | Alice    |  
+| 2     | Jane    | HR       | Bob      |  
+| 3     | Jake    | IT       | Alice    |  
 
-**3NF and BCNF:**
+**2NF:**  
 
-No changes are needed as there are no transitive dependencies.
+**Employee Table:**  
 
-## Conclusion
-Database normalization is crucial for designing efficient and reliable databases. By following the normalization forms, you can ensure your data is logically stored, reducing redundancy and improving data integrity.
+| EmpID | EmpName |  
+|-------|---------|  
+| 1     | John    |  
+| 2     | Jane    |  
+| 3     | Jake    |  
 
-## Further Reading
-- [Database Normalization Basics](https://www.studytonight.com/dbms/database-normalization.php)
-- [A Guide to Database Normalization](https://www.lifewire.com/database-normalization-1019735)
-- [Normalization in DBMS: 1NF, 2NF, 3NF and BCNF](https://www.guru99.com/database-normalization.html)
+**Department Table:**  
+
+| DeptID | DeptName | DeptHead |  
+|--------|----------|----------|  
+| 1      | IT       | Alice    |  
+| 2      | HR       | Bob      |  
+
+**EmployeeDepartment Table:**  
+
+| EmpID | DeptID |  
+|-------|--------|  
+| 1     | 1      |  
+| 2     | 2      |  
+| 3     | 1      |  
+
+**3NF and BCNF:**  
+No further changes are needed as there are no transitive dependencies.  
+
+---
+
+## Conclusion  
+Database normalization is crucial for designing efficient, logical, and reliable databases. By following normalization steps like 1NF, 2NF, 3NF, and BCNF, you can eliminate redundancy, improve data integrity, and optimize query performance.  
+
+---
+
+## Further Reading  
+- [Database Normalization Basics](https://www.studytonight.com/dbms/database-normalization.php)  
+- [A Guide to Database Normalization](https://www.lifewire.com/database-normalization-1019735)  
+- [Normalization in DBMS: 1NF, 2NF, 3NF and BCNF](https://www.guru99.com/database-normalization.html)  
+
 
 _____________________________________________________________________________________________
 
