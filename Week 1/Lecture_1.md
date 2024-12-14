@@ -1,8 +1,8 @@
 # Table of Content
-1. [Database Performance Simulations](#Database Performance Simulations)
+1. [Database Performance Simulations](#Database-Performance-Simulations)
 
 
-# Database Performance Simulations
+# Database-Performance-Simulations
 
 ## Introduction
 Database performance simulation is a critical aspect of understanding how different factors affect the efficiency and speed of database systems. This guide provides a comprehensive overview of concepts, tools, and methods used to simulate and analyze database performance.
