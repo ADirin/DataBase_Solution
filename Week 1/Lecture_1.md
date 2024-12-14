@@ -1,5 +1,9 @@
 # Table of Content
 1. [Database Performance Simulations](#Database-Performance-Simulations)
+2. [Database Normalization](#Database-Normalization)
+3. [Indexing in Databases](#Indexing-in-Databases)
+4. [Temporal Database Design](#Temporal-Database-Design)
+5. [Modeling History Tables in Database Schema](#Modeling-History-Tables and-Fields-in-a-Database-Schema)
 
 
 # Database-Performance-Simulations
@@ -94,8 +98,6 @@ Use graphs and charts to visualize performance data. Common tools include:
 - **Use Realistic Workloads:** Ensure workloads mimic actual usage patterns.
 - **Monitor System Health:** Keep track of overall system health during simulations.
 
-## Conclusion
-Database performance simulations are a powerful technique for optimizing and planning database systems. By understanding workloads, using appropriate tools, and analyzing results effectively, you can make informed decisions to enhance database performance.
 
 ## Further Reading
 - [Database Benchmarking Guide](https://www.example.com/database-benchmarking-guide)
@@ -106,7 +108,7 @@ Database performance simulations are a powerful technique for optimizing and pla
 ---------------------------------------------------------------------------------------------------
 
 
-# Database Normalization
+# Database-Normalization
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -283,7 +285,7 @@ Database normalization is crucial for designing efficient and reliable databases
 _____________________________________________________________________________________________
 
 
-# Indexing in Databases
+# Indexing-in-Databases
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -576,7 +578,7 @@ Oracle Indexing Techniques
 
 ---------------------------------------------------------------------------------------------
 
-# Temporal Database Design
+# Temporal-Database-Design
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -760,7 +762,7 @@ System Time Precision: Ensure that your MariaDB installation supports sufficient
 
 ----------------------------------------------
 
-# Modeling History Tables and Fields in a Database Schema
+# Modeling-History-Tables and-Fields-in-a-Database-Schema
 
 Historical data modeling is essential for maintaining an audit trail, tracking data changes, and supporting temporal queries. Below is a detailed explanation of how to model history tables and fields in a database schema, including different approaches, considerations, and examples.
 
