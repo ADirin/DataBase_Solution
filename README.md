@@ -1,3 +1,24 @@
+# The topics that this course covered
+```mermaid
+mindmap
+  root
+    Intro to Databases & Temporal Databases
+      Query Optimization
+        Locks & Versioning
+        Views
+      Concurrent Use: Transactions & Isolation Levels
+        Locks & Versioning
+      Triggers, Stored Procedures:
+         & Events
+    ORM with JPA: A Single Class
+        ORM with JPA: M:N & 1:1 Associations, Inheritance
+        ORM with JPA: JPQL & Criteria API
+        Converters, Events, Object-Level Concurrency Control
+    Final Exam
+    First & Second Resits
+
+```
+
 # DataBase_Solution (Lecture Example for the first four weeks)
 
 ## Database Learning Guide: Normalization, Temporal Databases, Indexing, Query Optimization, Concurrency, Transactions, Locks, Versioning, and Views
