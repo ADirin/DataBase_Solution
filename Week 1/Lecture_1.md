@@ -391,6 +391,27 @@ flowchart LR
     E --> E2[Improves Full-Text Search Queries]
     E --> E3[Improves Query Performance]
 
+    style B fill:#ffcc00,stroke:#000000,stroke-width:2px
+    style B1 fill:#ffcc00,stroke:#000000,stroke-width:2px
+    style B2 fill:#ffcc00,stroke:#000000,stroke-width:2px
+    style B3 fill:#ffcc00,stroke:#000000,stroke-width:2px
+    style B4 fill:#ffcc00,stroke:#000000,stroke-width:2px
+
+    style C fill:#66ccff,stroke:#000000,stroke-width:2px
+    style C1 fill:#66ccff,stroke:#000000,stroke-width:2px
+    style C2 fill:#66ccff,stroke:#000000,stroke-width:2px
+    style C3 fill:#66ccff,stroke:#000000,stroke-width:2px
+
+    style D fill:#99ff99,stroke:#000000,stroke-width:2px
+    style D1 fill:#99ff99,stroke:#000000,stroke-width:2px
+    style D2 fill:#99ff99,stroke:#000000,stroke-width:2px
+    style D3 fill:#99ff99,stroke:#000000,stroke-width:2px
+
+    style E fill:#ff6666,stroke:#000000,stroke-width:2px
+    style E1 fill:#ff6666,stroke:#000000,stroke-width:2px
+    style E2 fill:#ff6666,stroke:#000000,stroke-width:2px
+    style E3 fill:#ff6666,stroke:#000000,stroke-width:2px
+
 ```
 
 ## Why Use Indexes?
