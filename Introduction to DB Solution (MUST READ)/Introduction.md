@@ -17,39 +17,41 @@ Welcome to the Database Solutions course! This intensive, 8-week program is desi
 Each lecture will consist of both theoretical concepts and practical examples. Students will have the opportunity to apply what they learn during the lecture through hands-on practice. Participation in these lectures is compulsory to ensure a thorough understanding of the material.
 
 # Progression Figure: Student Competence Development
-```less
-Week 1:          [Intro to Databases & Temporal Databases](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%201)
+Week 1: [Intro to Databases & Temporal Databases](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%201)  
                  /\
                 /  \
                /    \
-Week 2:        [Query Optimization]         [Concurrent Use: Transactions & Isolation Levels](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%202)
+Week 2: [Query Optimization](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%202)  
+        [Concurrent Use: Transactions & Isolation Levels](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%202)  
                /\
               /  \
              /    \
-Week 3:      [Locks & Versioning]            [Views]
+Week 3: [Locks & Versioning](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%203)  
+        [Views](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%203)  
              /\
             /  \
            /    \
-Week 4:      [Triggers, Stored Procedures & Events]
+Week 4: [Triggers, Stored Procedures & Events](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%204)  
              /\
             /  \
            /    \
-Week 5:      [ORM with JPA: A Single Class]  [ORM with JPA: 1:M Associations]
+Week 5: [ORM with JPA: A Single Class](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%205)  
+        [ORM with JPA: 1:M Associations](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%205)  
            /\
           /  \
          /    \
-Week 6:    [ORM with JPA: M:N & 1:1 Associations, Inheritance]
+Week 6: [ORM with JPA: M:N & 1:1 Associations, Inheritance](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%206)  
          /\
         /  \
        /    \
-Week 7:  [ORM with JPA: JPQL & Criteria API]   [Converters, Events, Object-Level Concurrency Control]
+Week 7: [ORM with JPA: JPQL & Criteria API](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%207)  
+        [Converters, Events, Object-Level Concurrency Control](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%207)  
        /\
       /  \
      /    \
-Week 8:  [Final Exam]   [First & Second Resits]
+Week 8: [Final Exam](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%208)  
+        [First & Second Resits](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%208)  
 
-
-```
 
 # Description of the Figure
 
