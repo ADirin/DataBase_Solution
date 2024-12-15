@@ -2,7 +2,7 @@
 ```mermaid
 mindmap
   root
-    Intro to Databases & Temporal Databases [test](https://github.com/ADirin/DataBase_Solution/blob/main/Week%201/Lecture_1.md)
+    Intro to Databases & Temporal Databases (https://github.com/ADirin/DataBase_Solution/blob/main/Week%201/Lecture_1.md)
       Query Optimization
         Locks & Versioning
         Views
