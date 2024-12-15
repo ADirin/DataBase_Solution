@@ -368,6 +368,8 @@ ________________________________________________________________________________
 Indexing is a technique used in databases to improve the speed of data retrieval operations. An index is a data structure that allows for fast access to the rows in a table based on the values of one or more columns.
 ```mermaid
 flowchart LR
+%%{init: {'themeVariables': {'nodeSpacing': '20', 'edgeSpacing': '20', 'fontSize': '12'}}}%%
+flowchart LR
     A[Database Table] --> B[Primary Key Index]
     A[Database Table] --> C[Unique Index]
     A[Database Table] --> D[Composite Index]
@@ -389,7 +391,6 @@ flowchart LR
     E --> E1[Optimizes Search on Large Text Fields]
     E --> E2[Improves Full-Text Search Queries]
     E --> E3[Improves Query Performance]
-
 
 
 ```
