@@ -19,11 +19,11 @@ Each lecture will consist of both theoretical concepts and practical examples. S
 # Progression Figure: Student Competence Development
 ````less
 less
-Week 1:          [Intro to Databases & Temporal Databases] (https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%201)
+Week 1:          [Intro to Databases & Temporal Databases]
                  /\
                 /  \
                /    \
-Week 2:        [Query Optimization]         [Concurrent Use: Transactions & Isolation Levels](https://github.com/ADirin/OTP1_LectureMaterial/tree/main/Week%202)
+Week 2:        [Query Optimization]         [Concurrent Use: Transactions & Isolation Levels]
                /\
               /  \
              /    \
