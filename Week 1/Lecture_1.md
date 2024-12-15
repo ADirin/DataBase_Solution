@@ -5,6 +5,7 @@
 4. [Temporal Database Design](#Temporal-Database-Design)
 5. [Modeling-History-Tables](#Modeling-History-Tables)
 
+_______________________________________________________________________________________________________________________________________________________________________
 
 # Database Performance Simulations
 
