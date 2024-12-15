@@ -14,8 +14,7 @@ Understanding database performance is critical for ensuring efficiency, scalabil
 
    - ### Potential scenario:
       - An e-commerce platform is experiencing slow performance during peak shopping periods, such as Black Friday sales. The database is struggling to handle the large number of concurrent users,       high transaction volume, and complex queries for product searches, order processing, and inventory management.
-
-To identify the root cause and optimize the database, a performance simulation is conducted.
+      - To identify the root cause and optimize the database, a performance simulation is conducted.
 ---
 
 ## Table of Contents  
