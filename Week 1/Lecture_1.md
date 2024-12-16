@@ -266,7 +266,20 @@ Normalization is divided into multiple stages called "normal forms," with each s
 ---
 
 ## Examples  
+- In this example, an unnormalized table containing employee and department details is normalized
+   1. **1NF (First Normal Form):**
+      The table is already in 1NF since all columns have atomic (indivisible) values, and there are no repeating groups.
 
+   2. **2NF (Second Normal Form):**
+      The table is split into three smaller tables to remove partial dependencies:
+
+      - Employee Table: Stores employee details.
+      - Department Table: Stores department details.
+      - EmployeeDepartment Table: Establishes relationships between employees and departments.
+   3. **3NF and BCNF (Third Normal Form & Boyce-Codd Normal Form):*
+      No transitive dependencies exist, so no further changes are needed.
+
+This normalization reduces redundancy, ensures data integrity, and organizes the database efficiently.
 ### Example 1: Employee Database  
 
 **Unnormalized Table:**  
