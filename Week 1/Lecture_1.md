@@ -139,9 +139,7 @@ For additional learning and resources:
 
 ---
 
-This guide is structured to be clear, actionable, and easy to follow, making it an excellent resource for anyone looking to understand and improve database performance.  
-
----------------------------------------------------------------------------------------------------
+_______________________________________________________________________________________________________________________________________________________________________________
 
 # Database Normalization  
 
