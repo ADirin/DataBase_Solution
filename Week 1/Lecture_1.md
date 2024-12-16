@@ -132,7 +132,7 @@ Database performance simulation is an invaluable technique for optimizing databa
 
 ## Further Reading  
 For additional learning and resources:  
-- [Database Performance Optimization](https://www.youtube.com/watch?v=TukZd6LjeBc&list=PLBrWqg4Ny6vXQZqsJ8qRLGRH9osEa45sw) (Youtube clip)
+- [Database Performance Optimization](https://www.youtube.com/watch?v=TukZd6LjeBc&list=PLBrWqg4Ny6vXQZqsJ8qRLGRH9osEa45sw) (*Youtube clip*)
 - [Database Benchmarking Guide](https://www.example.com/database-benchmarking-guide)  
 - [Performance Tuning for SQL Databases](https://www.example.com/sql-performance-tuning)  
 - [Load Testing with Apache JMeter](https://www.example.com/jmeter-load-testing)  
