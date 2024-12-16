@@ -110,8 +110,8 @@ Key metrics to analyze include:
 Visualizing simulation results helps identify patterns and trends:  
 ![Grafana](/images/Grafana.JPG)
 - [**Grafana:**](https://grafana.com/) Create interactive dashboards for performance data.  
-- **Excel/Google Sheets:** Generate charts and graphs for simple analysis.  
-- **Tableau:** Advanced visualization for large datasets.  
+- [**Excel/Google Sheets:**](https://workspace.google.com/products/sheets/) Generate charts and graphs for simple analysis.  
+- [**Tableau:**](https://www.tableau.com/) Advanced visualization for large datasets.  
 
 ---
 
@@ -132,6 +132,7 @@ Database performance simulation is an invaluable technique for optimizing databa
 
 ## Further Reading  
 For additional learning and resources:  
+- [Database Performance Optimization](https://www.youtube.com/watch?v=TukZd6LjeBc&list=PLBrWqg4Ny6vXQZqsJ8qRLGRH9osEa45sw)
 - [Database Benchmarking Guide](https://www.example.com/database-benchmarking-guide)  
 - [Performance Tuning for SQL Databases](https://www.example.com/sql-performance-tuning)  
 - [Load Testing with Apache JMeter](https://www.example.com/jmeter-load-testing)  
