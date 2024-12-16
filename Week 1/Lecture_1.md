@@ -338,35 +338,12 @@ Database normalization is crucial for designing efficient, logical, and reliable
 - [A Guide to Database Normalization](https://www.lifewire.com/database-normalization-1019735)  
 - [Normalization in DBMS: 1NF, 2NF, 3NF and BCNF](https://www.guru99.com/database-normalization.html)  
 
-
+---
 _____________________________________________________________________________________________
 
 
 # Indexing-in-Databases
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Why Use Indexes?](#why-use-indexes)
-3. [Types of Indexes](#types-of-indexes)
-    - [Primary Index](#primary-index)
-    - [Secondary Index](#secondary-index)
-    - [Unique Index](#unique-index)
-    - [Bitmap Index](#bitmap-index)
-    - [Full-Text Index](#full-text-index)
-4. [Index Structures](#index-structures)
-    - [B-Tree Index](#b-tree-index)
-    - [Hash Index](#hash-index)
-    - [Bitmap Index Structure](#bitmap-index-structure)
-5. [Design Considerations](#design-considerations)
-    - [Choosing Columns to Index](#choosing-columns-to-index)
-    - [Index Maintenance](#index-maintenance)
-    - [Indexing and Performance](#indexing-and-performance)
-6. [Examples](#examples)
-7. [Best Practices](#best-practices)
-8. [Conclusion](#conclusion)
-9. [Further Reading](#further-reading)
-
----
 
 ## Introduction
 Indexing is a technique used in databases to improve the speed of data retrieval operations. An index is a data structure that allows for fast access to the rows in a table based on the values of one or more columns.
@@ -417,6 +394,29 @@ flowchart LR
     style E3 fill:#ff6666,stroke:#000000,stroke-width:2px
 
 ```
+
+## Table of Contents
+1. [Why Use Indexes?](#why-use-indexes)
+2. [Types of Indexes](#types-of-indexes)
+    - [Primary Index](#primary-index)
+    - [Secondary Index](#secondary-index)
+    - [Unique Index](#unique-index)
+    - [Bitmap Index](#bitmap-index)
+    - [Full-Text Index](#full-text-index)
+3. [Index Structures](#index-structures)
+    - [B-Tree Index](#b-tree-index)
+    - [Hash Index](#hash-index)
+    - [Bitmap Index Structure](#bitmap-index-structure)
+4. [Design Considerations](#design-considerations)
+    - [Choosing Columns to Index](#choosing-columns-to-index)
+    - [Index Maintenance](#index-maintenance)
+    - [Indexing and Performance](#indexing-and-performance)
+5. [Examples](#examples)
+6. [Best Practices](#best-practices)
+7. [Conclusion](#conclusion)
+8. [Further Reading](#further-reading)
+
+---
 
 ## Why Use Indexes?
 - **Improve Query Performance:** Indexes significantly reduce the amount of data that needs to be scanned for query execution.
