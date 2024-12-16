@@ -108,7 +108,7 @@ Key metrics to analyze include:
 
 ### Visualization Techniques  
 Visualizing simulation results helps identify patterns and trends:  
->[Grafana](/images/Grafana.JPG)
+[Grafana](/images/Grafana.JPG)
 - [**Grafana:**](https://grafana.com/) Create interactive dashboards for performance data.  
 - **Excel/Google Sheets:** Generate charts and graphs for simple analysis.  
 - **Tableau:** Advanced visualization for large datasets.  
