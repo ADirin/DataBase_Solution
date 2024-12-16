@@ -70,8 +70,8 @@ A **bottleneck** is any component (e.g., CPU, disk, or network) that restricts d
 
 ### Simulation Tools  
 The following tools are commonly used for database performance simulations:  
-- **Apache JMeter:** An open-source tool for load testing and performance measurement.  
-- **Sysbench:** A scriptable, multi-threaded benchmarking tool for evaluating database performance.  
+- [**Apache JMeter:**](https://jmeter.apache.org/) An open-source tool for load testing and performance measurement.  
+- [**Sysbench:**](https://manpages.ubuntu.com/manpages/trusty/man1/sysbench.1.html) A scriptable, multi-threaded benchmarking tool for evaluating database performance.  
 - **HammerDB:** A load testing and benchmarking tool specifically designed for databases.  
 
 ### Test Databases  
