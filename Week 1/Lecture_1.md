@@ -607,28 +607,27 @@ Indexing is a powerful tool for improving database performance. Understanding th
 ------------------------------------------------------------------------------------
 
 # Temporal-Database-Design
+## Introduction
+A **temporal database** is a type of database designed to store and manage time-sensitive data, allowing it to track changes over time. These databases are crucial for applications that require maintaining a historical record of data states, enabling businesses and organizations to make informed decisions based on both current and past data.
 
 ## Table of Contents
-1. [Introduction](#introduction)
-2. [Why Temporal Databases?](#why-temporal-databases)
-3. [Types of Temporal Data](#types-of-temporal-data)
+1. [Why Temporal Databases?](#why-temporal-databases)
+2. [Types of Temporal Data](#types-of-temporal-data)
     - [Valid Time](#valid-time)
     - [Transaction Time](#transaction-time)
     - [Decision Time](#decision-time)
-4. [Temporal Data Models](#temporal-data-models)
+3. [Temporal Data Models](#temporal-data-models)
     - [Snapshot Model](#snapshot-model)
     - [Interval Model](#interval-model)
-5. [Design Considerations](#design-considerations)
+4. [Design Considerations](#design-considerations)
     - [Time Dimensions](#time-dimensions)
     - [Primary and Foreign Keys](#primary-and-foreign-keys)
     - [Normalization](#normalization)
-6. [Examples](#examples)
-7. [Best Practices](#best-practices)
-8. [Conclusion](#conclusion)
-9. [Further Reading](#further-reading)
+5. [Examples](#examples)
+6. [Best Practices](#best-practices)
+7. [Conclusion](#conclusion)
+8. [Further Reading](#further-reading)
 
-## Introduction
-A **temporal database** is a type of database designed to store and manage time-sensitive data, allowing it to track changes over time. These databases are crucial for applications that require maintaining a historical record of data states, enabling businesses and organizations to make informed decisions based on both current and past data.
 
 ## Why Temporal Databases?
 Temporal databases are necessary for several reasons:
