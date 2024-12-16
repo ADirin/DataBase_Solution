@@ -333,6 +333,7 @@ Database normalization is crucial for designing efficient, logical, and reliable
 ---
 
 ## Further Reading  
+- [Database Normalization](https://www.youtube.com/watch?v=27VeGN1h0Pw) (*Youtube*)
 - [Database Normalization Basics](https://www.studytonight.com/dbms/database-normalization.php)  
 - [A Guide to Database Normalization](https://www.lifewire.com/database-normalization-1019735)  
 - [Normalization in DBMS: 1NF, 2NF, 3NF and BCNF](https://www.guru99.com/database-normalization.html)  
