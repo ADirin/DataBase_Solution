@@ -138,23 +138,22 @@ For additional learning and resources:
 _______________________________________________________________________________________________________________________________________________________________________________
 
 # Database Normalization  
+## Introduction  
+Database normalization is a process used to organize a database into tables and columns. The main aim is to reduce data redundancy and improve data integrity. The process involves dividing large tables into smaller ones and defining relationships between them.
 
 ## Table of Contents  
-1. [Introduction](#introduction)  
-2. [Why Normalize?](#why-normalize)  
-3. [Normalization Forms](#normalization-forms)  
+1. [Why Normalize?](#why-normalize)  
+2. [Normalization Forms](#normalization-forms)  
    - [First Normal Form (1NF)](#first-normal-form-1nf)  
    - [Second Normal Form (2NF)](#second-normal-form-2nf)  
    - [Third Normal Form (3NF)](#third-normal-form-3nf)  
    - [Boyce-Codd Normal Form (BCNF)](#boyce-codd-normal-form-bcnf)  
-4. [Examples](#examples)  
-5. [Conclusion](#conclusion)  
-6. [Further Reading](#further-reading)  
+3. [Examples](#examples)  
+4. [Conclusion](#conclusion)  
+5. [Further Reading](#further-reading)  
 
 ---
 
-## Introduction  
-Database normalization is a process used to organize a database into tables and columns. The main aim is to reduce data redundancy and improve data integrity. The process involves dividing large tables into smaller ones and defining relationships between them.
 
 ## Why Normalize?  
 Database normalization helps to:  
