@@ -47,7 +47,6 @@ Simulating database performance is essential for:
 - **Resource Optimization:** Ensure efficient use of CPU, memory, and I/O resources.  
 - **Performance Tuning:** Achieve faster query execution and improved overall responsiveness.  
 
----
 
 ## Key Concepts  
 
@@ -64,7 +63,6 @@ Performance metrics provide quantifiable insights into database behavior:
 ### Bottlenecks  
 A **bottleneck** is any component (e.g., CPU, disk, or network) that restricts database performance. Identifying and mitigating bottlenecks is a key focus of performance simulations.
 
----
 
 ## Tools and Environments  
 
@@ -79,7 +77,6 @@ Use industry-standard benchmarks to simulate real workloads:
 - [**TPC-C:**](https://www.tpc.org/tpcc/) Measures OLTP (Online Transaction Processing) performance.  
 - [**TPC-H:**](https://www.tpc.org/tpch/) Simulates decision-support and data warehousing workloads.  
 
----
 
 ## Setting Up a Simulation  
 
@@ -96,7 +93,6 @@ Use industry-standard benchmarks to simulate real workloads:
 - **Hardware Upgrades:** Measure performance improvements from adding CPUs, RAM, or faster storage.  
 - **Scaling Workloads:** Simulate increasing user loads to plan for horizontal or vertical scaling.  
 
----
 
 ## Analyzing Simulation Results  
 
@@ -113,7 +109,7 @@ Visualizing simulation results helps identify patterns and trends:
 - [**Excel/Google Sheets:**](https://workspace.google.com/products/sheets/) Generate charts and graphs for simple analysis.  
 - [**Tableau:**](https://www.tableau.com/) Advanced visualization for large datasets.  
 
----
+
 
 ## Best Practices  
 To ensure reliable simulations and actionable results:  
@@ -123,12 +119,12 @@ To ensure reliable simulations and actionable results:
 4. **Monitor System Health:** Keep an eye on CPU, memory, and disk usage during tests.  
 5. **Document Results:** Maintain a clear record of test configurations, results, and findings.  
 
----
+
 
 ## Conclusion  
 Database performance simulation is an invaluable technique for optimizing database systems, planning for scalability, and diagnosing performance issues. By leveraging tools, benchmarks, and best practices, you can gain deep insights into database behavior and make data-driven decisions to improve efficiency.  
 
----
+
 
 ## Further Reading  
 For additional learning and resources:  
@@ -160,16 +156,12 @@ ________________________________________________________________________________
 ## Introduction  
 Database normalization is a process used to organize a database into tables and columns. The main aim is to reduce data redundancy and improve data integrity. The process involves dividing large tables into smaller ones and defining relationships between them.
 
----
-
 ## Why Normalize?  
 Database normalization helps to:  
 - **Eliminate Redundant Data:** Avoid storing the same data in multiple places.  
 - **Ensure Data Dependencies Make Sense:** Store related data together logically.  
 - **Improve Data Integrity:** Maintain accuracy and consistency of data throughout its lifecycle.  
 - **Optimize Queries:** Simplify and speed up database queries.  
-
----
 
 ## Normalization Forms  
 Normalization is divided into multiple stages called "normal forms," with each step building upon the previous one. The most common normal forms are **1NF, 2NF, 3NF,** and **BCNF**.  
