@@ -76,8 +76,8 @@ The following tools are commonly used for database performance simulations:
 
 ### Test Databases  
 Use industry-standard benchmarks to simulate real workloads:  
-- **TPC-C:** Measures OLTP (Online Transaction Processing) performance.  
-- **TPC-H:** Simulates decision-support and data warehousing workloads.  
+- [**TPC-C:**](https://www.tpc.org/tpcc/) Measures OLTP (Online Transaction Processing) performance.  
+- [**TPC-H:**](https://www.tpc.org/tpch/) Simulates decision-support and data warehousing workloads.  
 
 ---
 
