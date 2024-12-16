@@ -85,7 +85,7 @@ Use industry-standard benchmarks to simulate real workloads:
 
 ### Step-by-Step Guide  
 1. **Define Objectives:** Determine what you want to analyze (e.g., bottlenecks, configuration changes).  
-2. **Select Tools:** Choose appropriate tools for the simulation (e.g., JMeter, Sysbench).  
+2. **Select Tools:** Choose appropriate tools for the simulation (e.g., [JMeter](https://jmeter.apache.org/), [Sysbench](https://manpages.ubuntu.com/manpages/trusty/man1/sysbench.1.html)).  
 3. **Prepare Environment:** Set up a controlled test environment to isolate variables.  
 4. **Create Workloads:** Design realistic workloads that simulate actual database usage.  
 5. **Run Simulations:** Execute the workloads and collect performance metrics.  
