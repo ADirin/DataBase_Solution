@@ -573,6 +573,21 @@ CREATE INDEX idx_product_id ON products (product_id);
 - Slower lookups for unindexed records.
 - Complex management logic.
 
+
+### **Key Differences on Dense and Thin index**
+
+| Feature           | Dense Index                           | Thin Index (Sparse Index)                |
+|--------------------|---------------------------------------|------------------------------------------|
+| **Entries**        | One entry for each record.           | One entry for each block or page.        |
+| **Size**           | Larger in size.                      | Smaller in size.                         |
+| **Storage Cost**   | Higher due to more index entries.    | Lower due to fewer index entries.        |
+| **Lookup Speed**   | Faster as every record is indexed.   | Slower as some sequential search may be needed. |
+| **Use Case**       | Small tables or unique keys.         | Large tables or non-unique keys.         |
+
+
+- **Dense Index:** Every record is indexed, providing faster lookups but requiring more storage.
+- **Thin Index:** Indexes only the first record of each block, reducing storage requirements but slightly slowing lookups.
+
 ---
 
 ## Index Structures
