@@ -471,14 +471,15 @@ flowchart LR
 | 4          | Diana        | F      | 29  | Bronze     |
 
 - **Example:** Bitmap index on the `Gender` column in a `Customers` table.
-
-### Full-Text Index
-- **Definition:** An index that allows for efficient searching of text within large text columns.
-- **Example:** Full-text index on the `Description` column in a `Products` table.
  ````sel
  SELECT * FROM Customers WHERE Gender = 'F';
 
  ````
+
+### Full-Text Index
+- **Definition:** An index that allows for efficient searching of text within large text columns.
+- **Example:** Full-text index on the `Description` column in a `Products` table.
+
 
 ### Example: Composite Index
 
