@@ -713,6 +713,16 @@ Temporal databases are necessary for several reasons:
 - **Definition**: The time period during which a fact is true in the real world, i.e., the fact's validity.
 - **Example**: A product's price might be valid from 2023-01-01 to 2023-12-31, representing its real-world validity during that period.
 
+A product's price might be valid from `2023-01-01` to `2023-12-31`, representing its real-world validity during that period.
+
+| ProductID | ProductName | Price | ValidFrom  | ValidTo    |
+|-----------|-------------|-------|------------|------------|
+| P001      | Laptop      | 1000  | 2023-01-01 | 2023-12-31 |
+| P002      | Smartphone  | 800   | 2023-01-01 | 2023-12-31 |
+
+In this example, the price of the **Laptop** is valid throughout the year 2023, from January 1st to December 31st.
+
+
 ### Transaction Time
 - **Definition**: The time period during which a fact is recorded in the database.
 - **Example**: A record of a product's price change might be stored in the database at 2023-06-01, reflecting when it was actually recorded.
@@ -720,6 +730,16 @@ Temporal databases are necessary for several reasons:
 ### Decision Time
 - **Definition**: The point in time when a fact is known or a decision is made about it.
 - **Example**: A manager's decision to approve an employee's salary raise might be recorded on 2023-07-01, which reflects when the decision was made.
+
+A record of a product's price change might be stored in the database at `2023-06-01`, reflecting when it was actually recorded.
+
+| ProductID | ProductName | Price | TransactionTime |
+|-----------|-------------|-------|-----------------|
+| P001      | Laptop      | 900   | 2023-06-01      |
+| P002      | Smartphone  | 750   | 2023-06-01      |
+
+In this example, the price changes for the **Laptop** and **Smartphone** were recorded in the database on June 1st, 2023.
+
 
 ## Temporal Data Models
 
