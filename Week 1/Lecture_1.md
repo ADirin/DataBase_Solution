@@ -428,24 +428,69 @@ flowchart LR
 
 ### Primary Index
 - **Definition:** An index on a set of fields that includes the unique primary key.
+| EmployeeID | EmployeeName | Department | Salary  |
+|------------|--------------|------------|---------|
+| 1          | Alice        | HR         | 50,000  |
+| 2          | Bob          | IT         | 70,000  |
+| 3          | Charlie      | Finance    | 60,000  |
 - **Example:** Index on the `EmployeeID` column in an `Employees` table.
 
 ### Secondary Index
 - **Definition:** An index that is not a primary index and can be on any field or combination of fields.
+
+| EmployeeID | FirstName | LastName   | Department | Salary  |
+|------------|-----------|------------|------------|---------|
+| 1          | Alice     | Johnson    | HR         | 50,000  |
+| 2          | Bob       | Smith      | IT         | 70,000  |
+| 3          | Charlie   | Brown      | Finance    | 60,000  |
+| 4          | Diana     | Johnson    | IT         | 75,000  |
+
 - **Example:** Index on the `LastName` column in an `Employees` table.
 
 ### Unique Index
 - **Definition:** An index that ensures all the values in the indexed column are unique.
+
+| UserID | UserName   | Email                | RegistrationDate |
+|--------|------------|----------------------|------------------|
+| 1      | Alice      | alice@example.com    | 2024-01-01       |
+| 2      | Bob        | bob@example.com      | 2024-01-02       |
+| 3      | Charlie    | charlie@example.com  | 2024-01-03       |
+
 - **Example:** Unique index on the `Email` column in a `Users` table.
 
 ### Bitmap Index
 - **Definition:** An index that uses bitmaps and is efficient for columns with a low cardinality.
+| CustomerID | CustomerName | Gender | Age | Membership |
+|------------|--------------|--------|-----|------------|
+| 1          | Alice        | F      | 30  | Gold       |
+| 2          | Bob          | M      | 45  | Silver     |
+| 3          | Charlie      | M      | 38  | Gold       |
+| 4          | Diana        | F      | 29  | Bronze     |
 - **Example:** Bitmap index on the `Gender` column in a `Customers` table.
 
 ### Full-Text Index
 - **Definition:** An index that allows for efficient searching of text within large text columns.
 - **Example:** Full-text index on the `Description` column in a `Products` table.
+ ````sel
+ SELECT * FROM Customers WHERE Gender = 'F';
 
+ ````
+
+### Example: Composite Index
+
+Consider a table **Orders**:
+
+| OrderID | CustomerID | OrderDate   | TotalAmount |
+|---------|------------|-------------|-------------|
+| 1       | C001       | 2024-12-17  | 100.00      |
+| 2       | C002       | 2024-12-16  | 200.00      |
+| 3       | C001       | 2024-12-15  | 150.00      |
+
+If a **composite index** is created on `(CustomerID, OrderDate)`, it helps optimize queries like:
+
+```sql
+SELECT * FROM Orders WHERE CustomerID = 'C001' AND OrderDate = '2024-12-17';
+```
 ---
 
 ## Dense Indexing
