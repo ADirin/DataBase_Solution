@@ -462,12 +462,14 @@ flowchart LR
 
 ### Bitmap Index
 - **Definition:** An index that uses bitmaps and is efficient for columns with a low cardinality.
+  
 | CustomerID | CustomerName | Gender | Age | Membership |
 |------------|--------------|--------|-----|------------|
 | 1          | Alice        | F      | 30  | Gold       |
 | 2          | Bob          | M      | 45  | Silver     |
 | 3          | Charlie      | M      | 38  | Gold       |
 | 4          | Diana        | F      | 29  | Bronze     |
+
 - **Example:** Bitmap index on the `Gender` column in a `Customers` table.
 
 ### Full-Text Index
