@@ -727,10 +727,6 @@ In this example, the price of the **Laptop** is valid throughout the year 2023, 
 - **Definition**: The time period during which a fact is recorded in the database.
 - **Example**: A record of a product's price change might be stored in the database at 2023-06-01, reflecting when it was actually recorded.
 
-### Decision Time
-- **Definition**: The point in time when a fact is known or a decision is made about it.
-- **Example**: A manager's decision to approve an employee's salary raise might be recorded on 2023-07-01, which reflects when the decision was made.
-
 A record of a product's price change might be stored in the database at `2023-06-01`, reflecting when it was actually recorded.
 
 | ProductID | ProductName | Price | TransactionTime |
@@ -739,6 +735,20 @@ A record of a product's price change might be stored in the database at `2023-06
 | P002      | Smartphone  | 750   | 2023-06-01      |
 
 In this example, the price changes for the **Laptop** and **Smartphone** were recorded in the database on June 1st, 2023.
+
+
+### Decision Time
+- **Definition**: The point in time when a fact is known or a decision is made about it.
+- **Example**: A manager's decision to approve an employee's salary raise might be recorded on 2023-07-01, which reflects when the decision was made.
+
+A manager's decision to approve an employee's salary raise might be recorded on `2023-07-01`, reflecting when the decision was made.
+
+| EmployeeID | EmployeeName | Salary | DecisionTime |
+|------------|--------------|--------|--------------|
+| 101        | Alice        | 55000  | 2023-07-01   |
+| 102        | Bob          | 60000  | 2023-07-01   |
+
+In this example, the salary raise for **Alice** and **Bob** was approved and recorded on July 1st, 2023, which is the **Decision Time**.
 
 
 ## Temporal Data Models
@@ -929,11 +939,6 @@ Querying Historical Data: Ensure your schema supports efficient querying of hist
 
 
 
-# 4. Conclusion
-Modeling history tables and fields in your schema is a powerful way to track data changes and maintain a comprehensive audit trail. By carefully designing your schema and implementing the right strategies for managing historical data, you can ensure that your application can handle temporal queries effectively, maintain data integrity, and support long-term data analysis.
-
-
-
 ## Best Practices
 - **Use Standardized Date Formats:** Ensure consistency in date formats.
 - **Index Temporal Columns:** Improve query performance by indexing time-related columns.
@@ -944,6 +949,7 @@ Modeling history tables and fields in your schema is a powerful way to track dat
 Temporal database design is essential for applications requiring historical data management and audit trails. By carefully designing the database to handle temporal data, you can ensure data integrity, optimize performance, and facilitate complex queries involving time-based data.
 
 ## Further Reading
+- [What are the Temporal Databas](https://www.timeconsult.com/TemporalData/TemporalDB.html)
 - [Temporal Data & the Relational Model](https://www.oreilly.com/library/view/temporal-data-and/9781558608559/)
 - [Temporal Database Management](https://www.researchgate.net/publication/319702238_Temporal_Database_Management)
 - [Temporal Database Concepts](https://en.wikipedia.org/wiki/Temporal_database)
