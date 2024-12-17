@@ -593,6 +593,8 @@ CREATE INDEX idx_product_id ON products (product_id);
 ## Index Structures
 
 ### B-Tree Index
+
+![B-Tree](/images/B_Tree.gif)
 - **Definition:** A balanced tree data structure that maintains sorted data for efficient insertion, deletion, and search operations.
 - **Usage:** Best for range queries.
 
