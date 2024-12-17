@@ -666,6 +666,7 @@ Indexing is a powerful tool for improving database performance. Understanding th
 
 ## Further Reading
 - [Database Indexing for Dumb Developers](https://www.youtube.com/watch?v=lYh6LrSIDvY) (*Youtube  clip*)
+- [Buildong a B-Tree in JavaScript](https://levelup.gitconnected.com/building-a-b-tree-in-javascript-4482dee083cb)
 - [Database Indexing Basics](https://www.studytonight.com/dbms/database-indexing)
 - [Index Types in SQL Server](https://www.sqlservertutorial.net/sql-server-indexes/)
 - [Oracle Indexing Techniques](https://oracle-base.com/articles/misc/indexes-in-oracle)
