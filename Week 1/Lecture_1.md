@@ -428,11 +428,13 @@ flowchart LR
 
 ### Primary Index
 - **Definition:** An index on a set of fields that includes the unique primary key.
+  
 | EmployeeID | EmployeeName | Department | Salary  |
 |------------|--------------|------------|---------|
 | 1          | Alice        | HR         | 50,000  |
 | 2          | Bob          | IT         | 70,000  |
 | 3          | Charlie      | Finance    | 60,000  |
+
 - **Example:** Index on the `EmployeeID` column in an `Employees` table.
 
 ### Secondary Index
