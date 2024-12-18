@@ -522,6 +522,12 @@ In this example:
 - If both updates succeed (`IF @@ERROR = 0` checks for errors), the transaction is committed, making the changes permanent.
 - If an error occurs, the transaction is rolled back, undoing all changes.
 
+# Resources
+1. [SQL Server Transaction](https://www.javatpoint.com/sql-server-transaction)
+2. [Database Transaction](https://www.youtube.com/watch?v=wHUOeXbZCYA&t=30s) (YouTube)
+
+-----------------
+
 # Concurrency Management
 Concurrency management in databases refers to the techniques and mechanisms used to control the simultaneous access and modification of data by multiple transactions in a multi-user environment. The goal of concurrency management is to ensure data consistency, integrity, and isolation while maximizing performance and allowing as many concurrent operations as possible.
 MariaDB uses locking mechanisms and isolation levels to manage concurrency.
