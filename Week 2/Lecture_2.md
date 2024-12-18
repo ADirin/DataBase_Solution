@@ -13,7 +13,7 @@ Query optimization in MariaDB focuses on enhancing the performance of SQL querie
 
 Query optimization is a critical process in database management systems (DBMS) that aims to determine the most efficient way to execute a query. The goal is to minimize resource usage, such as CPU time, memory, and disk I/O, to retrieve the desired data as quickly and efficiently as possible. The optimizer considers multiple query execution plans and chooses the one with the lowest estimated cost.
 
-![/images/QueryOpt.jpg]
+![Query Opt](/images/QueryOpt.jpg)
 
 ## Example Scenario: Optimizing a Query
 
