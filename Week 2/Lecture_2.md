@@ -15,7 +15,7 @@ Query optimization is a critical process in database management systems (DBMS) t
 
 ![Query Opt](/images/QueryOpt.JPG)
 
-## Example Scenario: Optimizing a Query
+## Example Scenario 1: Optimizing a Query
 
 Let's take a simple scenario where we want to retrieve specific data from a university database with three tables: `Students`, `Courses`, and `Enrollments`.
 
@@ -95,18 +95,7 @@ StudentID	StudentName	DateOfBirth	Major	CourseID	CourseName
 
 ```
 
-
-### Step 2: Understand the Execution Plan
-
-To optimize the query, the DBMS evaluates different execution plans. Let's look at a potential execution plan:
-
-1. **Scan or Index Scan on `Courses`**: The DBMS starts by finding the `CourseID` for `'Math'`.
-2. **Join `Enrollments` with `Courses`**: Using the `CourseID` found in step 1, the DBMS identifies which students are enrolled in `'Math'`.
-3. **Join `Students` with `Enrollments`**: The DBMS matches the `StudentID` from `Enrollments` to the `Students` table.
-4. **Selection on `Age`**: The DBMS filters out students who are not older than 20.
-5. **Projection**: Finally, the DBMS returns the names of the students.
-
-### Step 3: Query Optimization
+### Step 2: Query Optimization
 
 In this final step, the DBMS may apply several optimization strategies, such as:
 
@@ -117,20 +106,43 @@ In this final step, the DBMS may apply several optimization strategies, such as:
 
 By applying these optimizations, the DBMS aims to execute the query with minimal resource consumption and maximum speed.
 
-### Example Scenario: Optimizing a Query
+### Example Scenario 2: Optimizing a Query
 
 Let's take a simple scenario where we want to retrieve specific data from a university database with three tables: `Students`, `Courses`, and `Enrollments`.
 
 
+1. **Student**:
+    ````sql
+    | StudentID | StudentName| Age |
+    |-----------|------------|-----|
+    | 1         | Alice      | 20  | 
+    | 2         | Amir       | 22  | 
+    | 3         | Carol      | 21  |
 
+    ````
 
+2. **Courses**:
+    ```sql
+    | CourseID | CourseName   |
+    |----------|--------------|
+    | 101      | Biology      |
+    | 102      | Math         |
+    | 103      | Physics      |
+    ```
 
-Tables:
-Students:
+4. **Enrollments**:
+    ```sql
+    | StudentID | CourseID |
+    |-----------|----------|
+    | 1         | 101      |
+    | 1         | 102      |
+    | 2         | 102      |
+    | 3         | 103      |
+    ```
 
+## Optimization Techniques
 
-
-### Indexing
+### 1. Indexing
 
 Indexes improve query performance by allowing the database to find rows more quickly.
 
@@ -142,7 +154,10 @@ CREATE INDEX idx_customer_name ON customers (name);
 EXPLAIN SELECT * FROM customers WHERE name = 'John Doe';
 
 ```
-## Query Refactoring
+Indexes on *Students.StudentID* and *Enrollments.CourseID* would speed up join operations in this scenario.
+
+
+### 2. Query Refactoring
 Query refactoring involves modifying a database query to improve its performance, maintainability, readability, or to adapt to changes in the database schema, without changing the query's output or functionality. This process is essential in database optimization and management, especially in complex systems where performance and scalability are critical.
 
 ```sql
@@ -152,7 +167,7 @@ SELECT * FROM orders WHERE YEAR(order_date) = 2023;
 -- Optimized query
 SELECT * FROM orders WHERE order_date >= '2023-01-01' AND order_date < '2024-01-01';
 ```
-or
+or Example: Using Joins Instead of Subqueries
 
 ```sql
 -- Original query using subquery
@@ -166,7 +181,7 @@ WHERE d.name = 'HR';
 ```
 
 
-## Use of Appropriate SQL Functions
+### 3. Use of Appropriate SQL Functions
 Defining an appropriate SQL function involves creating a reusable block of code that performs a specific task or calculation in your database. 
 SQL functions can be categorized into scalar functions (which return a single value) and table-valued functions (which return a table). 
 Functions are often used for encapsulating logic that you want to reuse across multiple queries.
@@ -181,7 +196,7 @@ SELECT * FROM orders WHERE SUBSTRING(customer_id, 1, 3) = 'ABC';
 SELECT * FROM orders WHERE customer_id LIKE 'ABC%';
 
 ```
-## Avoiding SELECT *
+### 4. Avoiding SELECT *
 Avoiding the SELECT statement in SQL refer to situations where you need to optimize performance, avoid redundant data retrieval, or adhere to certain database constraints. 
 Select only the columns you need.
 
@@ -226,7 +241,7 @@ Let's explore these operations in detail:
      | 2         | Bob     | 22  | Math     |
      | 3         | Carol   | 21  | Physics  |
      ```
-
+  
      **Projection**: If you only want to see the `Name` and `Major` of each student, you project those columns:
 
      ```sql
