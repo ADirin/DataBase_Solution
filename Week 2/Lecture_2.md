@@ -27,7 +27,7 @@ Let's take a simple scenario where we want to retrieve specific data from a univ
     | StudentID | StudentName    | DateOfBirth | Major    |
     |-----------|---------|-----|----------|
     | 1         | Alice   | 20  | Biology  |
-    | 2         | Amir   | 22  | Math     |
+    | 2         | Amir    | 22  | Math     |
     | 3         | Carol   | 21  | Physics  |
 
     ````
