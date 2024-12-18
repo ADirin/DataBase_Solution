@@ -8,9 +8,7 @@
 3. [Concurrency Management](#concurrency-management)
 
 ## Query Optimization
-
-Query optimization in MariaDB involves improving the performance of SQL queries to ensure they run as efficiently as possible. Here are some techniques and examples:
-
+Query optimization in MariaDB focuses on enhancing the performance of SQL queries by minimizing resource consumption (CPU, memory, disk I/O) and execution time.
 ## Query Optimization: An Overview
 
 Query optimization is a critical process in database management systems (DBMS) that aims to determine the most efficient way to execute a query. The goal is to minimize resource usage, such as CPU time, memory, and disk I/O, to retrieve the desired data as quickly and efficiently as possible. The optimizer considers multiple query execution plans and chooses the one with the lowest estimated cost.
