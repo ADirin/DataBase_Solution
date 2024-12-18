@@ -391,7 +391,10 @@ Result:
 | Alice | Physics    |
 | Bob   | Biology    |
 | Bob  
-
+---
+# Resources
+1. [The importance Of Query Optimization] (https://fastercapital.com/topics/the-importance-of-query-optimization.html)
+2. [Use MySQL Explain for Query Optimization](https://www.youtube.com/watch?v=TukZd6LjeBc&t=25s) (Youtube)
 
 -----------------------------------------------------------------------------
 # Transactions
