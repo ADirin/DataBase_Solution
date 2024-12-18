@@ -82,11 +82,12 @@ StudentID	StudentName	DateOfBirth	Major	CourseID	CourseName
 ```
   
 - **Selection**: Filtering based on course name (`'Math'`) and student age (`2004-01-01`).
+```sql
 | StudentID | StudentName | DateOfBirth | Major   | CourseID | CourseName |
 |-----------|-------------|-------------|---------|----------|------------|
 | 2         | Amir        | 2004-01-01  | Math    | 102      | Math       |
 
-
+```
 - **Projection**: Selecting only the student names.
 
 ### Step 2: Understand the Execution Plan
