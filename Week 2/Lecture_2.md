@@ -61,7 +61,6 @@ JOIN Courses c ON e.CourseID = c.CourseID
 WHERE c.CourseName = 'Math' AND s.DateOfBirth < '2004-01-01';
 
 ````
-Result:  Amir
 
 ### Step 1: Initial Query Analysis
 
@@ -89,6 +88,13 @@ StudentID	StudentName	DateOfBirth	Major	CourseID	CourseName
 
 ```
 - **Projection**: Selecting only the student names.
+```sel
+| StudentName |
+|-------------|
+| Amir        |
+
+```
+
 
 ### Step 2: Understand the Execution Plan
 
