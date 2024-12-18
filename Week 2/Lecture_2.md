@@ -440,8 +440,7 @@ Result:
 # Transactions
 A transaction in a database context is a sequence of one or more SQL operations (such as `INSERT`, `UPDATE`, `DELETE`, or `SELECT` statements) that are executed as a single unit of work. Transactions ensure that a series of operations are completed successfully and consistently, even in the presence of system failures or other concurrent operations. If any part of the transaction fails, the entire transaction can be rolled back to ensure the database remains in a consistent state.
 
-
-![Transaction](/images/ACID.webp)
+![Transaction](/images/ACID.gif)
 
 ## Key Properties of Transactions: ACID
 
