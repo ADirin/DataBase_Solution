@@ -24,11 +24,11 @@ Let's take a simple scenario where we want to retrieve specific data from a univ
 1. **Students**:
    
     ````sql
-    | StudentID | StudentName    | DateOfBirth | Major    |
-    |-----------|---------|-----|----------|
-    | 1         | Alice   | 20  | Biology  |
-    | 2         | Amir    | 22  | Math     |
-    | 3         | Carol   | 21  | Physics  |
+    | StudentID | StudentName| DateOfBirth | Major    |
+    |-----------|------------|-------------|-----------|
+    | 1         | Alice      | 2005-01-01  | Biology  |
+    | 2         | Amir       | 2004-01-01  | Math     |
+    | 3         | Carol      | 2006-01-01  | Physics  |
 
     ````
 
@@ -68,7 +68,25 @@ Result:  Amir
 The initial query involves:
 
 - **Two joins**: Joining `Students` with `Enrollments`, and `Enrollments` with `Courses`.
-- **Selection**: Filtering based on course name (`'Math'`) and student age (`> 20`).
+
+StudentID	StudentName	DateOfBirth	Major	CourseID	CourseName
+```sql
+| StudentID | StudentName | DateOfBirth | Major   | CourseID | CourseName |
+|-----------|-------------|-------------|---------|----------|------------|
+| 1         | Alice       | 2005-01-01  | Biology | 101      | Biology    |
+| 1         | Alice       | 2005-01-01  | Biology | 102      | Math       |
+| 2         | Amir        | 2004-01-01  | Math    | 102      | Math       |
+| 3         | Carol       | 2006-01-01  | Physics | 103      | Physics    |
+
+
+```
+  
+- **Selection**: Filtering based on course name (`'Math'`) and student age (`2004-01-01`).
+| StudentID | StudentName | DateOfBirth | Major   | CourseID | CourseName |
+|-----------|-------------|-------------|---------|----------|------------|
+| 2         | Amir        | 2004-01-01  | Math    | 102      | Math       |
+
+
 - **Projection**: Selecting only the student names.
 
 ### Step 2: Understand the Execution Plan
