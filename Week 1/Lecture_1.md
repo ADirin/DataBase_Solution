@@ -87,8 +87,8 @@ Use industry-standard benchmarks to simulate real workloads:
 ![simu](/images/simu.png)
 1. **Define Objectives:** Determine what you want to analyze (e.g., bottlenecks, configuration changes).  
 2. **Select Tools:** Choose appropriate tools for the simulation. Popular tools for database performance testing include:
-   - ([JMeter](https://jmeter.apache.org/)
-   -  [Sysbench](https://manpages.ubuntu.com/manpages/trusty/man1/sysbench.1.html)).
+   - [JMeter](https://jmeter.apache.org/)
+   -  [Sysbench](https://manpages.ubuntu.com/manpages/trusty/man1/sysbench.1.html).
    
 4. **Prepare Environment:** Set up a controlled test environment to isolate variables.  Ensure that:
    - The environment closely resembles the production setup.
