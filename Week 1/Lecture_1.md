@@ -111,9 +111,9 @@ Use industry-standard benchmarks to simulate real workloads:
    - Assessing the effectiveness of any configuration changes made during the tests.
 
 ### Example Scenarios  
-- **Configuration Changes:** Test the effect of different indexing strategies or cache sizes.  
-- **Hardware Upgrades:** Measure performance improvements from adding CPUs, RAM, or faster storage.  
-- **Scaling Workloads:** Simulate increasing user loads to plan for horizontal or vertical scaling.  
+   - **Configuration Changes:** Test the effect of different indexing strategies or cache sizes.  
+   - **Hardware Upgrades:** Measure performance improvements from adding CPUs, RAM, or faster storage.  
+   - **Scaling Workloads:** Simulate increasing user loads to plan for horizontal or vertical scaling.  
 
 
 ## Analyzing Simulation Results  
