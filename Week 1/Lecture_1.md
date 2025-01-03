@@ -373,53 +373,8 @@ ________________________________________________________________________________
 
 ## Introduction
 Indexing is a crucial technique employed in databases to enhance the efficiency of data retrieval operations. By utilizing an index, which is a specialized data structure, databases can significantly speed up access to rows in a table based on the values of one or more columns. This document delves into the concept of indexing, its types, and its impact on database performance.
-```mermaid
-%%{init: {'themeVariables': {'nodeSpacing': '20', 'edgeSpacing': '20', 'fontSize': '12'}}}%%
-flowchart LR
-    A[Database Table] --> B[Primary Key Index]
-    A[Database Table] --> C[Unique Index]
-    A[Database Table] --> D[Composite Index]
-    A[Database Table] --> E[Full-Text Index]
-    
-    B --> B1[Automatically Created with Primary Key]
-    B --> B2[Ensures Uniqueness of Rows]
-    B --> B3[Optimizes Queries Using Primary Key]
-    B --> B4[Improves Query Performance]
-    
-    C --> C1[Enforces Uniqueness on Specific Columns]
-    C --> C2[Optimizes Queries with Unique Constraints]
-    C --> C3[Improves Query Performance]
-    
-    D --> D1[Indexes Multiple Columns Together]
-    D --> D2[Optimizes Complex Queries with Multi-Column Conditions]
-    D --> D3[Improves Query Performance]
-    
-    E --> E1[Optimizes Search on Large Text Fields]
-    E --> E2[Improves Full-Text Search Queries]
-    E --> E3[Improves Query Performance]
 
-    style B fill:#ffcc00,stroke:#000000,stroke-width:2px
-    style B1 fill:#ffcc00,stroke:#000000,stroke-width:2px
-    style B2 fill:#ffcc00,stroke:#000000,stroke-width:2px
-    style B3 fill:#ffcc00,stroke:#000000,stroke-width:2px
-    style B4 fill:#ffcc00,stroke:#000000,stroke-width:2px
-
-    style C fill:#66ccff,stroke:#000000,stroke-width:2px
-    style C1 fill:#66ccff,stroke:#000000,stroke-width:2px
-    style C2 fill:#66ccff,stroke:#000000,stroke-width:2px
-    style C3 fill:#66ccff,stroke:#000000,stroke-width:2px
-
-    style D fill:#99ff99,stroke:#000000,stroke-width:2px
-    style D1 fill:#99ff99,stroke:#000000,stroke-width:2px
-    style D2 fill:#99ff99,stroke:#000000,stroke-width:2px
-    style D3 fill:#99ff99,stroke:#000000,stroke-width:2px
-
-    style E fill:#ff6666,stroke:#000000,stroke-width:2px
-    style E1 fill:#ff6666,stroke:#000000,stroke-width:2px
-    style E2 fill:#ff6666,stroke:#000000,stroke-width:2px
-    style E3 fill:#ff6666,stroke:#000000,stroke-width:2px
-
-```
+![Performance](/images/index.png)
 
 ## Table of Contents
 1. [Why Use Indexes?](#why-use-indexes)
