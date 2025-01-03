@@ -53,7 +53,7 @@ Simulating database performance is a critical practice for ensuring that databas
 ### Workloads  
 A **workload** represents the set of database operations (e.g., queries, transactions) executed within a simulation. Workloads should reflect real-world usage to ensure accurate results.
 
-![Performance](/Images/performance.png)
+![Performance](/images/performance.png)
 
 ### Metrics  
 Performance metrics provide quantifiable insights into database behavior:  
