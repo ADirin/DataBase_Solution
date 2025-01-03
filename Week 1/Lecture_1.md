@@ -88,7 +88,7 @@ Use industry-standard benchmarks to simulate real workloads:
 1. **Define Objectives:** Determine what you want to analyze (e.g., bottlenecks, configuration changes).  
 2. **Select Tools:** Choose appropriate tools for the simulation. Popular tools for database performance testing include:
    - [JMeter](https://jmeter.apache.org/)
-   -  [Sysbench](https://manpages.ubuntu.com/manpages/trusty/man1/sysbench.1.html).
+   - [Sysbench](https://manpages.ubuntu.com/manpages/trusty/man1/sysbench.1.html).
    
 4. **Prepare Environment:** Set up a controlled test environment to isolate variables.  Ensure that:
    - The environment closely resembles the production setup.
@@ -101,14 +101,14 @@ Use industry-standard benchmarks to simulate real workloads:
    - The data size and structure that will be used during the tests.
 
 6. **Run Simulations:** Execute the workloads and collect performance metrics, which may include:
-  - Response times for queries.
-  - Throughput (transactions per second).
-  - Resource utilization (CPU, memory, disk I/O).
+   - Response times for queries.
+   - Throughput (transactions per second).
+   - Resource utilization (CPU, memory, disk I/O).
     
 6. **Analyze Results:** Interpret the data to identify bottlenecks and optimization opportunities.  Key aspects to consider include:
-  - Identifying slow queries and their impact on overall performance.
-  - Evaluating resource usage to determine if there are any constraints.
-  - Assessing the effectiveness of any configuration changes made during the tests.
+   - Identifying slow queries and their impact on overall performance.
+   - Evaluating resource usage to determine if there are any constraints.
+   - Assessing the effectiveness of any configuration changes made during the tests.
 
 ### Example Scenarios  
 - **Configuration Changes:** Test the effect of different indexing strategies or cache sizes.  
