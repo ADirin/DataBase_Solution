@@ -40,7 +40,7 @@ Understanding database performance is critical for ensuring efficiency, scalabil
 ---
 
 ## Why Simulate Database Performance?  
-Simulating database performance is essential for:  
+Simulating database performance is a critical practice for ensuring that database systems operate efficiently and effectively under various conditions for example on:  
 - **Identifying Bottlenecks:** Pinpoint areas that limit database performance.  
 - **Testing Configurations:** Evaluate the impact of different settings, such as indexing or cache size.  
 - **Capacity Planning:** Understand system behavior under increasing workloads for scalability.  
@@ -52,6 +52,8 @@ Simulating database performance is essential for:
 
 ### Workloads  
 A **workload** represents the set of database operations (e.g., queries, transactions) executed within a simulation. Workloads should reflect real-world usage to ensure accurate results.
+
+![Performance](/Images/performance.png)
 
 ### Metrics  
 Performance metrics provide quantifiable insights into database behavior:  
