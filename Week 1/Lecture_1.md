@@ -157,7 +157,7 @@ For additional learning and resources:
 
 ---
 
-_______________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________
 
 # Database Normalization  
 ## Introduction  
@@ -178,6 +178,10 @@ Database normalization is a process used to organize a database into tables and 
 
 
 ## Why Normalize?  
+It involves organizing the data within the database to minimize redundancy and improve data integrity. This document outlines the key benefits of database normalization, which include eliminating redundant data, ensuring logical data dependencies, enhancing data integrity, and optimizing queries. 
+
+![Performance](/images/normal.png)
+
 Database normalization helps to:  
 - **Eliminate Redundant Data:** Avoid storing the same data in multiple places.  
 - **Ensure Data Dependencies Make Sense:** Store related data together logically.  
