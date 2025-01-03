@@ -24,7 +24,7 @@ Triggers are special types of stored programs that are automatically executed or
 
 ![Triger](/images/triger.png)
 
-
+This powerful feature allow developers to automate tasks, enforce business rules, and manage data more effectively within a MySQL database. 
 ```mermaid
 graph TD;
     A[Database Table] -->|Insert, Update, Delete| B[Trigger Event];
