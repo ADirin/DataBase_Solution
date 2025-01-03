@@ -410,7 +410,8 @@ ndexing involves creating a data structure that maintains a sorted order of the 
 
 ### Primary Index
 - **Definition:** An index on a set of fields that includes the unique primary key.
-  
+A primary key index is automatically created when a primary key constraint is defined on a table. This index ensures that the values in the primary key column(s) are unique and not null. It provides a fast way to access records based on the primary key.
+
 | EmployeeID | EmployeeName | Department | Salary  |
 |------------|--------------|------------|---------|
 | 1          | Alice        | HR         | 50,000  |
@@ -421,6 +422,7 @@ ndexing involves creating a data structure that maintains a sorted order of the 
 
 ### Secondary Index
 - **Definition:** An index that is not a primary index and can be on any field or combination of fields.
+
 
 | EmployeeID | FirstName | LastName   | Department | Salary  |
 |------------|-----------|------------|------------|---------|
@@ -433,6 +435,7 @@ ndexing involves creating a data structure that maintains a sorted order of the 
 
 ### Unique Index
 - **Definition:** An index that ensures all the values in the indexed column are unique.
+A unique index ensures that all values in a column are distinct. Unlike primary key indexes, a unique index can be created on columns that allow null values. This type of index is useful for enforcing uniqueness on non-primary key columns.
 
 | UserID | UserName   | Email                | RegistrationDate |
 |--------|------------|----------------------|------------------|
@@ -460,10 +463,13 @@ ndexing involves creating a data structure that maintains a sorted order of the 
 
 ### Full-Text Index
 - **Definition:** An index that allows for efficient searching of text within large text columns.
+A full-text index is designed for searching text-based data. It allows for efficient searching of large text fields by enabling complex queries such as searching for words or phrases. Full-text indexes are commonly used in applications that require searching through large volumes of textual data.
 - **Example:** Full-text index on the `Description` column in a `Products` table.
 
 
 ### Example: Composite Index
+
+A composite index is an index that is created on multiple columns of a table. This type of index is particularly useful for queries that filter or sort based on multiple columns. The order of the columns in a composite index is significant, as it affects the index's efficiency for different query patterns.
 
 Consider a table **Orders**:
 
