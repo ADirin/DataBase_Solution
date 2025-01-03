@@ -667,7 +667,7 @@ Indexing is a powerful tool for improving database performance. Understanding th
 
 ![Temporal Design](/images/Temporal.JPG/)
 ## Introduction
-A **temporal database** is a type of database designed to store and manage time-sensitive data, allowing it to track changes over time. These databases are crucial for applications that require maintaining a historical record of data states, enabling businesses and organizations to make informed decisions based on both current and past data.
+A **temporal database** is a type of database designed to store and manage time-sensitive data, allowing it to track changes over time. These databases are crucial for applications that require maintaining a historical record of data states, enabling businesses and organizations to make informed decisions based on both current and past data. By understanding the key concepts and techniques involved in temporal database design, developers and database administrators can create robust systems that effectively handle temporal data.
 
 ## Table of Contents
 1. [Why Temporal Databases?](#why-temporal-databases)
@@ -689,7 +689,12 @@ A **temporal database** is a type of database designed to store and manage time-
 
 
 ## Why Temporal Databases?
+Temporal databases are specialized databases that manage data related to time. They allow for the storage of historical data, enabling users to query not only the current state of the data but also its state at any point in time. This capability is crucial for applications that need to maintain a history of changes, such as auditing, compliance, and reporting. 
+
+![Temporal](/images/Temporal.png/)
+
 Temporal databases are necessary for several reasons:
+
 - **Historical Data Management**: Track and manage the history of changes to data.
 - **Audit Trails**: Keep records of changes for regulatory compliance and auditing purposes.
 - **Trend Analysis**: Analyze historical data to detect patterns and trends over time.
