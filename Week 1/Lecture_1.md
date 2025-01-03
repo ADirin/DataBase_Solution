@@ -372,7 +372,7 @@ ________________________________________________________________________________
 
 
 ## Introduction
-Indexing is a technique used in databases to improve the speed of data retrieval operations. An index is a data structure that allows for fast access to the rows in a table based on the values of one or more columns.
+Indexing is a crucial technique employed in databases to enhance the efficiency of data retrieval operations. By utilizing an index, which is a specialized data structure, databases can significantly speed up access to rows in a table based on the values of one or more columns. This document delves into the concept of indexing, its types, and its impact on database performance.
 ```mermaid
 %%{init: {'themeVariables': {'nodeSpacing': '20', 'edgeSpacing': '20', 'fontSize': '12'}}}%%
 flowchart LR
@@ -445,6 +445,7 @@ flowchart LR
 ---
 
 ## Why Use Indexes?
+ndexing involves creating a data structure that maintains a sorted order of the values in a specific column or a combination of columns. This structure allows the database management system (DBMS) to quickly locate the desired data without scanning the entire table, thereby improving query performance.
 - **Improve Query Performance:** Indexes significantly reduce the amount of data that needs to be scanned for query execution.
 - **Enhance Search Speed:** They make data retrieval operations faster.
 - **Efficient Sorting:** Indexes can be used to speed up sorting and ordering of query results.
