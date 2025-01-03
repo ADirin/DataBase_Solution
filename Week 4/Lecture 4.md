@@ -20,6 +20,11 @@
 This guide covers the basics of database triggers, stored procedures, and events in MySQL. These concepts are essential for managing automated tasks and ensuring data integrity in your databases.
 
 ## Database Triggers
+Triggers are special types of stored programs that are automatically executed or fired when certain events occur in the database. They can be used to enforce data integrity, maintain audit trails, and automate system tasks.
+
+![Triger](/images/triger.png)
+
+
 ```mermaid
 graph TD;
     A[Database Table] -->|Insert, Update, Delete| B[Trigger Event];
