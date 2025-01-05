@@ -205,8 +205,9 @@ Normalization is divided into multiple stages called "normal forms," with each s
 | 1         | Alice      | Math, Physics     |  
 | 2         | Bob        | Math, Chemistry   |  
 
+  - In this table, the 'Courses' column contains multiple values, which violates the atomicity requirement of 1NF.
 **Normalized to 1NF:**  
-
+  - To convert this table into 1NF, we need to ensure that each course is represented in a separate row: 
 | StudentID | Name  | Course    |  
 |-----------|-------|-----------|  
 | 1         | Alice | Math      |  
@@ -214,21 +215,25 @@ Normalization is divided into multiple stages called "normal forms," with each s
 | 2         | Bob   | Math      |  
 | 2         | Bob   | Chemistry |  
 
+  - Now, each column contains atomic values, and the table adheres to the rules of 1NF. 
 ---
 
 ### Second Normal Form (2NF)  
 - **Definition:** A table is in 2NF if:  
-  - It is already in 1NF.  
-  - It has no partial dependency (i.e., no non-prime attribute depends on part of a candidate key).  
+   - It is already in 1NF.  
+   - It has no partial dependency (i.e., no non-prime attribute depends on part of a candidate key).  
 
 **Example:**  
-
+   - Consider the following table that is in 1NF:
+    
 | StudentID | Course    | Instructor |  
 |-----------|-----------|------------|  
 | 1         | Math      | Prof. A    |  
 | 1         | Physics   | Prof. B    |  
 | 2         | Math      | Prof. A    |  
 | 2         | Chemistry | Prof. C    |  
+
+  - In this table, the "Instructor" column depends on the "Course" column, which is a partial dependency since "StudentID" and "Course" together form the composite key.
 
 **Normalized to 2NF:**  
 
@@ -256,6 +261,7 @@ Normalization is divided into multiple stages called "normal forms," with each s
 | 2         | 101      |  
 | 2         | 103      |  
 
+  - Now, the tables are in 2NF as there are no partial dependencies.
 ---
 
 ### Third Normal Form (3NF)  
@@ -266,12 +272,15 @@ Normalization is divided into multiple stages called "normal forms," with each s
 **Example:**  
 
 **Courses Table:**  
+   - Consider the following table that is in 2NF: 
 
 | CourseID | Course    | InstructorID |  
 |----------|-----------|--------------|  
 | 101      | Math      | 1            |  
 | 102      | Physics   | 2            |  
 | 103      | Chemistry | 3            |  
+
+   - In this table, the "InstructorID" is a non-prime attribute that determines the "InstructorName," which creates a transitive dependency.
 
 **Instructors Table:**  
 
@@ -281,6 +290,7 @@ Normalization is divided into multiple stages called "normal forms," with each s
 | 2            | Prof. B        |  
 | 3            | Prof. C        |  
 
+   - Now, the tables are in 3NF as there are no transitive dependencies.
 ---
 
 ### Boyce-Codd Normal Form (BCNF)  
