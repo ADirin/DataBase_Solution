@@ -191,7 +191,6 @@ Database normalization helps to:
 ## Normalization Forms  
 Normalization is divided into multiple stages called "normal forms," with each step building upon the previous one. The most common normal forms are **1NF, 2NF, 3NF,** and **BCNF**.  
 
-![Normal](/images/normal.png)
 
 ### First Normal Form (1NF)  
 - **Definition:** A table is in 1NF if:  
