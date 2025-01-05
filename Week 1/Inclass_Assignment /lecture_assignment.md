@@ -33,6 +33,9 @@ Summarize the practical applications of temporal databases in real-world scenari
 
 ## SQL Examples
 
+
+![Assignment1](/images/asgn.JPG)
+
 ### Step 1: Database Schema Creation
 
 1. **Create the Students Table:**
