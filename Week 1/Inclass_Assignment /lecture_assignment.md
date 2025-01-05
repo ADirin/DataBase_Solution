@@ -15,6 +15,8 @@ The aim of this project is to provide an educational demonstration on the concep
 
 Design and create tables for Students, Courses, and Enrollments, incorporating fields for temporal data management (e.g., `ValidFrom`, `ValidTo`, `TransactionStartTime`, `TransactionEndTime`).
 
+![Assignment1](/images/asgn.JPG)
+
 ### 2. Temporal Concepts Understanding
 
 Explain and demonstrate the use of transaction time, valid time, and system versioning in the context of the Students and Courses database.
@@ -31,10 +33,8 @@ Execute SQL queries to retrieve historical data at specific points in time. Illu
 
 Summarize the practical applications of temporal databases in real-world scenarios, emphasizing the importance of data accuracy and historical tracking.
 
-## SQL Examples
-
-
-![Assignment1](/images/asgn.JPG)
+## Sample solutions
+    - Make sure your solutions follows the diagram, e.g., add the DATTIME; etc.
 
 ### Step 1: Database Schema Creation
 
