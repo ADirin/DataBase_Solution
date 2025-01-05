@@ -207,7 +207,8 @@ Normalization is divided into multiple stages called "normal forms," with each s
 
   - In this table, the 'Courses' column contains multiple values, which violates the atomicity requirement of 1NF.
 **Normalized to 1NF:**  
-  - To convert this table into 1NF, we need to ensure that each course is represented in a separate row: 
+  - To convert this table into 1NF, we need to ensure that each course is represented in a separate row:
+
 | StudentID | Name  | Course    |  
 |-----------|-------|-----------|  
 | 1         | Alice | Math      |  
