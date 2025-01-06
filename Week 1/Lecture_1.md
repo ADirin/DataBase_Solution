@@ -352,6 +352,13 @@ ndexing involves creating a data structure that maintains a sorted order of the 
 - **Efficient Sorting:** Indexes can be used to speed up sorting and ordering of query results.
 - **Enforce Uniqueness:** Unique indexes ensure that no duplicate values are entered in specific columns.
 
+## Indexing in MariaDB
+
+- In MariaDB, you can create an index using the following SQL command:
+
+   ```sql
+      CREATE INDEX index_name ON table_name(column_name);
+   ```
 ## Types of Indexes
 
 ### Primary Index
