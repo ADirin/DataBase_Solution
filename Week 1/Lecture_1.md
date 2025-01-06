@@ -646,6 +646,19 @@ Temporal databases are necessary for several reasons:
 - **Trend Analysis**: Analyze historical data to detect patterns and trends over time.
 - **Data Corrections**: Reverse or correct errors by retrieving previous versions of data.
 
+## Stracture of Tables
+In MariaDB, temporal data can be managed using generated columns and system versioning. The following SQL command illustrates how to create a table with temporal capabilities:
+
+```sql
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+    PERIOD FOR SYSTEM_TIME (start_column, end_column)
+) WITH SYSTEM VERSIONING;
+
+```
+
 ## Types of Temporal Data
 
 ### Valid Time
