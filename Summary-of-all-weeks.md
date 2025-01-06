@@ -17,7 +17,7 @@ Logical design is a crucial step in the database design process, where a concept
 
 _Practical Example:_ A retail system where indexing is used to speed up product searches, and a temporal database is applied to track pricing changes over time.
 
-```mermid
+````mermaid
 graph TD
     A[Logical Design] --> B[Define Data Structure]
     A --> C[Define Data Relationships]
@@ -26,8 +26,7 @@ graph TD
     G[Indexing] --> H[Improve Data Retrieval Speed]
     I[Temporal Database] --> J[Track Historical Data]
     I --> K[Manage Time-Sensitive Data]
-
-```
+````
 
 ---
 
