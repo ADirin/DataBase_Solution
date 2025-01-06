@@ -199,7 +199,5 @@ graph TD
     F[Pessimistic Locking] --> G[Lock Data on Access]
     F --> H[Prevent Conflicts in Real-Time]
     I[Concurrent Transactions] --> J[Manage Simultaneous Data Access]
-
-
 ```
 
