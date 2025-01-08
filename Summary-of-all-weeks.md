@@ -2,6 +2,8 @@
 ## Important Note:
 *This summary is **NOT** intended for learning material. For the exam, you must review the details of the respective weeks in GitHub and the provided lecture notes in Moodle.* 
 
+![Example used during the lecture](https://github.com/ADirin/DATABASE_Solution_Lecture/blob/main/Example_For_Whole_Course.md)
+
 ## Week 1: Logical Design and Database Concepts
 
 **Introduction**  
