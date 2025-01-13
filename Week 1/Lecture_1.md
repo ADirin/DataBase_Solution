@@ -346,7 +346,7 @@ Indexing is a crucial technique employed in databases to enhance the efficiency 
 ---
 
 ## Why Use Indexes?
-ndexing involves creating a data structure that maintains a sorted order of the values in a specific column or a combination of columns. This structure allows the database management system (DBMS) to quickly locate the desired data without scanning the entire table, thereby improving query performance.
+Indexing involves creating a data structure that maintains a sorted order of the values in a specific column or a combination of columns. This structure allows the database management system (DBMS) to quickly locate the desired data without scanning the entire table, thereby improving query performance.
 - **Improve Query Performance:** Indexes significantly reduce the amount of data that needs to be scanned for query execution.
 - **Enhance Search Speed:** They make data retrieval operations faster.
 - **Efficient Sorting:** Indexes can be used to speed up sorting and ordering of query results.
