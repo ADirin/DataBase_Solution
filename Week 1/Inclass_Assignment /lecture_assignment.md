@@ -171,33 +171,8 @@ Explanation:
     - The CourseName column is a good example of low cardinality. Even though there may be many students, the number of unique course names will likely be fewer.
     - The idx_course_name_thin index will improve the performance of queries filtering by CourseName.
 
-## Step 4: Binary Index
-A *binary index* is created on a column that has two distinct values (binary or boolean values). For example, a column that stores TRUE/FALSE values, or 0/1, is a candidate for a binary index.
 
-**Use Case for Binary Index:** The DropDate column in the Enrollments table can be treated as binary (whether a student has dropped the course or not). We can use a BOOLEAN or TINYINT column to represent if a student has dropped a course.
-We will create a new column HasDropped in the Enrollments table, which stores a TRUE/FALSE value to represent whether the student has dropped the course. This column will be indexed with a binary index.
-
-**SQL to Add HasDropped Column and Create Binary Index*
-
-```sql
--- Add a new column to the Enrollments table to represent if a student has dropped a course
-ALTER TABLE Enrollments ADD COLUMN HasDropped BOOLEAN;
-
--- Update the `HasDropped` column based on DropDate (if DropDate is NOT NULL, the student has dropped the course)
-UPDATE Enrollments
-SET HasDropped = (DropDate IS NOT NULL);
-
--- Create a binary index on the `HasDropped` column (TRUE/FALSE)
-CREATE INDEX idx_has_dropped ON Enrollments (HasDropped);
-
-
-```
-Explanation:
-
-    - The HasDropped column is added to the Enrollments table, representing whether a student has dropped the course.
-    - This column is indexed as a binary index, which optimizes queries checking whether students have dropped the course or not (i.e., HasDropped = TRUE or HasDropped = FALSE).
-
-## Step 5: Querying with the Indexes
+## Step 4: Querying with the Indexes
 Once the indexes are created, learners can run queries that benefit from these indexes.
 
 **Query for Dense Index (DateOfBirth)**
@@ -223,16 +198,6 @@ WHERE CourseName = 'Mathematics 101';
 ```
 This query will use the thin index on the CourseName column to efficiently find courses with the name 'Mathematics 101'.
 
-**Query for Binary Index (HasDropped)**
-
-```sql
-
--- Query using the binary index on HasDropped
-SELECT * FROM Enrollments
-WHERE HasDropped = TRUE;
-
-```
-This query will use the binary index on the HasDropped column to quickly find all records where students have dropped a course.
 
 ## Step 6: Check Index Usage with EXPLAIN
 You can use the EXPLAIN command to see if MySQL is using the indexes for your queries.
