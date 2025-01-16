@@ -120,8 +120,8 @@ ON
 
 ```
 
-
-**Submission:** Similar to the previous in-class assignment, you need to take screenshots and include the corresponding queries in a file and submit in a designated folder in moodle.
+## Submission
+**NOte:** Similar to the previous in-class assignment, you need to take screenshots and include the corresponding queries in a file and submit in a designated folder in moodle.
 
 
 ------------------------
