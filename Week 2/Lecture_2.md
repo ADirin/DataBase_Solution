@@ -21,6 +21,67 @@ Let's take a simple scenario where we want to retrieve specific data from a univ
 
 ### Tables
 
+**Students**
+
+```sql
+-- Create the table
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(50),
+    DateOfBirth DATE,
+    Major VARCHAR(50)
+);
+
+-- Insert data into the table
+INSERT INTO Students (StudentID, StudentName, DateOfBirth, Major) VALUES
+(1, 'Alice', '2005-01-01', 'Biology'),
+(2, 'Amir', '2004-01-01', 'Math'),
+(3, 'Carol', '2006-01-01', 'Physics');
+
+```
+
+**Courses**
+
+```sql
+
+-- Create the table
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(50)
+);
+
+-- Insert data into the table
+INSERT INTO Courses (CourseID, CourseName) VALUES
+(101, 'Biology'),
+(102, 'Math'),
+(103, 'Physics');
+
+
+```
+
+**enrollments**
+```sql
+
+-- Create the table
+CREATE TABLE Enrollments (
+    StudentID INT,
+    CourseID INT,
+    PRIMARY KEY (StudentID, CourseID),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- Insert data into the table
+INSERT INTO Enrollments (StudentID, CourseID) VALUES
+(1, 101),
+(1, 102),
+(2, 102),
+(3, 103);
+
+
+```
+
+
 1. **Students**:
    
     ````sql
