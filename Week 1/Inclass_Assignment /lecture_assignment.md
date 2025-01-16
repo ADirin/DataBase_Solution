@@ -76,7 +76,7 @@ Summarize the practical applications of temporal databases in real-world scenari
 
 1. **Insert Data into Students Table:**
     ```sql
-    INSERT INTO Students (StudentID, Name, DateOfBirth)
+    INSERT INTO Students (StudentID, StudentName, DateOfBirth)
     VALUES (1, 'Matti', '2000-05-15'),
            (2, 'Amir', '1999-09-10');
     ```
