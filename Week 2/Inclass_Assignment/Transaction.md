@@ -1,3 +1,130 @@
+# Database table query: Projections, Selection, Cartaisian Products
+## Exercise: SQL Queries for Projections, Selections, and Cartesian Products
+This exercise demonstrates how to apply Projections, Selections, and Cartesian Products using the Accounts and Transactions tables.
+
+### Step 1: Insert Sample Data
+Populate the tables with sample data:
+
+**Accounts Table**
+
+```sql
+CREATE TABLE Accounts (
+    AccountID INT PRIMARY KEY,
+    AccountHolderName VARCHAR(100),
+    Balance DECIMAL(10, 2)
+); 
+
+```
+```sql
+
+INSERT INTO Accounts (AccountID, AccountHolderName, Balance) VALUES
+(1, 'Alice', 5000.00),
+(2, 'Bob', 3000.50),
+(3, 'Carol', 1500.75);
+
+
+```
+```sql
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY,
+    FromAccountID INT,
+    ToAccountID INT,
+    Amount DECIMAL(10, 2),
+    Status VARCHAR(10)
+);
+
+
+
+```
+
+
+**Transactions Table**
+
+```sql
+INSERT INTO Transactions (TransactionID, FromAccountID, ToAccountID, Amount, Status) VALUES
+(101, 1, 2, 1000.00, 'Completed'),
+(102, 2, 3, 500.50, 'Pending'),
+(103, 1, 3, 2000.75, 'Completed');
+
+
+```
+
+## Step 2: Queries Demonstrating Projections, Selections, and Cartesian Products
+**1. Projection**
+Retrieve specific columns from one table.
+
+*Exercise Question:*
+Write a query to display the AccountHolderName and Balance of all accounts.
+
+Expected Query:
+
+```sql
+SELECT AccountHolderName, Balance FROM Accounts;
+```
+
+**2. Selection**
+Retrieve rows that meet a condition.
+
+*Exercise Question:*
+Write a query to find all transactions with a status of 'Completed'.
+
+Expected Query:
+```sql
+SELECT * FROM Transactions WHERE Status = 'Completed';
+
+```
+
+**3. Cartesian Product**
+Combine all rows from both tables (useful for exploration but usually requires a JOIN for meaningful results).
+
+*Exercise Question:*
+Write a query to produce a Cartesian product of Accounts and Transactions (all combinations of rows).
+
+Expected Query:
+
+```sql
+SELECT * FROM Accounts, Transactions;
+
+```
+
+**4. Combining Projection and Selection**
+*Exercise Question:*
+Write a query to display the AccountHolderName and Balance of accounts with a balance greater than 2000.00.
+
+Expected Query:
+```sql
+SELECT AccountHolderName, Balance FROM Accounts WHERE Balance > 2000.00;
+
+```
+
+**5. Joining for a Meaningful Result**
+Cartesian products are often used with conditions to create meaningful results.
+
+*Exercise Question:*
+Write a query to display transaction details along with the AccountHolderName for the FromAccountID.
+
+Expected Query:
+```sql
+SELECT 
+    Transactions.TransactionID,
+    Accounts.AccountHolderName AS FromAccountHolder,
+    Transactions.Amount,
+    Transactions.Status
+FROM 
+    Transactions
+JOIN 
+    Accounts
+ON 
+    Transactions.FromAccountID = Accounts.AccountID;
+
+
+```
+
+
+**Submission:** Similar to the previous in-class assignment, you need to take screenshots and include the corresponding queries in a file and submit in a designated folder in moodle.
+
+
+------------------------
 # Database Transaction Example
 
 ## Tables
