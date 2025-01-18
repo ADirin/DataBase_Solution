@@ -501,6 +501,55 @@ Result:
 # Transactions
 A transaction in a database context is a sequence of one or more SQL operations (such as `INSERT`, `UPDATE`, `DELETE`, or `SELECT` statements) that are executed as a single unit of work. Transactions ensure that a series of operations are completed successfully and consistently, even in the presence of system failures or other concurrent operations. If any part of the transaction fails, the entire transaction can be rolled back to ensure the database remains in a consistent state.
 
+
+## Example:
+
+1. Create a Account Table
+
+```sql
+CREATE TABLE Account (
+    AccountNumber INT PRIMARY KEY,
+    Balance DECIMAL(10, 2) NOT NULL
+);
+
+```
+2. Insert Example Data
+
+```sql
+INSERT INTO Account (AccountNumber, Balance)
+VALUES
+(1, 500.00),
+(2, 300.00),
+(3, 1000.00),
+(4, 800.00);
+
+```
+3.  Perform the trasaction
+
+```sql
+-- Deduct 100 from account 4
+UPDATE Account
+SET Balance = Balance - 100
+WHERE AccountNumber = 4;
+
+-- Add 100 to account 2
+UPDATE Account
+SET Balance = Balance + 100
+WHERE AccountNumber = 2;
+
+```
+4.  Check the results:
+
+```sql
+SELECT * FROM Account;
+
+```
+**Explanation**
+    - Account 4: The balance decreases by 100 (from 800 to 700).
+    - Account 2: The balance increases by 100 (from 300 to 400).
+    - The UPDATE statements ensure the balances are updated atomically for the money transfer.
+
+
 ![Transaction](/images/ACID_Re.gif)
 
 ## Key Properties of Transactions: ACID
