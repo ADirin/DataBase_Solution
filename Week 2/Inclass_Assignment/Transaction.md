@@ -288,6 +288,26 @@ COMMIT;
 
 
 ````
+
+### How to collect log file in mariadb
+    - The General Query Log records all SQL queries and their execution, including transaction-related commands.
+    - Enable the General Query Log
+
+- try the queries and see what is the output
+
+```sql
+SET GLOBAL general_log = 'ON';
+SET GLOBAL log_output = 'TABLE'; -- or 'FILE'
+
+
+```
+    - View the log
+```sql
+SELECT * FROM mysql.general_log WHERE argument LIKE '%UPDATE Accounts%';
+
+
+```
+
 Step 1 (Read Operation)
 When the balance of John Doe's account is read, the transaction fetches the current value from the database. This read is consistent within the scope of the transaction.
 
