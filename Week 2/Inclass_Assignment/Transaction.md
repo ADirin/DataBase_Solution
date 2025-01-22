@@ -87,6 +87,16 @@ SELECT * FROM Accounts, Transactions;
 
 ```
 
+
+What is the expction query?
+
+```sql
+explain SELECT * FROM Accounts, Transactions;
+
+```
+
+
+
 **4. Combining Projection and Selection**
 *Exercise Question:*
 Write a query to display the AccountHolderName and Balance of accounts with a balance greater than 2000.00.
