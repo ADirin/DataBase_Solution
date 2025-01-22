@@ -290,8 +290,9 @@ COMMIT;
 ````
 
 ### How to collect log file in mariadb
-    - The General Query Log records all SQL queries and their execution, including transaction-related commands.
-    - Enable the General Query Log
+
+     The General Query Log records all SQL queries and their execution, including transaction-related commands.
+     Enable the General Query Log
 
 - try the queries and see what is the output
 
