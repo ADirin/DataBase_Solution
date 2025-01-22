@@ -88,7 +88,7 @@ SELECT * FROM Accounts, Transactions;
 ```
 
 
-What is the expction query?
+What is the output of the follwoing query?
 
 ```sql
 explain SELECT * FROM Accounts, Transactions;
