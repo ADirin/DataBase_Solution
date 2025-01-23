@@ -110,6 +110,9 @@ SELECT AccountHolderName, Balance FROM Accounts WHERE Balance > 2000.00;
 **5. Joining for a Meaningful Result**
 Cartesian products are often used with conditions to create meaningful results.
 
+
+
+
 *Exercise Question:*
 Write a query to display transaction details along with the AccountHolderName for the FromAccountID.
 
@@ -129,15 +132,6 @@ ON
 
 
 ```
-
-
-
-
-## Example Transaction Scenario
-
-Let's say John Doe (AccountID 1) wants to transfer $200 to Jane Smith (AccountID 2). This operation involves two steps:
-1. Deduct $200 from John Doe's account.
-2. Add $200 to Jane Smith's account.
 
 ### Before Transaction
 
