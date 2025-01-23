@@ -231,7 +231,7 @@ SET GLOBAL log_output = 'TABLE'; -- or 'FILE'
 
 
 ```
-    - View the log
+- View the log
 ```sql
 SELECT * FROM mysql.general_log WHERE argument LIKE '%UPDATE Accounts%';
 
