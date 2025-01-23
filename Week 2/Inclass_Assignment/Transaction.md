@@ -130,9 +130,6 @@ ON
 
 ```
 
-## Submission
-**NOte:** Similar to the previous in-class assignment, you need to take screenshots and include the corresponding queries in a file and submit in a designated folder in moodle.
-
 
 
 
@@ -365,6 +362,8 @@ SELECT * FROM Transactions;
 4. **Durability**: Once the transaction is committed, the changes persist even if there's a failure afterward.
 
 ----------------------------------
+## Submission
+**NOte:** Similar to the previous in-class assignment, you need to take screenshots and include the corresponding queries in a file and submit in a designated folder in moodle.
 
 
 
