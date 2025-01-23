@@ -134,25 +134,7 @@ ON
 **NOte:** Similar to the previous in-class assignment, you need to take screenshots and include the corresponding queries in a file and submit in a designated folder in moodle.
 
 
-------------------------
-# Database Transaction Example
 
-
-````sql
--- Initial Data in Transactions Table
-INSERT INTO Transactions (TransactionID, FromAccountID, ToAccountID, Amount, Status)
-VALUES (1, 1, 2, 200, 'Pending'),
-       (2, 3, 1, 500, 'Pending');
-
-````
-
-
-This table records transactions between accounts.
-
-| TransactionID | FromAccountID | ToAccountID | Amount | Status  |
-|---------------|---------------|-------------|--------|---------|
-| 1             | 1             | 2           | 200    | Pending |
-| 2             | 3             | 1           | 500    | Pending |
 
 ## Example Transaction Scenario
 
