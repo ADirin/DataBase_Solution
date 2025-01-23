@@ -138,6 +138,7 @@ ON
 **Accounts Table:**
 
 -- Accounts Table Before Transaction
+
 ````sql
 SELECT * FROM Accounts;
 ````
@@ -176,11 +177,12 @@ WHERE AccountID = 1;
 
 -- New balance should be $800
 
-
 -- New balance should be $1700
-   - New balance: $1000 - $200 = $800
+
+- New balance: $1000 - $200 = $800
      
 2. **Add $200 to Jane Smith's account:**
+   
 -- Adding $200 to Jane Smith's account
 
 ````sql
