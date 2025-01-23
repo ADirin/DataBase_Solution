@@ -1,5 +1,5 @@
-# Database table query: Projections, Selection, Cartaisian Products
-## Exercise: SQL Queries for Projections, Selections, and Cartesian Products
+# Database table query: Projections, Selection, Cartaisian Products and Transaction
+
 This exercise demonstrates how to apply Projections, Selections, and Cartesian Products using the Accounts and Transactions tables.
 
 ### Step 1: Insert Sample Data
