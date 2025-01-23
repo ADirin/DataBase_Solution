@@ -137,51 +137,7 @@ ON
 ------------------------
 # Database Transaction Example
 
-## Tables
 
-### Table 1: `Accounts`
-This table stores information about users' bank accounts.
-
-```sql
--- Table: Accounts
-CREATE TABLE Accounts (
-    AccountID INT PRIMARY KEY,
-    AccountHolderName VARCHAR(100),
-    Balance DECIMAL(10, 2)
-);
-````
--- Initial Data in Accounts Table
-
-````sql
-INSERT INTO Accounts (AccountID, AccountHolderName, Balance)
-VALUES (1, 'John Doe', 1000),
-       (2, 'Jane Smith', 1500),
-       (3, 'Alice Johnson', 2000);
-
-````
-       
-| AccountID | AccountHolderName | Balance |
-|-----------|-------------------|---------|
-| 1         | John Doe          | 1000    |
-| 2         | Jane Smith        | 1500    |
-| 3         | Alice Johnson     | 2000    |
-
-
-
-
-### Table 2: `Transactions`
-
-````sql
--- Table: Transactions
-CREATE TABLE Transactions (
-    TransactionID INT PRIMARY KEY,
-    FromAccountID INT,
-    ToAccountID INT,
-    Amount DECIMAL(10, 2),
-    Status VARCHAR(10)
-);
-
-````
 ````sql
 -- Initial Data in Transactions Table
 INSERT INTO Transactions (TransactionID, FromAccountID, ToAccountID, Amount, Status)
