@@ -1,124 +1,83 @@
-# In-Class Exercises on Concurrency  
+# Exercise: Concurrency Challenges in MariaDB Databases
 
-These exercises are designed to give students hands-on experience with the following topics:  
-- **Introduction to Concurrency**  
-- **Concurrency Management**  
-- **Concurrency Techniques**  
-- **Importance of Handling Concurrency**  
-- **Race Conditions**  
-- **Concept of View**
+## Objective:
+Understand and analyze concurrency challenges in MariaDB databases and explore techniques to manage and overcome these challenges effectively. By the end of the exercise, students will also explore the concept of views in databases.
 
 ---
 
-## 1. Introduction to Concurrency  
-**Objective**: Understand the concept of concurrency and its relevance in real-world applications.  
+## Part 1: Understanding Concurrency Challenges
 
-### Exercise:  
-- **Discussion**: Provide a list of real-world examples where concurrency is applied (e.g., web servers, ticket booking systems, video streaming). Ask students to identify why concurrency is necessary in these examples.  
-- **Quick Task**: Write a short Python program that uses `threading` to perform two tasks simultaneously (e.g., downloading a file and printing a progress bar).  
+### Scenario:
+Imagine you are working on a high-traffic e-commerce platform where multiple users simultaneously access and update product inventory.
 
----
+1. **Concurrency Issues**:  
+   - User A attempts to purchase a product, reducing its inventory count.
+   - User B simultaneously views and attempts to purchase the same product.  
+   - User C queries the current inventory to verify availability.
 
-## 2. Concurrency Management  
-**Objective**: Explore challenges in managing concurrent operations.  
-
-### Exercise:  
-- **Scenario Design**: Present a simple scenario (e.g., a shared counter being updated by multiple threads). Students should identify the issues that arise when threads access shared resources without synchronization.  
-- **Coding Task**: Modify the provided Python code (using `threading.Lock`) to ensure that updates to the shared counter are thread-safe.  
-
-```python
-import threading
-
-counter = 0
-
-def increment_counter():
-    global counter
-    for _ in range(1000):
-        counter += 1
-
-threads = [threading.Thread(target=increment_counter) for _ in range(5)]
-for thread in threads:
-    thread.start()
-for thread in threads:
-    thread.join()
-
-print("Final Counter Value:", counter)
-
-```
-### 3. Concurrency Techniques
-**Objective**: Learn different techniques like locking, semaphores, and message-passing.
-
-#### Exercise:
-1. **Research Task**:  
-   Divide the class into groups and assign each group a technique (e.g., mutex locks, semaphores, condition variables). Each group prepares a short explanation with an example.
-
-2. **Practical Task**:  
-   Write a program to implement producer-consumer using a queue and `threading.Condition`.
+   **Questions:**
+   - What potential issues can arise due to concurrent operations?  
+   - How might these issues affect the database's consistency, integrity, and performance?  
+   - Identify specific concurrency problems such as **dirty reads**, **non-repeatable reads**, and **phantom reads**.
 
 ---
 
-### 4. Importance of Handling Concurrency
-**Objective**: Highlight the importance of proper concurrency handling.
+## Part 2: Techniques for Managing Concurrency
 
-#### Exercise:
-1. **Real-World Case Study**:  
-   Present a real-world failure caused by concurrency issues (e.g., race conditions in a banking system). Ask students to discuss how proper concurrency handling could have avoided the issue.
+### Task:
+Match the following techniques with the issues they aim to solve and implement SQL-based examples to demonstrate their use in MariaDB.
 
-2. **Design Challenge**:  
-   Given a ticket booking system, ask students to brainstorm ways to ensure no two users can book the same seat simultaneously.
+### Techniques:
+1. **Locks (Pessimistic Concurrency Control)**  
+   - Write an example of using `LOCK TABLES` in MariaDB to prevent concurrent access to the same table.  
+   - Discuss the trade-offs of using locks (e.g., performance vs. consistency).  
+
+2. **Multi-Version Concurrency Control (MVCC)**  
+   - Explain how MVCC helps resolve conflicts using snapshots of data.  
+   - Use `SELECT ... FOR UPDATE` or `READ COMMITTED` isolation level to illustrate MVCC in action.  
+
+3. **Timestamp-Based Concurrency Control**  
+   - Write a query to assign timestamps for transactions and explain how this technique resolves conflicts.
+
+4. **Optimistic Concurrency Control**  
+   - Demonstrate the implementation of a version column in a table to detect conflicts.  
+   - Write an SQL transaction that handles conflict resolution optimistically.
+
+5. **Pessimistic Concurrency Control**  
+   - Use `LOCK IN SHARE MODE` to demonstrate pessimistic locking in MariaDB.
+
+### Questions:
+- What are the advantages and disadvantages of each technique in high-concurrency systems?  
+- Which technique would you recommend for the e-commerce platform described in Part 1? Why?
 
 ---
 
-### 5. Race Conditions
-**Objective**: Identify and resolve race conditions.
+## Part 3: Extending the Scenario with Views
 
-#### Exercise:
-1. **Debugging Task**:  
-   Provide buggy code that suffers from a race condition. Ask students to run it and identify the issue. Then, they should fix the code using synchronization techniques like `threading.Lock` or atomic variables.
+### Task:
+Create a **view** to manage the inventory display for the e-commerce platform.
 
-2. **Interactive Simulation**:  
-   Create a simulation where multiple users try to withdraw money from the same bank account. Students should implement a solution to avoid overdrawing due to race conditions.
+1. **Scenario Extension:**
+   - Managers want a consistent view of all products' inventory for reporting purposes.  
+   - Users should only see products available for sale, without being affected by uncommitted changes from other users.
+
+2. **Steps:**
+   - Write an SQL query to create a view that displays product names, available inventory, and last updated timestamps.  
+   - Ensure the view reflects data consistency by choosing the appropriate concurrency technique (e.g., use MVCC for consistent snapshots).
+
+3. **Questions:**
+   - How does the use of views help in managing database concurrency?  
+   - What are the potential limitations of views in this context?  
+   - Discuss the impact of using views with different isolation levels.
 
 ---
 
-### 6. Concept of View
-**Objective**: Understand how "views" of shared data can differ across threads and processes.
+## Deliverables:
+- SQL scripts for implementing each technique.  
+- A short essay (300 words) discussing the trade-offs of the techniques used.  
+- SQL code to create and query the view.  
+- An analysis of how views and concurrency techniques interact to ensure consistency and performance.
 
-#### Exercise:
-1. **Discussion**:  
-   Explain how different threads might have stale or inconsistent views of shared data. Ask students to explain why this happens and suggest ways to mitigate it.
+---
 
-2. **Coding Task**:  
-   Write a Python program demonstrating the concept of stale data by reading a variable updated in another thread without proper synchronization.
-
-```python
-import threading
-import time
-
-data = 0
-
-def writer():
-    global data
-    for i in range(5):
-        time.sleep(1)
-        data = i
-        print(f"Writer updated data to {i}")
-
-def reader():
-    while True:
-        print(f"Reader sees data as {data}")
-        time.sleep(1)
-
-threading.Thread(target=writer).start()
-threading.Thread(target=reader).start()
-```
-
-### Bonus Challenge Exercise  
-**Integrating Concepts**:  
-
-Build a simple concurrent library checkout system where:  
-- Users can borrow and return books concurrently.  
-- Ensure proper synchronization to prevent race conditions (e.g., borrowing an already borrowed book).  
-- Use locks or semaphores to manage concurrency.  
-
-This exercise combines the understanding of concurrency, its challenges, and techniques to manage it effectively.
+This exercise encourages students to not only learn the concepts of concurrency challenges and techniques but also apply them practically in MariaDB with a real-world scenario.
