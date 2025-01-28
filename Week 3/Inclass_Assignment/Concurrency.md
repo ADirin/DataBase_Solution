@@ -81,3 +81,4 @@ Create a **view** to manage the inventory display for the e-commerce platform.
 ---
 
 This exercise encourages students to not only learn the concepts of concurrency challenges and techniques but also apply them practically in MariaDB with a real-world scenario.
+![Sample_Solution](https://github.com/ADirin/DATABASE_Solution_Lecture/blob/main/Week3/Inclass.md)
