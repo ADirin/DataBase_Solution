@@ -74,7 +74,7 @@ Create a **view** to manage the inventory display for the e-commerce platform.
 
 ## Deliverables:
 - SQL scripts for implementing each technique.  
-- A short essay (300 words) discussing the trade-offs of the techniques used.  
+- A short essay  discussing the trade-offs of the techniques used.  
 - SQL code to create and query the view.  
 - An analysis of how views and concurrency techniques interact to ensure consistency and performance.
 
