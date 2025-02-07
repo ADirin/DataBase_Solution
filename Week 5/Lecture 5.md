@@ -2,6 +2,7 @@
 # Learning Material: ORM and JPA
 ### lectture demo
 - ![example](https://github.com/ADirin/dbs_jpa_week5_1demo.git)
+- ![onetomany](https://github.com/ADirin/jpa_f2025_onetomany.git)
 
 ## Table of Contents
 1. [Introduction](#introduction)
