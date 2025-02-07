@@ -3,6 +3,8 @@
 ### lectture demo
 - ![example](https://github.com/ADirin/dbs_jpa_week5_1demo.git)
 - ![onetomany](https://github.com/ADirin/jpa_f2025_onetomany.git)
+- ![ManyToOne](https://github.com/ADirin/manytoone_spring2025_demo.git)
+  
 
 ## Table of Contents
 1. [Introduction](#introduction)
