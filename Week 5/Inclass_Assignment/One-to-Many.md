@@ -6,7 +6,7 @@ Create a JPA-based application to manage student data and track the time they sp
 - In-class activities  
 - Theory  
 
-Use **entity classes**, **relationships**, and **JPQL (Java Persistence Query Language)** to perform CRUD operations and queries.
+Use **entity classes**, **relationships**, and "DAO" to perform CRUD operations.
 
 ---
 
