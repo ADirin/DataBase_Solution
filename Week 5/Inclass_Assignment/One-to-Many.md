@@ -51,20 +51,10 @@ Represents the time a student spends on:
 - A **Student** can have **multiple** `TimeSpent` records (**one-to-many** relationship).  
 - Each **TimeSpent** record belongs to **one** `Student` (**many-to-one** relationship).  
 
----
+--
 
-### **4. Database**
-Use one of the following relational databases:
-- **H2 (in-memory database)**
-- **MySQL**
-- **PostgreSQL**
-
----
-
-### **5. Queries (JPQL)**
-Write JPQL queries to:
-1. **Find all students.**  
-2. **Find the total time spent** by a specific student (**sum of homework, in-class, and theory hours**).  
-3. **Find the student who spent the most time on homework.**  
-4. **Find the average time spent on theory by all students.**  
+### **Apply DAOclass**
+1. **Find a student.**  
+3. **Add new students.**  
+4. **update a student**  
 
