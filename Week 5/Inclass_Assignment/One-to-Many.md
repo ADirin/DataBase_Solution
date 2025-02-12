@@ -58,3 +58,5 @@ Represents the time a student spends on:
 3. **Add new students.**  
 4. **update a student**  
 
+----
+[potential solution](https://github.com/ADirin/student_timespent.git)
