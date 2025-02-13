@@ -58,5 +58,10 @@ Represents the time a student spends on:
 3. **Add new students.**  
 4. **update a student**  
 
+---
+## Submission
+
+- Please upload the screenshots of the tables with your name as a recorde and the DAO output 
+
 ----
 [potential solution](https://github.com/ADirin/student_timespent.git)
