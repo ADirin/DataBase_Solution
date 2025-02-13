@@ -61,7 +61,9 @@ Represents the time a student spends on:
 ---
 ## Submission
 
-- Please upload the screenshots of the tables with your name as a recorde and the DAO output 
+- Please upload the screenshots of the tables with your name as a recorde and the DAO output
+
+- [Sample Report](/images/sr.JPG)
 
 ----
 [potential solution](https://github.com/ADirin/student_timespent.git)
