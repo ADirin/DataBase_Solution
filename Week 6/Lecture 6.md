@@ -19,18 +19,18 @@
 ## Introduction
 This guide covers the basics of handling Many-to-Many (M:N) and One-to-One (1:1) associations, and inheritance in Object-Relational Mapping (ORM) using Java Persistence API (JPA). These concepts are essential for managing relational data in Java applications using object-oriented principles.
 
-### M:N Associations
+## M:N Associations
 In an M:N association, multiple instances of one entity are associated with multiple instances of another entity. This typically involves a join table in the database.
 
-### 1:1 Associations
+## 1:1 Associations
 In a 1:1 association, one instance of an entity is associated with one instance of another entity. This can be modeled using shared primary keys or foreign keys.
 
-### Inheritance
+## Inheritance
 Inheritance allows entities to inherit properties and relationships from a base entity, enabling polymorphic queries and shared behavior.
 
 ## Java Persistence API (JPA)
 
-### Setting Up JPA
+## Setting Up JPA
 To use JPA, you'll need to include the necessary dependencies and configure a `persistence.xml` file. This setup is similar to any JPA project but focuses on defining relationships between entities.
 
 ### Example `pom.xml` for Maven
