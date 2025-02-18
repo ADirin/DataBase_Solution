@@ -2,9 +2,6 @@
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Object-Relational Mapping (ORM)](#object-relational-mapping-orm)
-    - [What is ORM?](#what-is-orm)
-    - [Associations in ORM](#associations-in-orm)
         - [M:N Associations](#mn-associations)
         - [1:1 Associations](#11-associations)
         - [Inheritance](#inheritance)
@@ -22,21 +19,13 @@
 ## Introduction
 This guide covers the basics of handling Many-to-Many (M:N) and One-to-One (1:1) associations, and inheritance in Object-Relational Mapping (ORM) using Java Persistence API (JPA). These concepts are essential for managing relational data in Java applications using object-oriented principles.
 
-## Object-Relational Mapping (ORM)
-
-### What is ORM?
-ORM is a programming technique that allows developers to interact with a relational database using an object-oriented paradigm. ORM frameworks map database tables to Java classes, and SQL queries to method calls, abstracting the database interactions.
-
-### Associations in ORM
-ORM supports various types of associations to model real-world relationships between entities.
-
-#### M:N Associations
+### M:N Associations
 In an M:N association, multiple instances of one entity are associated with multiple instances of another entity. This typically involves a join table in the database.
 
-#### 1:1 Associations
+### 1:1 Associations
 In a 1:1 association, one instance of an entity is associated with one instance of another entity. This can be modeled using shared primary keys or foreign keys.
 
-#### Inheritance
+### Inheritance
 Inheritance allows entities to inherit properties and relationships from a base entity, enabling polymorphic queries and shared behavior.
 
 ## Java Persistence API (JPA)
