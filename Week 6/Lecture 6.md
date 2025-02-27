@@ -1,5 +1,7 @@
 # Learning Material: ORM with JPA - M:N and 1:1 Associations, Inheritance
 
+[Lecture Demo, 27.02.2025](https://github.com/ADirin/dbs_week6_classDemo_Aikido.git)
+
 ## Table of Contents
 1. [Introduction](#introduction)
         - [M:N Associations](#mn-associations)
