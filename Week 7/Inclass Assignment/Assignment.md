@@ -1,5 +1,9 @@
 ## Exercise Aikido Training Session Tracker
 
+## To complete the assignment, clone the following base code, fix any issues, and extend it to meet the requirements
+[basecode](https://github.com/ADirin/dbs_week7_inclass.git)
+
+
 ### Objective
 Students will develop a backend system for tracking Aikido training sessions, instructors, students, and performance progress. The focus is on utilizing Hibernate features such as entity events, converters, and object concurrency.
 
