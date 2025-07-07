@@ -71,60 +71,59 @@ Week 8:  [Final Exam]   [First & Second Resits]
 
 ## Course Schedule
 
-### Week 1 (13.1.-16.1.)
+### Week 1 
 
-- **Mon:** Introduction to Databases & Temporal Databases  
+- **Kes:** Introduction to Databases & Temporal Databases  
   Explore foundational database concepts and delve into temporal databases, which handle time-related data efficiently.
-- **Thr:** Indexing & Performance Simulations  
+- **Fri:** Indexing & Performance Simulations  
   Learn about indexing techniques to enhance database performance and engage in simulations to observe their impact.
 
-### Week 2 (20.1.-23.1.)
-
-- **Mon:** Query Optimization  
+### Week 2 
+- **Kes:** Query Optimization  
   Focus on methods for optimizing queries to ensure they run as efficiently as possible.
-- **Thr:** Concurrent Use: Transactions & Isolation Levels  
+- **Fri:** Concurrent Use: Transactions & Isolation Levels  
   Study how databases manage concurrent transactions and the various isolation levels to prevent data anomalies.
 
-### Week 3 (27.1.-30.1.)
+### Week 3
 
-- **Mon:** Concurrent Use: Locks & Versioning  
+- **Kes:** Concurrent Use: Locks & Versioning  
   Examine locking mechanisms and versioning strategies for handling simultaneous data access and modification.
-- **Thr:** Views  
+- **Fri:** Views  
   Understand how to create and use views to simplify complex queries and enhance data abstraction.
 
-### Week 4 (03.2.-06.2.)
+### Week 4 
 
-- **Mon:** Triggers, Stored Procedures & Events  
+- **Kes:** Triggers, Stored Procedures & Events  
   Delve into advanced database features like triggers, stored procedures, and events to automate and manage database operations.
-- **Thr:** User Accounts, Security & Backups  
+- **Fri:** User Accounts, Security & Backups  
   Learn about managing user accounts, securing databases, and implementing backup strategies. Backup Video Tutorial and Grant Privilege Guide.
 
-### Week 5 (10.2.-13.2.)
+### Week 5 
 
-- **Mon:** ORM with JPA: A Single Class  
+- **Kes:** ORM with JPA: A Single Class  
   Begin exploring Object-Relational Mapping (ORM) with Java Persistence API (JPA) by working with single-class mappings.
-- **Thr:** ORM with JPA: One-to-Many Associations  
+- **Fri:** ORM with JPA: One-to-Many Associations  
   Extend your knowledge to one-to-many relationships in JPA, crucial for modeling complex data interactions.
 
-### Week 6 (24.2.-27.2.)
+### Week 6 
 
-- **Mon:** ORM with JPA: Many-to-Many & One-to-One Associations, Inheritance  
+- **Kes:** ORM with JPA: Many-to-Many & One-to-One Associations, Inheritance  
   Learn about more advanced JPA mappings, including many-to-many, one-to-one associations, and inheritance strategies.
-- **Thr:** ORM with JPA: JPQL & Criteria API  
+- **Fri:** ORM with JPA: JPQL & Criteria API  
   Study Java Persistence Query Language (JPQL) and the Criteria API for building dynamic queries.
 
-### Week 7 (03.3.-06.3.)
+### Week 7 
 
-- **Mon:** ORM with JPA: Converters, Events, Object-Level Concurrency Control  
+- **Kes:** ORM with JPA: Converters, Events, Object-Level Concurrency Control  
   Explore converters for data transformation, event handling, and techniques for managing object-level concurrency.
-- **Thr:** JPA Workshop  
+- **Fri:** JPA Workshop  
   Participate in a workshop focused on JPA, with no face-to-face lectures; online sessions available on demand. This week includes the final exam.
 
-### Week 8 (10.3.-12.3.) **EXAM**
+### Week 8  **EXAM**
 
-- **Mon:** First Resit  
+- **Kes:** First Resit  
   Opportunity for students to retake the exam if necessary.
-- **Thr:** Second Resit  
+- **Fri:** Second Resit  
   Additional chance for students to resit the exam.
 
 ## Home Assignments
