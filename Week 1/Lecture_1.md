@@ -1,4 +1,4 @@
-# Topics that we'll cover in Week 1
+# Topics that we'll cover in Week 1 (AI generated and modified / extended by Teacher)
 1. [Database Performance Simulations](#Database-Performance-Simulations)
 2. [Database Normalization](#Database-Normalization)
 3. [Indexing in Databases](#Indexing-in-Databases)
