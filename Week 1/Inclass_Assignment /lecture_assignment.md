@@ -221,3 +221,5 @@ DROP INDEX idx_course_name_thin ON Courses;
 DROP INDEX idx_has_dropped ON Enrollments;
 
 ```
+## Submission
+Create a PDF document that includes *only* the question number and your answer. Make sure you have added your name to the report. If you do not answer any question, please write "NOT DONE" in capital letters. 
