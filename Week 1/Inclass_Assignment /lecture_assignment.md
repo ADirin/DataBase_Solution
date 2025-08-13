@@ -1,13 +1,13 @@
-# Temporal Database Management for Students and Courses
+# Lecture Exercise week 1:
+## Aim of the Exercise
+The aim of this exercise is to provide a demonstration on the concepts and practical applications of temporal databases. Specifically, the exercise focuses on the implementation and understanding of key temporal elements such as transaction time, valid time, and system versioning using a simple Students and Courses database schema. 
+By the end of this project, participants will be able to:
 
-## Aim of the Project
+    1. Understand the importance and the application of temporal data in database management system.
+    2. Create and manage temporal tables that track historical data and changes over time.
+    3. Implement and query temporal data using SQL to view historical states and manage data integrity.
+    4. Apply system versioning techniques to automatically manage historical data in relational databases.
 
-The aim of this project is to provide an educational demonstration on the concepts and practical applications of temporal databases. Specifically, the project focuses on the implementation and understanding of key temporal elements such as transaction time, valid time, and system versioning using a simple Students and Courses database schema. By the end of this project, participants will be able to:
-
-1. Understand the importance and application of temporal data in database management.
-2. Create and manage temporal tables that track historical data and changes over time.
-3. Implement and query temporal data using SQL to view historical states and manage data integrity.
-4. Apply system versioning techniques to automatically manage historical data in relational databases.
 
 ## Project Steps
 
