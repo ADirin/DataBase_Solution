@@ -16,41 +16,8 @@ Welcome to the Database Solutions course! This intensive, 8-week program is desi
 
 Each lecture will consist of both theoretical concepts and practical examples. Students will have the opportunity to apply what they learn during the lecture through hands-on practice. Participation in these lectures is compulsory to ensure a thorough understanding of the material.
 
-# Progression Figure: Student Competence Development
-````less
-less
-Week 1:          [Intro to Databases & Temporal Databases]
-                 /\
-                /  \
-               /    \
-Week 2:        [Query Optimization]         [Concurrent Use: Transactions & Isolation Levels]
-               /\
-              /  \
-             /    \
-Week 3:      [Locks & Versioning]            [Views]
-             /\
-            /  \
-           /    \
-Week 4:      [Triggers, Stored Procedures & Events]
-             /\
-            /  \
-           /    \
-Week 5:      [ORM with JPA: A Single Class]  [ORM with JPA: 1:M Associations]
-           /\
-          /  \
-         /    \
-Week 6:    [ORM with JPA: M:N & 1:1 Associations, Inheritance]
-         /\
-        /  \
-       /    \
-Week 7:  [ORM with JPA: JPQL & Criteria API]   [Converters, Events, Object-Level Concurrency Control]
-       /\
-      /  \
-     /    \
-Week 8:  [Final Exam]   [First & Second Resits]
 
-````
-# Description of the Figure
+# The Course Content
 
 - **Week 1:** Focuses on foundational concepts such as Temporal Databases and Indexing, setting the base for performance and query handling.
 
@@ -119,7 +86,7 @@ Week 8:  [Final Exam]   [First & Second Resits]
 - **Fri:** JPA Workshop  
   Participate in a workshop focused on JPA, with no face-to-face lectures; online sessions available on demand. This week includes the final exam.
 
-### Week 8  **EXAM**
+### Week 8  **Revie Session*
 
 - **Kes:** First Resit  
   Opportunity for students to retake the exam if necessary.
@@ -137,11 +104,18 @@ Starting from the second week, home assignments will be given. These assignments
 
 ## Course Completion
 
-To successfully complete the course, students must meet the following criteria:
+To successfully complete the course, students must:
 
-1. **80%Lecture Participation:** Attend and participate in at least 80% of the lectures.
-2. **Home Assignments:** Complete and present all mandatory home assignments.
-3. **Final Exam:** Pass the final exam.
-4. **Quizes**
+📚 Lecture Participation — 80% Minimum
+Attend and actively participate in at least 80% of the lectures.
+
+📝 Home Assignments
+Complete and present all mandatory home assignments.
+
+🧠 Final Exam
+Achieve a passing score in the final exam.
+
+🎯 Quizzes — 100% Completion
+Complete all quizzes in the course.
 
 This course aims to equip you with the essential skills needed for effective database management and optimization, preparing you for real-world challenges in the field. We look forward to an engaging and productive learning experience!
