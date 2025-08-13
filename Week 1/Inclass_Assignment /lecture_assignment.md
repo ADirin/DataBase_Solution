@@ -139,7 +139,7 @@ FOR SYSTEM_TIME ALL;
 # In-Class Assignment for INDEX
 
 ## Step 2: Dense Index
-A dense index is one that includes an index entry for every search key value, even if those values are not unique. Typically, dense indexes are more effective for columns with many unique values.
+A dense index is one that includes an index entry for every *search key value*, even if those values are not unique. Typically, dense indexes are more effective for columns with many unique values.
 
 **Use Case for Dense Index:** The column DateOfBirth in the Students table is likely to have many unique values (students with different birthdates), so it makes sense to create a dense index here.
 **SQL for Creating Dense Index on** DateOfBirth
