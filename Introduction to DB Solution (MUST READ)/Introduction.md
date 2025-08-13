@@ -139,8 +139,9 @@ Starting from the second week, home assignments will be given. These assignments
 
 To successfully complete the course, students must meet the following criteria:
 
-1. **80% Lecture Participation:** Attend and participate in at least 80% of the lectures.
+1. **80%Lecture Participation:** Attend and participate in at least 80% of the lectures.
 2. **Home Assignments:** Complete and present all mandatory home assignments.
 3. **Final Exam:** Pass the final exam.
+4. **Quizes**
 
 This course aims to equip you with the essential skills needed for effective database management and optimization, preparing you for real-world challenges in the field. We look forward to an engaging and productive learning experience!
