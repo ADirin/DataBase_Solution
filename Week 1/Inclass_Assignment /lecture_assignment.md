@@ -101,19 +101,19 @@ VALUES
 ## Exercise 1. Current vs Historical Enrollment Status
 - Show all the students who were enrooled in CourseID 1 (introduction to programming) of march 1,2024 including those who may have dropped the course later
 
-**Add you statement and the output in your report**
+*Add your SQL statement and resulted output screenshots to your answer sheet (PDF)*
 
 ## Exercise 2.  Student Enrollment Timeline
 
 - For student ID 101, show their complete enrollment history with all courses, including when they started and ended each enrollment.
 
-**Add you statement and the output in your report**
+*Add your SQL statement and resulted output screenshots to your answer sheet (PDF)*
 
 ## Exercise 3. Active Enrollments with Temporal Integrity
 
 - Find all currently active enrollments (not dropped) and verify that their temporal validity periods are correctly set.
 
-**Add you statement and the output in your report**
+*Add your SQL statement and resulted output screenshots to your answer sheet (PDF)*
 ------------------------
 
 # In-Class Assignment for INDEX
