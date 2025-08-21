@@ -39,17 +39,13 @@ Execute SQL queries to retrieve historical data at specific points in time. Illu
 1. **Create the Students Table:**
     ```sql
     CREATE TABLE Students (
-        StudentID INT PRIMARY KEY,
-        StudentName VARCHAR(100),
-        DateOfBirth DATE
+       ...
     );
     ```
 
 2. **Create the Courses Table:**
     ```sql
-    CREATE TABLE Courses (
-        CourseID INT PRIMARY KEY,
-        CourseName VARCHAR(100)
+    ....
     );
     ```
 
