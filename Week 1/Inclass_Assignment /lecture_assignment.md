@@ -114,6 +114,7 @@ VALUES
 - Find all currently active enrollments (not dropped) and verify that their temporal validity periods are correctly set.
 
 *Add your SQL statement and resulted output screenshots to your answer sheet (PDF)*
+
 ------------------------
 
 # In-Class Assignment for INDEX
