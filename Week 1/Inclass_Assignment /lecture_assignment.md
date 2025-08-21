@@ -29,9 +29,7 @@ Insert records into the database while considering temporal attributes, such as 
 
 Execute SQL queries to retrieve historical data at specific points in time. Illustrate the use of system versioning to automatically manage and track changes in data.
 
-### 5. Real-World Application and Discussion
 
-Summarize the practical applications of temporal databases in real-world scenarios, emphasizing the importance of data accuracy and historical tracking.
 
 ## Sample solutions
     - Make sure your solutions follows the diagram, e.g., add the DATTIME; etc.
