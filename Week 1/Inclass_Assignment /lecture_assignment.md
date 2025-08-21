@@ -45,6 +45,7 @@ Execute SQL queries to retrieve historical data at specific points in time. Illu
 
 2. **Create the Courses Table:**
     ```sql
+    CREATE TABLE Courses (
     ....
     );
     ```
