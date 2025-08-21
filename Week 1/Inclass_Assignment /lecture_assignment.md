@@ -52,7 +52,7 @@ Execute SQL queries to retrieve historical data at specific points in time. Illu
 
 3. **Create the Enrollments Table:**
     ```sql
-CREATE TABLE Enrollments (
+    CREATE TABLE Enrollments (
     EnrollmentID INT PRIMARY KEY,
     StudentID INT,
     CourseID INT,
