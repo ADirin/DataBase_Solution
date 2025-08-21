@@ -51,83 +51,70 @@ Execute SQL queries to retrieve historical data at specific points in time. Illu
 
 3. **Create the Enrollments Table:**
     ```sql
-    CREATE TABLE Enrollments (
-        EnrollmentID INT PRIMARY KEY,
-        StudentID INT,
-        CourseID INT,
-        EnrollmentDate DATE,
-        DropDate DATE,
-        ValidFrom DATE,
-        ValidTo DATE,
-        TransactionStartTime TIMESTAMP,
-        TransactionEndTime DATETIME,
-        FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
-        FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
-    ) WITH SYSTEM versioning;
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    EnrollmentDate DATE,
+    DropDate DATE,
+    ValidFrom DATE,
+    ValidTo DATE,
+    TransactionStartTime TIMESTAMP(6),
+    TransactionEndTime TIMESTAMP(6),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+
+
     ```
 
 ### Step 3: Data Insertion and Temporal Management
 
-1. **Insert Data into Students Table:**
-    ```sql
-    INSERT INTO Students (StudentID, StudentName, DateOfBirth)
-    VALUES (1, 'Matti', '2000-05-15'),
-           (2, 'Amir', '1999-09-10');
-    ```
-
-2. **Insert Data into Courses Table:**
-    ```sql
-    INSERT INTO Courses (CourseID, CourseName)
-    VALUES (1, 'Database Systems'),
-           (2, 'Data Structures');
-    ```
-
-3. **Enroll Students in Courses with Valid Time and Transaction Time:**
-    ```sql
-    -- Matti enrolls in Database Systems
-    INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
-    VALUES (1, 1, 1, '2024-08-18', NULL, '2024-08-18', '9999-12-31', CURRENT_TIMESTAMP, '9999-12-31');
-
-    -- Amir enrolls in Data Structures
-    INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
-    VALUES (2, 2, 2, '2024-08-19', NULL, '2024-08-19', '9999-12-31', CURRENT_TIMESTAMP, '9999-12-31');
-    ```
-
-### Step 4: Update Data and Explore Temporal Behavior
-
-1. **Matti Drops the Course (Update Valid and Transaction Times):**
-    ```sql
-    -- Set the valid end time for Amir's current enrollment
-    UPDATE Enrollments
-    SET DropDate = '2024-09-01', ValidTo = '2024-09-01'
-    WHERE EnrollmentID = 1;
-
-    -- Insert a new record for Amir to indicate course drop with updated transaction time
-    INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
-    VALUES (3, 1, 1, '2024-08-18', '2024-09-01', '2024-08-18', '2024-09-01', CURRENT_TIMESTAMP, '9999-12-31');
-    ```
-
-2. **Amir's Enrollment is Updated Due to a Data Correction:**
-    ```sql
-    -- Assume the initial enrollment date was incorrect and needs to be corrected
-    -- Set the valid end time for Matti's current enrollment record
-    UPDATE Enrollments
-    SET ValidTo = CURRENT_TIMESTAMP
-    WHERE EnrollmentID = 2;
-
-    -- Insert a corrected enrollment record for Amir with the right enrollment date and updated transaction time
-    INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
-    VALUES (4, 2, 2, '2024-08-20', NULL, '2024-08-20', '9999-12-31', CURRENT_TIMESTAMP, '9999-12-31');
-    ```
-
-### Step 5: Get the Historical Data from a System-Version Temporal Table
 
 ```sql
-SELECT *, row_start AS transaction_time 
-FROM Enrollments 
-FOR SYSTEM_TIME ALL;
-````
 
+-- First, insert into Students (if not already done)
+INSERT INTO Students (StudentID, FirstName, LastName, DateOfBirth, EnrollmentDate)
+VALUES
+(101, 'John', 'Smith', '2000-05-15', '2023-08-20'),
+(102, 'Emily', 'Johnson', '2001-02-28', '2023-08-22'),
+(103, 'Michael', 'Brown', '2000-11-10', '2023-08-18'),
+(104, 'Sarah', 'Davis', '2001-07-03', '2023-08-25');
+
+-- Insert into Courses (if not already done)
+INSERT INTO Courses (CourseID, CourseName, CourseCode, Credits, Department)
+VALUES
+(1, 'Introduction to Programming', 'CS101', 3, 'Computer Science'),
+(2, 'Database Systems', 'CS201', 4, 'Computer Science'),
+(3, 'Calculus I', 'MATH101', 4, 'Mathematics');
+
+-- Now insert into Enrollments
+INSERT INTO Enrollments (EnrollmentID, StudentID, CourseID, EnrollmentDate, DropDate, ValidFrom, ValidTo, TransactionStartTime, TransactionEndTime)
+VALUES
+(1, 101, 1, '2024-01-15', NULL, '2024-01-15', '2030-12-31', '2024-01-15 09:30:00', '2030-12-31 23:59:59'),
+(2, 101, 2, '2024-01-20', '2024-03-15', '2024-01-20', '2024-03-15', '2024-01-20 13:10:00', '2024-03-15 16:30:00'),
+(3, 102, 1, '2024-02-01', NULL, '2024-02-01', '2030-12-31', '2024-02-01 14:20:00', '2030-12-31 23:59:59'),
+(4, 103, 3, '2024-02-10', NULL, '2024-02-10', '2030-12-31', '2024-02-10 09:00:00', '2030-12-31 23:59:59'),
+(5, 104, 2, '2024-02-15', '2024-04-01', '2024-02-15', '2024-04-01', '2024-02-15 15:30:00', '2024-04-01 14:15:00');
+```
+
+## Exercise 1. Current vs Historical Enrollment Status
+- Show all the students who were enrooled in CourseID 1 (introduction to programming) of march 1,2024 including those who may have dropped the course later
+
+**Add you statement and the output in your report**
+
+## Exercise 2.  Student Enrollment Timeline
+
+- For student ID 101, show their complete enrollment history with all courses, including when they started and ended each enrollment.
+
+**Add you statement and the output in your report**
+
+## Exercise 3. Active Enrollments with Temporal Integrity
+
+- Find all currently active enrollments (not dropped) and verify that their temporal validity periods are correctly set.
+
+**Add you statement and the output in your report**
 ------------------------
 
 # In-Class Assignment for INDEX
@@ -174,7 +161,7 @@ Once the indexes are created, learners can run queries that benefit from these i
 ```sql
 -- Query using the dense index on DateOfBirth
 SELECT * FROM Students
-WHERE DateOfBirth = '2000-01-01';
+WHERE DateOfBirth = '2000-11-10';
 
 
 ```
@@ -186,7 +173,7 @@ This query will use the dense index on the DateOfBirth column, speeding up searc
 
 -- Query using the thin index on CourseName
 SELECT * FROM Courses
-WHERE CourseName = 'Mathematics 101';
+WHERE CourseName = 'Database Systems';
 
 
 ```
@@ -199,7 +186,7 @@ You can use the EXPLAIN command to see if MySQL is using the indexes for your qu
 For example:
 ```sql
 
-EXPLAIN SELECT * FROM Students WHERE DateOfBirth = '2000-01-01';
+EXPLAIN SELECT * FROM Students WHERE DateOfBirth = '2000-11-10';
 
 ```
 ## Step 7: Clean Up the Environment
