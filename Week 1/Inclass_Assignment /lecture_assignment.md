@@ -66,9 +66,7 @@ Execute SQL queries to retrieve historical data at specific points in time. Illu
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
 );
 
-
-
-    ```
+     ```
 
 ### Step 3: Data Insertion and Temporal Management
 
