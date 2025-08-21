@@ -1,4 +1,4 @@
-# Lecture Exercise week 1:
+# Lecture Exercise week 1: *Temporal and indexing* 
 ## Aim of the Exercise
 The aim of this exercise is to provide a demonstration on the concepts and practical applications of temporal databases. Specifically, the exercise focuses on the implementation and understanding of key temporal elements such as transaction time, valid time, and system versioning using a simple Students and Courses database schema. 
 By the end of this project, participants will be able to:
