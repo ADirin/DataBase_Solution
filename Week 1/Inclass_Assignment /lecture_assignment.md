@@ -15,7 +15,6 @@ By the end of this project, participants will be able to:
 
 Design and create tables for Students, Courses, and Enrollments, incorporating fields for temporal data management (e.g., `ValidFrom`, `ValidTo`, `TransactionStartTime`, `TransactionEndTime`).
 
-![Assignment1](/images/asgn.JPG)
 
 ### 2. Temporal Concepts Understanding
 
