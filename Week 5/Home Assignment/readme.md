@@ -1,2 +1,2 @@
-
-See the assignment in the course moodle site
+> ⚠️ **NOTE**  
+> #* 🏠 HOME ASSIGNMENT WHICH ARE PUBLISHED IN MOODLE MUST BE IMPLEMENTED NOT FROM THE GITHUB *#
