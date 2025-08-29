@@ -7,7 +7,7 @@
 
 Database Solutions 24.3.
 
-# Assignment: Transactions and concurrency control
+### Assignment: Transactions and concurrency control
 
 Goal:
 
