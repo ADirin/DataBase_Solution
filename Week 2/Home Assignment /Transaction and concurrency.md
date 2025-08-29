@@ -1,3 +1,10 @@
+
+
+
+
+**NOTE NOTE** #* HOME ASSIGNMENT WHICH ARE PUBLISHED IN MOODLE MUST BE IMPLEMENTED NOT FROM THE GITHUB#
+
+
 Database Solutions 24.3.
 
 # Assignment: Transactions and concurrency control
