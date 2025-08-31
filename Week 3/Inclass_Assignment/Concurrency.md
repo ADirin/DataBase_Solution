@@ -74,11 +74,7 @@ Create a **view** to manage the inventory display for the e-commerce platform.
 
 ## Deliverables:
 - SQL scripts for implementing each technique.  
-- A short essay  discussing the trade-offs of the techniques used.  
 - SQL code to create and query the view.  
-- An analysis of how views and concurrency techniques interact to ensure consistency and performance.
+
 
 ---
-
-This exercise encourages students to not only learn the concepts of concurrency challenges and techniques but also apply them practically in MariaDB with a real-world scenario.
-![Sample_Solution](https://github.com/ADirin/DATABASE_Solution_Lecture/blob/main/Week3/Inclass.md)
