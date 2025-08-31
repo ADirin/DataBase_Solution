@@ -21,14 +21,10 @@ Concurrency management involves techniques and mechanisms to handle the simultan
 MariaDB provides various types of locks to ensure data integrity. Here are some examples:
 
 ```sql
--- Explicit locking
-LOCK TABLES accounts WRITE;
 
 -- Perform operations
 UPDATE accounts SET balance = balance - 100 WHERE account_id = 1;
 
--- Unlock tables
-UNLOCK TABLES;
 ```
 ## Isolation Levels
 Isolation levels define the degree to which the operations in one transaction are isolated from those in other transactions.
