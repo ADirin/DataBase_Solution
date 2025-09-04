@@ -1,4 +1,5 @@
 # Exercise: Concurrency Challenges in MariaDB Databases
+## You may do in pair, bu everybody must submit the assignment.
 
 ## Objective:
 Understand and analyze concurrency challenges in MariaDB databases and explore techniques to manage and overcome these challenges effectively. By the end of the exercise, students will also explore the concept of views in databases.
@@ -72,34 +73,143 @@ INSERT INTO orders (user_id, product_id, quantity, total_amount, order_status) V
 
 ### Techniques:
 1. **Locks (Pessimistic Concurrency Control)**  
-   - Write an example of using `LOCK TABLES` in MariaDB to prevent concurrent access to the same table.  
-
+   
+Your task is to create product ordering transaction when multiple users order the same time 
 ````
-LOCK TABLES Products WRITE, orders Write;
 START TRANSACTION;
-_YOUR code here...
- 
 
+-- Lock specific product row for update
+   SELECT ....... FOR UPDATE;
 
+-- Update the inventory to deduct the purchased quantity.
+UPDATE products
+SET inventory = inventory -2
+where .......
+-- Insert the new order into the orders table.
+INSERT INTO orders (user_id, product_id, quantity, total_amount) 
+VALUES (5, 1, 2, 1999.98, 'pending');
 
-COMMIT:
-UNLOCK TABLES
+-- make the transaction permanent
+
 
 ````
 
 2. **Multi-Version Concurrency Control (MVCC)**  
-   - Explain how MVCC helps resolve conflicts using snapshots of data.  
-   - Use `SELECT ... FOR UPDATE` or `READ COMMITTED` isolation level to illustrate MVCC in action.  
+```
+-- ALTER TABLE products
+ADD version INT NOT NULL DEFAULT 0;
+
+START TRANSACTION;
+
+-- Step 1: Read product data (no locks, just snapshot)
+SELECT product_id, price, inventory, version
+FROM ...
+WHERE product_id = 1;
+
+-- Assume user wants 2 units, and we read version = 5
+
+-- Step 2: Try to update using optimistic check
+UPDATE products
+SET inventory = inventory - 2,
+    version = ....
+WHERE product_id = 1
+  AND inventory >= 2
+  AND version = 5;
+
+
+INSERT INTO orders (user_id, product_id, quantity, total_amount, order_status)
+VALUES (5, 1, 2, 1999.98, 'pending');
+
+-- make the transaction permanent
+
+
+```
 
 3. **Timestamp-Based Concurrency Control**  
    - Write a query to assign timestamps for transactions and explain how this technique resolves conflicts.
+```
+ALTER TABLE products
+ADD last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP;
+
+START TRANSACTION;
+
+-- Step 1: Read product info with its timestamp
+SELECT product_id, price, inventory, last_updated
+FROM products
+WHERE product_id = 1;
+
+-- Suppose we read last_updated = '2025-09-04 12:00:00'
+-- Transaction timestamp = the moment this transaction started
+
+-- Step 2: Attempt to update with timestamp check
+UPDATE products
+SET inventory = inventory - 2
+WHERE product_id = 1
+  AND inventory >= 2
+  AND last_updated = '2025-09-04 12:00:00';
+
+INSERT INTO orders (user_id, product_id, quantity, total_amount, order_status)
+VALUES (5, 1, 2, 1999.98, 'pending');
+
+COMMIT;
+
+```
 
 4. **Optimistic Concurrency Control**  
    - Demonstrate the implementation of a version column in a table to detect conflicts.  
-   - Write an SQL transaction that handles conflict resolution optimistically.
+```
+START TRANSACTION;
+
+-- Step 1: Read product info (no locks)
+SELECT product_id, price, inventory, version
+FROM products
+WHERE product_id = 1;
+
+-- Suppose: inventory = 10, version = 3
+-- We want to buy 2 units
+
+-- Step 2: Update with optimistic check
+UPDATE products
+SET inventory = inventory - 2,
+    version = version + 1
+WHERE product_id = 1
+  AND inventory >= 2
+  AND version = 3;
+
+
+INSERT INTO orders (user_id, product_id, quantity, total_amount, order_status)
+VALUES (5, 1, 2, 1999.98, 'pending');
+
+COMMIT;
+
+
+```
 
 5. **Pessimistic Concurrency Control**  
    - Use `LOCK IN SHARE MODE` to demonstrate pessimistic locking in MariaDB.
+  
+```
+START TRANSACTION;
+
+-- Step 1: Lock the product row
+SELECT price, inventory
+FROM products
+WHERE product_id = 1
+;
+
+
+-- Step 2: Deduct stock
+UPDATE products
+SET inventory = inventory - 2
+WHERE product_id = 1;
+
+-- Step 3: Insert the order
+INSERT INTO orders (user_id, product_id, quantity, total_amount, order_status)
+VALUES (5, 1, 2, 1999.98, 'pending');
+
+
+```
 
 ### Questions:
 - What are the advantages and disadvantages of each technique in high-concurrency systems?  
@@ -110,26 +220,14 @@ UNLOCK TABLES
 ## Part 3: Extending the Scenario with Views
 
 ### Task:
-Create a **view** to manage the inventory display for the e-commerce platform.
+Create a **view** to manage the inventory display for the e-commerce platform. 
 
-1. **Scenario Extension:**
-   - Managers want a consistent view of all products' inventory for reporting purposes.  
-   - Users should only see products available for sale, without being affected by uncommitted changes from other users.
-
-2. **Steps:**
-   - Write an SQL query to create a view that displays product names, available inventory, and last updated timestamps.  
-   - Ensure the view reflects data consistency by choosing the appropriate concurrency technique (e.g., use MVCC for consistent snapshots).
-
-3. **Questions:**
-   - How does the use of views help in managing database concurrency?  
-   - What are the potential limitations of views in this context?  
-   - Discuss the impact of using views with different isolation levels.
 
 ---
 
 ## Deliverables:
 - SQL scripts for implementing each technique.  
-- SQL code to create and query the view.
+- Screen shots of the resulted transactions.
 - Create a PDF file and submit the file in designated folder in Moodle
 
 
