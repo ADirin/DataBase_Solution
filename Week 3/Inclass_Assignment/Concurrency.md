@@ -30,7 +30,15 @@ Match the following techniques with the issues they aim to solve and implement S
 ### Techniques:
 1. **Locks (Pessimistic Concurrency Control)**  
    - Write an example of using `LOCK TABLES` in MariaDB to prevent concurrent access to the same table.  
-   - Discuss the trade-offs of using locks (e.g., performance vs. consistency).  
+
+````
+LOCK TABLES Products WRITE, orders Write;
+START TRANSACTION;
+_YOUR code here... 
+_COMMIT:
+UNLOCK TABLES
+
+````
 
 2. **Multi-Version Concurrency Control (MVCC)**  
    - Explain how MVCC helps resolve conflicts using snapshots of data.  
