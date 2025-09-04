@@ -26,6 +26,54 @@ Imagine you are working on a high-traffic e-commerce platform where multiple use
 
 ### Task:
 Match the following techniques with the issues they aim to solve and implement SQL-based examples to demonstrate their use in MariaDB.
+#### Sample Tables if you want to try the syntax
+````
+CREATE TABLE products (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL CHECK (price >= 0),
+    inventory INT NOT NULL DEFAULT 0 CHECK (inventory >= 0),
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Create orders table with proper foreign key syntax
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    order_status ENUM('pending', 'confirmed', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10,2) NOT NULL CHECK (total_amount >= 0),
+    
+    -- Foreign key constraint with proper syntax
+    CONSTRAINT fk_orders_product
+    FOREIGN KEY (product_id) 
+    REFERENCES products(product_id) 
+    ON DELETE RESTRICT
+);
+
+
+-- Insert sample data into products table
+INSERT INTO products (product_name, description, price, inventory) VALUES
+('Laptop', 'High-performance gaming laptop', 999.99, 10),
+('Smartphone', 'Latest smartphone model', 499.99, 25),
+('Headphones', 'Wireless noise-cancelling headphones', 199.99, 50),
+('Mouse', 'Wireless computer mouse', 29.99, 100),
+('Keyboard', 'Mechanical gaming keyboard', 89.99, 30);
+
+-- Sample data for orders
+INSERT INTO orders (user_id, product_id, quantity, total_amount, order_status) VALUES
+(1, 1, 1, 999.99, 'delivered'),
+(1, 3, 2, 399.98, 'shipped'),
+(2, 2, 1, 499.99, 'confirmed'),
+(3, 4, 3, 89.97, 'pending');
+
+
+````
 
 ### Techniques:
 1. **Locks (Pessimistic Concurrency Control)**  
@@ -34,7 +82,8 @@ Match the following techniques with the issues they aim to solve and implement S
 ````
 LOCK TABLES Products WRITE, orders Write;
 START TRANSACTION;
-_YOUR code here... 
+_YOUR code here...
+ 
 
 
 
