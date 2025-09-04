@@ -35,7 +35,10 @@ Match the following techniques with the issues they aim to solve and implement S
 LOCK TABLES Products WRITE, orders Write;
 START TRANSACTION;
 _YOUR code here... 
-_COMMIT:
+
+
+
+COMMIT:
 UNLOCK TABLES
 
 ````
