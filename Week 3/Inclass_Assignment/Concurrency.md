@@ -74,7 +74,8 @@ Create a **view** to manage the inventory display for the e-commerce platform.
 
 ## Deliverables:
 - SQL scripts for implementing each technique.  
-- SQL code to create and query the view.  
+- SQL code to create and query the view.
+- Create a PDF file and submit the file in designated folder in Moodle
 
 
 ---
