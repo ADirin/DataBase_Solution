@@ -211,13 +211,37 @@ VALUES (5, 1, 2, 1999.98, 'pending');
 
 ```
 
+
+
 ### Questions:
 - What are the advantages and disadvantages of each technique in high-concurrency systems?  
 - Which technique would you recommend for the e-commerce platform described in Part 1? Why?
 
 ---
 
-## Part 3: Extending the Scenario with Views
+## Part 3: Extending the Scenario with Views (In Database context, do not confuse with JAVAFX)
+
+### Sample View
+```
+CREATE VIEW inventory_view AS
+SELECT 
+    p.product_id,
+    p.product_name,
+    p.description,
+    p.price,
+    p.inventory AS available_stock,
+    p.is_active,
+    COALESCE(SUM(o.quantity), 0) AS total_ordered,
+    (p.inventory - COALESCE(SUM(o.quantity), 0)) AS remaining_stock
+FROM products p
+LEFT JOIN orders o
+    ON p.product_id = o.product_id
+    AND o.order_status IN ('pending', 'confirmed', 'shipped')
+GROUP BY 
+    p.product_id, p.product_name, p.description, p.price, p.inventory, p.is_active;
+
+
+```
 
 ### Task:
 Create a **view** to manage the inventory display for the e-commerce platform. 
