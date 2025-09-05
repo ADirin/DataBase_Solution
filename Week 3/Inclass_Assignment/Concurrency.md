@@ -1,5 +1,5 @@
 # Exercise: Concurrency Challenges in MariaDB Databases
-## You may do in pair, bu everybody must submit the assignment.
+## You may do in pair, but everybody must submit the assignment.
 
 ## Objective:
 Understand and analyze concurrency challenges in MariaDB databases and explore techniques to manage and overcome these challenges effectively. By the end of the exercise, students will also explore the concept of views in databases.
