@@ -102,7 +102,7 @@ ADD version INT NOT NULL DEFAULT 0;
 START TRANSACTION;
 
 -- Step 1: Read product data (no locks, just snapshot)
-SELECT product_id, price, inventory, version
+SELECT product_id, price, inventory, ...
 FROM ...
 WHERE product_id = 1;
 
