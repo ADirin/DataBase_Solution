@@ -66,4 +66,4 @@ Represents the time a student spends on:
 - [Sample Report](/images/sr.JPG)
 
 ----
-[potential solution]()
+
