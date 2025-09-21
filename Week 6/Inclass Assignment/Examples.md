@@ -21,25 +21,15 @@ The goal of this assignment is to help students understand and implement differe
    - Insert sample data (students, books, authors, biographies, borrowed books) into the database.
    - Print confirmation messages to indicate successful insertion.
 
-## Deliverables
-- JPA entity classes with proper annotations.
-- A fully functional `LibraryDAO` class using `EntityManager`.
-- `persistence.xml` configured for MariaDB.
-- A `Main` class to test data insertion.
-- SQL schema and sample queries (optional but recommended).
 
 ## Evaluation Criteria
 - Correct implementation of **JPA relationships**.
 - Proper usage of **EntityManager** for CRUD operations.
-- Well-structured and readable code.
 - Successful execution of `Main` class without errors.
 
-### Bonus
-- Implement **query methods** to fetch books borrowed by a student.
-- Add **logging** to track database transactions.
 
-**Deadline:** [Specify due date]
+# 🚀 **Submission Format:** 
+- Upload your project as a GitHub repository or a zip file containing all necessary files.
+- Screenshots of the execution results of main method in the consol
+  
 
-**Submission Format:** Upload your project as a GitHub repository or a zip file containing all necessary files.
-
-Happy Coding! 🚀
