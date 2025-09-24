@@ -16,6 +16,7 @@ The goal of this assignment is to help students understand and implement differe
 
 3. **DAO Class**:
    - Create a `LibraryDAO` class to handle CRUD operations for `Student`, `Book`, and `BorrowedBook`.
+   - Optionaly use the JPQL and Criteria API for making query
 
 4. **Main Class**:
    - Insert sample data (students, books, authors, biographies, borrowed books) into the database.
@@ -29,7 +30,6 @@ The goal of this assignment is to help students understand and implement differe
 
 
 # 🚀 **Submission Format:** 
-- Upload your project as a GitHub repository or a zip file containing all necessary files.
+- Upload your project as a GitHub repository.
 - Screenshots of the execution results of main method in the consol
   
-
