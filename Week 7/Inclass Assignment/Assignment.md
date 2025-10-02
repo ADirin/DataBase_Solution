@@ -44,6 +44,6 @@ Students will develop a backend system for tracking Aikido training sessions, in
 - Implement a mechanism to notify users of concurrent modification conflicts.
 
 
-### GitHub Repository:
-- Push the entire project to a GitHub repository.
-- Screenshot of the successfull execution of the operations in consol
+### submission:
+- Push the entire project to a GitHub repository and upload the linkk in Moodke
+- Screenshot of the successfull execution of the operations in consol and submit it as a pdf
