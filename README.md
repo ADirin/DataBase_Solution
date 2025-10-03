@@ -455,17 +455,7 @@ crontab -e
 
 
 ````
-`````markdown
 
-Transient → Persisted → Removed  
-       ↑          ↑  
-   PrePersist  PreUpdate  
-       ↓          ↓  
-   PostPersist PostUpdate
-
-
-
-```
 
 Add a line to run the script daily at midnight:
 
